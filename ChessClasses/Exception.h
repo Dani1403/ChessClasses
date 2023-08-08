@@ -18,6 +18,6 @@ class StartingSquareNotValid : public std::exception
 public:
 	const char* what() const override
 	{
-		return "Invalid Starting Square for Chess Piece : ";
+		return "Invalid Starting Square for Chess Piece";
 	}
 };

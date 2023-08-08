@@ -19,6 +19,21 @@ std::string squareToAlgebraic(const Square& square)
 	return std::string{ col, row };
 }
 
+bool isOnSameRow(const Square& s1, const Square& s2)
+{
+	return (s1.row == s2.row);
+}
+
+bool isOnSameCol(const Square& s1, const Square& s2)
+{
+	return (s1.col == s2.col);
+}
+
+bool isOnSameDiag(const Square& s1, const Square& s2)
+{
+	return abs(s1.row - s2.row) == abs(s1.col - s2.col);
+}
+
 std::string colorToString(const Color& color)
 {
 	return color == Color::WHITE ? "white" : "black";
