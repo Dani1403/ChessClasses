@@ -29,3 +29,7 @@ bool isOnSameRow(const Square& s1, const Square& s2);
 bool isOnSameCol(const Square& s1, const Square& s2);
 
 bool isOnSameDiag(const Square& s1, const Square& s2);
+
+bool isKnightMove(const Square& s1, const Square& s2);
+
+int dist(const Square& s1, const Square& s2);

@@ -148,6 +148,10 @@
     <ClCompile Include="ChessClasses\Pieces\Bishop.cpp" />
     <ClCompile Include="ChessClasses\Pieces\ChessPiece.cpp" />
     <ClCompile Include="ChessClasses\Pieces\King.cpp" />
+    <ClCompile Include="ChessClasses\Pieces\Knight.cpp" />
+    <ClCompile Include="ChessClasses\Pieces\Pawn.cpp" />
+    <ClCompile Include="ChessClasses\Pieces\Queen.cpp" />
+    <ClCompile Include="ChessClasses\Pieces\Rook.cpp" />
     <ClCompile Include="ChessClasses\utilities.cpp" />
   </ItemGroup>
   <ItemGroup>

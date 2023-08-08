@@ -34,6 +34,21 @@ bool isOnSameDiag(const Square& s1, const Square& s2)
 	return abs(s1.row - s2.row) == abs(s1.col - s2.col);
 }
 
+bool isKnightMove(const Square& s1, const Square& s2)
+{
+	int rowDiff = abs(s1.row - s2.row);
+	int colDiff = abs(s1.col - s2.col);
+
+	return (rowDiff == 1 && colDiff == 2) || (rowDiff == 2 && colDiff == 1);
+}
+
+int dist(const Square& s1, const Square& s2)
+{
+	int rowDiff = s1.row - s2.row;
+	int colDiff = s1.col - s2.col;
+	return static_cast<int>(sqrt(rowDiff*rowDiff + colDiff*colDiff));
+}
+
 std::string colorToString(const Color& color)
 {
 	return color == Color::WHITE ? "white" : "black";
