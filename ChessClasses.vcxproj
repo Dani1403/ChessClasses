@@ -139,41 +139,41 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ChessClasses\main.cpp" />
-    <ClCompile Include="ChessClasses\Moves\Capture.cpp" />
-    <ClCompile Include="ChessClasses\Moves\Castle.cpp" />
-    <ClCompile Include="ChessClasses\ChessBoard.cpp" />
-    <ClCompile Include="ChessClasses\Moves\ChessMove.cpp" />
-    <ClCompile Include="ChessClasses\Moves\EnPassant.cpp" />
-    <ClCompile Include="ChessClasses\Moves\Promotion.cpp" />
-    <ClCompile Include="ChessClasses\Moves\Regular.cpp" />
-    <ClCompile Include="ChessClasses\Pieces\Bishop.cpp" />
-    <ClCompile Include="ChessClasses\Pieces\ChessPiece.cpp" />
-    <ClCompile Include="ChessClasses\Pieces\King.cpp" />
-    <ClCompile Include="ChessClasses\Pieces\Knight.cpp" />
-    <ClCompile Include="ChessClasses\Pieces\Pawn.cpp" />
-    <ClCompile Include="ChessClasses\Pieces\Queen.cpp" />
-    <ClCompile Include="ChessClasses\Pieces\Rook.cpp" />
-    <ClCompile Include="ChessClasses\utilities.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Moves\Capture.cpp" />
+    <ClCompile Include="src\Moves\Castle.cpp" />
+    <ClCompile Include="src\ChessBoard.cpp" />
+    <ClCompile Include="src\Moves\ChessMove.cpp" />
+    <ClCompile Include="src\Moves\EnPassant.cpp" />
+    <ClCompile Include="src\Moves\Promotion.cpp" />
+    <ClCompile Include="src\Moves\Regular.cpp" />
+    <ClCompile Include="src\Pieces\Bishop.cpp" />
+    <ClCompile Include="src\Pieces\ChessPiece.cpp" />
+    <ClCompile Include="src\Pieces\King.cpp" />
+    <ClCompile Include="src\Pieces\Knight.cpp" />
+    <ClCompile Include="src\Pieces\Pawn.cpp" />
+    <ClCompile Include="src\Pieces\Queen.cpp" />
+    <ClCompile Include="src\Pieces\Rook.cpp" />
+    <ClCompile Include="src\utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ChessClasses\ChessBoard.h" />
-    <ClInclude Include="ChessClasses\ChessGame.h" />
-    <ClInclude Include="ChessClasses\Exception.h" />
-    <ClInclude Include="ChessClasses\Moves\Capture.h" />
-    <ClInclude Include="ChessClasses\Moves\Castle.h" />
-    <ClInclude Include="ChessClasses\Moves\ChessMove.h" />
-    <ClInclude Include="ChessClasses\Moves\EnPassant.h" />
-    <ClInclude Include="ChessClasses\Moves\Promotion.h" />
-    <ClInclude Include="ChessClasses\Moves\Regular.h" />
-    <ClInclude Include="ChessClasses\Pieces\Bishop.h" />
-    <ClInclude Include="ChessClasses\Pieces\ChessPiece.h" />
-    <ClInclude Include="ChessClasses\Pieces\King.h" />
-    <ClInclude Include="ChessClasses\Pieces\Knight.h" />
-    <ClInclude Include="ChessClasses\Pieces\Pawn.h" />
-    <ClInclude Include="ChessClasses\Pieces\Queen.h" />
-    <ClInclude Include="ChessClasses\Pieces\Rook.h" />
-    <ClInclude Include="ChessClasses\utilities.h" />
+    <ClInclude Include="src\ChessBoard.h" />
+    <ClInclude Include="src\ChessGame.h" />
+    <ClInclude Include="src\Exception.h" />
+    <ClInclude Include="src\Moves\Capture.h" />
+    <ClInclude Include="src\Moves\Castle.h" />
+    <ClInclude Include="src\Moves\ChessMove.h" />
+    <ClInclude Include="src\Moves\EnPassant.h" />
+    <ClInclude Include="src\Moves\Promotion.h" />
+    <ClInclude Include="src\Moves\Regular.h" />
+    <ClInclude Include="src\Pieces\Bishop.h" />
+    <ClInclude Include="src\Pieces\ChessPiece.h" />
+    <ClInclude Include="src\Pieces\King.h" />
+    <ClInclude Include="src\Pieces\Knight.h" />
+    <ClInclude Include="src\Pieces\Pawn.h" />
+    <ClInclude Include="src\Pieces\Queen.h" />
+    <ClInclude Include="src\Pieces\Rook.h" />
+    <ClInclude Include="src\utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
