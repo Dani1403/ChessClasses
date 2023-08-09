@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 enum class Color { NONE = 0, WHITE, BLACK };
 

@@ -142,6 +142,8 @@
     <ClCompile Include="ChessClasses\main.cpp" />
     <ClCompile Include="ChessClasses\Moves\Capture.cpp" />
     <ClCompile Include="ChessClasses\Moves\Castle.cpp" />
+    <ClCompile Include="ChessClasses\ChessBoard.cpp" />
+    <ClCompile Include="ChessClasses\Moves\ChessMove.cpp" />
     <ClCompile Include="ChessClasses\Moves\EnPassant.cpp" />
     <ClCompile Include="ChessClasses\Moves\Promotion.cpp" />
     <ClCompile Include="ChessClasses\Moves\Regular.cpp" />
