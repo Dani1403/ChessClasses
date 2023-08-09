@@ -9,8 +9,8 @@ public:
 	virtual ~ChessBoard() {}
 	virtual void removePiece(std::unique_ptr<ChessPiece> piece) = 0;
 	virtual void addPiece(std::unique_ptr<ChessPiece> piece) = 0;
-	virtual void movePiece(std::unique_ptr<ChessPiece> piece, const Square& destination) = 0;
-	virtual bool checkObstacles(ChessMove* move) const = 0;
+	virtual void movePiece(ChessPiece* piece, const Square& destination) = 0;
+	virtual bool checkObstacles(const ChessMove* move) const = 0;
 }; 
 
 class ChessBoardSingleton : public ChessBoard
@@ -38,8 +38,8 @@ public:
 	}
 	void removePiece(std::unique_ptr<ChessPiece> piece) override;
 	void addPiece(std::unique_ptr<ChessPiece> piece) override;
-	void movePiece(std::unique_ptr<ChessPiece> piece, const Square& destination) override;
-	bool checkObstacles(ChessMove* move) const override;
+	void movePiece(ChessPiece* piece, const Square& destination) override;
+	bool checkObstacles(const ChessMove* move) const override;
 
 	ChessBoardSingleton(const ChessBoardSingleton& other) = delete;
 	ChessBoardSingleton& operator=(const ChessBoardSingleton& other) = delete;

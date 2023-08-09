@@ -13,10 +13,10 @@ void ChessBoardSingleton::addPiece(std::unique_ptr<ChessPiece> piece)
 	m_board[pos.row][pos.col] = std::move(piece);
 }
 
-void ChessBoardSingleton::movePiece(std::unique_ptr<ChessPiece> piece, const Square& destination)
+void ChessBoardSingleton::movePiece(ChessPiece* piece, const Square& destination)
 {
 	Square source = piece->getSquare();
-	m_board[destination.row][destination.col] = std::move(piece);
+	m_board[destination.row][destination.col] = std::make_unique<ChessPiece>(piece);
 	m_board[source.row][source.col] = nullptr;
 }
 
@@ -53,7 +53,7 @@ bool ChessBoardSingleton::checkDiagForObstacle(const Square& src, const Square& 
 	return true;
 }
 
-bool ChessBoardSingleton::checkObstacles(ChessMove* move) const
+bool ChessBoardSingleton::checkObstacles(const ChessMove* move) const
 {
 	Square src = move->getSource();
 	Square dest = move->getDest();

@@ -1,6 +1,5 @@
 #pragma once
 #include "ChessMove.h"
-#include "../ChessGame.h"
 
 class Regular : public ChessMove
 {
