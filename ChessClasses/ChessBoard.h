@@ -5,7 +5,7 @@ class ChessBoard
 {	
 	static const int BOARD_SIZE = 64;
 public:
-	ChessPiece* removePiece(const ChessPiece& piece);
-	bool addPiece(const ChessPiece& piece);
-	bool movePiece(const ChessPiece& piece, const Square& source, const Square& destination);
-};
+	ChessPiece* removePiece(ChessPiece* piece);
+	bool addPiece(ChessPiece* piece);
+	bool movePiece(ChessPiece* piece, const Square& source, const Square& destination);
+}; 
