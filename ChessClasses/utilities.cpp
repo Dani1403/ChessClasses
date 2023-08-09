@@ -71,6 +71,6 @@ std::string typeToString(const Type& type)
 	case Type::BISHOP:
 		return "Bishop";
 	default:
-		return "UNKNOWN";
+		return "None";
 	}
 }

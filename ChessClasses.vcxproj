@@ -165,8 +165,6 @@
     <ClInclude Include="ChessClasses\Moves\Promotion.h" />
     <ClInclude Include="ChessClasses\Moves\Regular.h" />
     <ClInclude Include="ChessClasses\Pieces\Bishop.h" />
-    <ClInclude Include="ChessClasses\Pieces\ChessBoard.h" />
-    <ClInclude Include="ChessClasses\Pieces\ChessGame.h" />
     <ClInclude Include="ChessClasses\Pieces\ChessPiece.h" />
     <ClInclude Include="ChessClasses\Pieces\King.h" />
     <ClInclude Include="ChessClasses\Pieces\Knight.h" />

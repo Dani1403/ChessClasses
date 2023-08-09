@@ -80,12 +80,6 @@
     <ClInclude Include="ChessClasses\Pieces\Bishop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ChessClasses\Pieces\ChessBoard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ChessClasses\Pieces\ChessGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ChessClasses\Pieces\ChessPiece.h">
       <Filter>Header Files</Filter>
     </ClInclude>
