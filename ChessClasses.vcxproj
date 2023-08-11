@@ -146,7 +146,6 @@
     <ClCompile Include="src\Moves\ChessMove.cpp" />
     <ClCompile Include="src\Moves\EnPassant.cpp" />
     <ClCompile Include="src\Moves\Promotion.cpp" />
-    <ClCompile Include="src\Moves\Regular.cpp" />
     <ClCompile Include="src\Pieces\Bishop.cpp" />
     <ClCompile Include="src\Pieces\ChessPiece.cpp" />
     <ClCompile Include="src\Pieces\King.cpp" />
@@ -165,7 +164,6 @@
     <ClInclude Include="src\Moves\ChessMove.h" />
     <ClInclude Include="src\Moves\EnPassant.h" />
     <ClInclude Include="src\Moves\Promotion.h" />
-    <ClInclude Include="src\Moves\Regular.h" />
     <ClInclude Include="src\Pieces\Bishop.h" />
     <ClInclude Include="src\Pieces\ChessPiece.h" />
     <ClInclude Include="src\Pieces\King.h" />

@@ -1,22 +1,22 @@
 #include "ChessBoard.h"
 #include "Moves/ChessMove.h"
 
-void ChessBoardSingleton::removePiece(std::unique_ptr<ChessPiece> piece)
+void ChessBoardSingleton::removePiece(ChessPiece* piece)
 {
 	Square pos = piece->getSquare();
 	m_board[pos.row][pos.col] = nullptr;
 }
 
-void ChessBoardSingleton::addPiece(std::unique_ptr<ChessPiece> piece)
+void ChessBoardSingleton::addPiece(ChessPiece* piece)
 {
 	Square pos = piece->getSquare();
-	m_board[pos.row][pos.col] = std::move(piece);
+	m_board[pos.row][pos.col] = piece;
 }
 
 void ChessBoardSingleton::movePiece(ChessPiece* piece, const Square& destination)
 {
 	Square source = piece->getSquare();
-	m_board[destination.row][destination.col] = std::unique_ptr<ChessPiece>(piece);
+	m_board[destination.row][destination.col] = piece;
 	m_board[source.row][source.col] = nullptr;
 }
 
