@@ -9,7 +9,13 @@ bool ChessMove::execute(ChessGame& game) const
 	ChessBoard* board = game.getChessBoard();
 	if (!board->checkObstacles(this) && !dynamic_cast<Knight*>(getPieceToMove()))
 		return false;
-	board->movePiece(m_pieceToMove, m_destination);
+	try 
+	{
+		board->movePiece(m_pieceToMove, m_destination);
+	}
+	catch (const std::exception& e) {
+		return false;
+	}
 	return true;
 }
 

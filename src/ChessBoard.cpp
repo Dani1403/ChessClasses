@@ -4,12 +4,16 @@
 void ChessBoardSingleton::removePiece(ChessPiece* piece)
 {
 	Square pos = piece->getSquare();
+	if (m_board[pos.row][pos.col] == nullptr)
+		throw PieceNotOnBoard();
 	m_board[pos.row][pos.col] = nullptr;
 }
 
 void ChessBoardSingleton::addPiece(ChessPiece* piece)
 {
 	Square pos = piece->getSquare();
+	if (m_board[pos.row][pos.col] != nullptr)
+		throw SquareNotEmpty();
 	m_board[pos.row][pos.col] = piece;
 }
 
