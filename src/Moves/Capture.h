@@ -1,5 +1,4 @@
 #pragma once
-#include "../Pieces/ChessPiece.h"
 #include "ChessMove.h"
 
 class Capture : public ChessMove

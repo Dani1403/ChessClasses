@@ -1,7 +1,7 @@
 #pragma once
 #include "../utilities.h"
+#include "../Pieces/ChessPiece.h"
 
-class ChessPiece;
 class ChessGame;
 
 class ChessMove
@@ -22,6 +22,7 @@ public:
 	void setDest(const Square& newDestination) { m_destination = newDestination; }
 	void setPieceToMove(ChessPiece* newPieceToMove) { m_pieceToMove = newPieceToMove; }
 
-	virtual bool execute(ChessGame& game) const = 0;
-	virtual void undo(ChessGame& game) const = 0;
+	virtual bool execute(ChessGame& game) const;
+	virtual void undo(ChessGame& game) const;
+
 };

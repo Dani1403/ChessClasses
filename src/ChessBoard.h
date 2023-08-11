@@ -11,6 +11,7 @@ public:
 	virtual void addPiece(std::unique_ptr<ChessPiece> piece) = 0;
 	virtual void movePiece(ChessPiece* piece, const Square& destination) = 0;
 	virtual bool checkObstacles(const ChessMove* move) const = 0;
+	virtual ChessPiece* getPieceAt(const Square& square) const = 0;
 }; 
 
 class ChessBoardSingleton : public ChessBoard
@@ -40,6 +41,7 @@ public:
 	void addPiece(std::unique_ptr<ChessPiece> piece) override;
 	void movePiece(ChessPiece* piece, const Square& destination) override;
 	bool checkObstacles(const ChessMove* move) const override;
+	ChessPiece* getPieceAt(const Square& square) const override;
 
 	ChessBoardSingleton(const ChessBoardSingleton& other) = delete;
 	ChessBoardSingleton& operator=(const ChessBoardSingleton& other) = delete;
