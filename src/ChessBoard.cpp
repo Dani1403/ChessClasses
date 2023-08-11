@@ -15,9 +15,9 @@ void ChessBoardSingleton::addPiece(ChessPiece* piece)
 
 void ChessBoardSingleton::movePiece(ChessPiece* piece, const Square& destination)
 {
-	Square source = piece->getSquare();
-	m_board[destination.row][destination.col] = piece;
-	m_board[source.row][source.col] = nullptr;
+	removePiece(piece);
+	piece->setPosition(destination);
+	addPiece(piece);
 }
 
 bool ChessBoardSingleton::checkRowForObstacle(const Square& src, const Square& dest) const
