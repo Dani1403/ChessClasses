@@ -6,9 +6,6 @@ class ChessGame;
 
 class ChessMove
 {
-protected:
-	Square m_source, m_destination;
-	ChessPiece* m_pieceToMove;
 public:
 	ChessMove(const Square& source, const Square& destination, ChessPiece* pieceToMove) :
 		m_source(source), m_destination(destination), m_pieceToMove(pieceToMove) {}
@@ -25,4 +22,7 @@ public:
 	virtual bool execute(ChessGame& game) const;
 	virtual void undo(ChessGame& game) const;
 
+protected:
+	Square m_source, m_destination;
+	ChessPiece* m_pieceToMove;
 };
