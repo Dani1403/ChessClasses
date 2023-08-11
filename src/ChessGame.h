@@ -4,9 +4,10 @@
 
 class ChessGame
 {
-	std::unique_ptr<ChessBoard> m_chessBoard;
 public:
 	ChessGame() {}
 	~ChessGame() {}
 	ChessBoard* getChessBoard() { return m_chessBoard.get(); }
+private:
+	std::unique_ptr<ChessBoard> m_chessBoard;
 };
