@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ChessGame.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Moves\Capture.cpp" />
     <ClCompile Include="src\Moves\Castle.cpp" />

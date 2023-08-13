@@ -1,5 +1,14 @@
 #include "ChessBoard.h"
-#include "Moves/ChessMove.h"
+#include "Moves/Capture.h"
+
+ChessBoard::ChessBoard()
+{
+	for (int i = 0; i < BOARD_SIZE; i++)
+	{
+		for (int j = 0; j < BOARD_SIZE; j++)
+			m_board[i][j] = nullptr;
+	}
+}
 
 void ChessBoard::removePiece(ChessPiece* piece)
 {
@@ -9,12 +18,25 @@ void ChessBoard::removePiece(ChessPiece* piece)
 	m_board[pos.row][pos.col] = nullptr;
 }
 
+void ChessBoard::addKingPosition(King* king)
+{
+	m_kingPositions[king->getColor()] = king->getSquare();
+}
+
+Square ChessBoard::getKingPosition(Color color)
+{
+	return m_kingPositions[color];
+}
+
 void ChessBoard::addPiece(ChessPiece* piece)
 {
 	Square pos = piece->getSquare();
 	if (m_board[pos.row][pos.col] != nullptr)
 		throw SquareNotEmpty();
 	m_board[pos.row][pos.col] = piece;
+	King* king = dynamic_cast<King*>(piece);
+	if (king)
+		addKingPosition(king);
 }
 
 void ChessBoard::movePiece(ChessPiece* piece, const Square& destination)

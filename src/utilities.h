@@ -2,6 +2,9 @@
 
 #include <string>
 #include <memory>
+#include <vector>
+#include <map>
+#include <array>
 
 enum class Color { NONE = 0, WHITE, BLACK };
 
