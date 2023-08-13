@@ -1,16 +1,9 @@
 #include "Capture.h"
 #include "../ChessGame.h"
-#include "../Pieces/Knight.h"
 
 bool Capture::execute(ChessGame& game) const 
 {
-	if (!getPieceToMove()->isValidCapture(getSource(), getDest()))
-		return false;
-	if (getPieceToMove()->getColor() == getCapturedPiece()->getColor())
-		return false;
 	ChessBoard* board = game.getChessBoard();
-	if (!board->checkObstacles(this) && !dynamic_cast<Knight*>(getPieceToMove()))
-		return false;
 	board->removePiece(getCapturedPiece());
 	board->movePiece(getPieceToMove(), getDest());
 	return true; 
