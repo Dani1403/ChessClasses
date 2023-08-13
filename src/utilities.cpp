@@ -34,12 +34,37 @@ bool isOnSameDiag(const Square& s1, const Square& s2)
 	return abs(s1.row - s2.row) == abs(s1.col - s2.col);
 }
 
+bool isDownwardDiag(const Square& s1, const Square& s2)
+{
+	return isOnSameDiag(s1, s2) && (s1.row < s2.row) && (s1.col > s2.col);
+}
+
 bool isKnightMove(const Square& s1, const Square& s2)
 {
 	int rowDiff = abs(s1.row - s2.row);
 	int colDiff = abs(s1.col - s2.col);
 
 	return (rowDiff == 1 && colDiff == 2) || (rowDiff == 2 && colDiff == 1);
+}
+
+int startRow(const Square& s1, const Square& s2)
+{
+	return std::min(s1.row, s2.row);
+}
+
+int endRow(const Square& s1, const Square& s2)
+{
+	return std::max(s1.row, s2.row);
+}
+
+int startCol(const Square& s1, const Square& s2)
+{
+	return std::min(s1.col, s2.col);
+}
+
+int endCol(const Square& s1, const Square& s2)
+{
+	return std::max(s1.col, s2.col);
 }
 
 int dist(const Square& s1, const Square& s2)

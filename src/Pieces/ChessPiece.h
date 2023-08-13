@@ -5,17 +5,12 @@
 
 class ChessPiece
 {
-	Color m_color;
-	Square m_position;
-	Type m_type;
-
 public:
 	ChessPiece(const Color& color, const Square& square, const Type& type) : m_color(color), m_position(square), m_type(type) 
 	{
 		if (!isSquareValid(square))
 			throw SquareNotValid();
 	}
-
 	ChessPiece(const ChessPiece& other) = default;
 	virtual ~ChessPiece() = default;
 	ChessPiece& operator=(const ChessPiece& other) = default;
@@ -29,6 +24,11 @@ public:
 
 	virtual bool isValidMove(const Square& source, const Square& destination) const = 0;
 	virtual bool isValidCapture(const Square& source, const Square& destination) const { return isValidMove(source, destination); }
+
+private:
+	Color m_color;
+	Square m_position;
+	Type m_type;
 };
 
 std::string pieceDescription(const ChessPiece& piece);

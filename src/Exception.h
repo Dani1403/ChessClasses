@@ -6,7 +6,7 @@ class SquareNotValid : public std::exception
 public:
 	const char* what() const override
 	{
-		return "Square not Valid (should be 1 <= row, col <= 8)";
+		return "Square coordinates not valid (should be 1 <= row, col <= 8)";
 	}
 };
 
@@ -23,6 +23,14 @@ class PieceNotOnBoard : public std::exception
 {
 	const char* what() const override
 	{
-		return "Piece not on board";
+		return "Action impossible on a piece not on board";
+	}
+};
+
+class SquareNotEmpty : public std::exception
+{
+	const char* what() const override
+	{
+		return "Action impossible on a non empty square";
 	}
 };
