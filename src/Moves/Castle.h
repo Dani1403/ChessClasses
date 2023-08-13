@@ -3,8 +3,6 @@
 #include "../Pieces/Rook.h"
 #include "../Pieces/King.h"
 
-enum class Side { KING, QUEEN };
-
 class Castle : public ChessMove
 {
 public:

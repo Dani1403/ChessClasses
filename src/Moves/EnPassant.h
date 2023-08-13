@@ -1,6 +1,5 @@
 #pragma once
 #include "ChessMove.h"
-class EnPassant :
-    public ChessMove
+class EnPassant : public ChessMove
 {};
 

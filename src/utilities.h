@@ -13,6 +13,8 @@ enum class Type
 	NONE = 0, PAWN, KNIGHT, BISHOP, QUEEN, ROOK, KING
 };
 
+enum class Side { KING, QUEEN };
+
 struct Square
 {
 	int row, col;
