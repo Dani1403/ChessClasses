@@ -9,18 +9,12 @@ bool ChessMove::execute(ChessGame& game) const
 	ChessBoard* board = game.getChessBoard();
 	if (!board->checkObstacles(this) && !dynamic_cast<Knight*>(getPieceToMove()))
 		return false;
-	try 
-	{
-		board->movePiece(m_pieceToMove, m_destination);
-	}
-	catch (const std::exception& e) {
-		return false;
-	}
+	board->movePiece(getPieceToMove(), getDest());
 	return true;
 }
 
 void ChessMove::undo(ChessGame& game) const 
 {
 	ChessBoard* board = game.getChessBoard();
-	board->movePiece(m_pieceToMove, m_source);
+	board->movePiece(getPieceToMove(), getSource());
 }

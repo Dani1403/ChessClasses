@@ -9,11 +9,13 @@ bool Capture::execute(ChessGame& game) const
 	ChessBoard* board = game.getChessBoard();
 	if (!board->checkObstacles(this) && !dynamic_cast<Knight*>(getPieceToMove()))
 		return false;
-	board->movePiece(m_pieceToMove, m_destination);
-	return true;
+	board->removePiece(getCapturedPiece());
+	board->movePiece(getPieceToMove(), getDest());
+	return true; 
 }
 
 void Capture::undo(ChessGame& game) const
 {
-
+	ChessMove::undo(game);
+	game.getChessBoard()->addPiece(getCapturedPiece());
 }
