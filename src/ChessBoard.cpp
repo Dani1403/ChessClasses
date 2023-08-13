@@ -72,5 +72,5 @@ bool ChessBoard::checkObstacles(const ChessMove* move) const
 
 ChessPiece* ChessBoard::getPieceAt(const Square& square) const
 {
-	return m_board[square.row][square.col].get();
+	return m_board[square.row][square.col];
 }

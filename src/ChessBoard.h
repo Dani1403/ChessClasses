@@ -6,7 +6,6 @@ class ChessMove;
 class ChessBoard
 {
 public:
-
 	ChessBoard()
 	{
 		for (int i = 0; i < BOARD_SIZE; i++)
