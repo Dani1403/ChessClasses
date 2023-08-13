@@ -1,7 +1,7 @@
 #include "ChessBoard.h"
 #include "Moves/ChessMove.h"
 
-void ChessBoardSingleton::removePiece(ChessPiece* piece)
+void ChessBoard::removePiece(ChessPiece* piece)
 {
 	Square pos = piece->getSquare();
 	if (m_board[pos.row][pos.col] == nullptr)
@@ -9,7 +9,7 @@ void ChessBoardSingleton::removePiece(ChessPiece* piece)
 	m_board[pos.row][pos.col] = nullptr;
 }
 
-void ChessBoardSingleton::addPiece(ChessPiece* piece)
+void ChessBoard::addPiece(ChessPiece* piece)
 {
 	Square pos = piece->getSquare();
 	if (m_board[pos.row][pos.col] != nullptr)
@@ -17,14 +17,14 @@ void ChessBoardSingleton::addPiece(ChessPiece* piece)
 	m_board[pos.row][pos.col] = piece;
 }
 
-void ChessBoardSingleton::movePiece(ChessPiece* piece, const Square& destination)
+void ChessBoard::movePiece(ChessPiece* piece, const Square& destination)
 {
 	removePiece(piece);
 	piece->setPosition(destination);
 	addPiece(piece);
 }
 
-bool ChessBoardSingleton::checkRowForObstacle(const Square& src, const Square& dest) const
+bool ChessBoard::checkRowForObstacle(const Square& src, const Square& dest) const
 {
 	int row = src.row;
 	for (int col = startCol(src, dest) + 1; col != endCol(src, dest); col++)
@@ -35,7 +35,7 @@ bool ChessBoardSingleton::checkRowForObstacle(const Square& src, const Square& d
 	return true;
 }
 
-bool ChessBoardSingleton::checkColForObstacle(const Square& src, const Square& dest) const
+bool ChessBoard::checkColForObstacle(const Square& src, const Square& dest) const
 {
 	int col = src.col;
 	for (int row = startRow(src, dest) + 1; row != endRow(src, dest); row++)
@@ -46,7 +46,7 @@ bool ChessBoardSingleton::checkColForObstacle(const Square& src, const Square& d
 	return true;
 }
 
-bool ChessBoardSingleton::checkDiagForObstacle(const Square& src, const Square& dest) const
+bool ChessBoard::checkDiagForObstacle(const Square& src, const Square& dest) const
 {
 	for (int row = startRow(src, dest) + 1, col = startCol(src, dest) + 1;
 		row < endRow(src, dest) && col < endCol(src, dest); row++, col += isDownwardDiag(src, dest) ? -1 : 1)
@@ -57,7 +57,7 @@ bool ChessBoardSingleton::checkDiagForObstacle(const Square& src, const Square& 
 	return true;
 }
 
-bool ChessBoardSingleton::checkObstacles(const ChessMove* move) const
+bool ChessBoard::checkObstacles(const ChessMove* move) const
 {
 	Square src = move->getSource();
 	Square dest = move->getDest();
@@ -70,7 +70,7 @@ bool ChessBoardSingleton::checkObstacles(const ChessMove* move) const
 	return false;
 }
 
-ChessPiece* ChessBoardSingleton::getPieceAt(const Square& square) const
+ChessPiece* ChessBoard::getPieceAt(const Square& square) const
 {
 	return m_board[square.row][square.col].get();
 }
