@@ -9,8 +9,8 @@ public:
 
 	ChessPiece* getCapturedPiece() const { return m_capturedPiece; }
 
-	bool execute(ChessGame&) const override;
-	void undo(ChessGame&) const override;
+	virtual bool execute(ChessGame&) const override;
+	virtual void undo(ChessGame&) const override;
 private:
 	ChessPiece* m_capturedPiece;
 };
