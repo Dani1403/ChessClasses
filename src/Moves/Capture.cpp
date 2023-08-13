@@ -6,6 +6,8 @@ bool Capture::execute(ChessGame& game) const
 {
 	if (!getPieceToMove()->isValidCapture(getSource(), getDest()))
 		return false;
+	if (getPieceToMove()->getColor() == getCapturedPiece()->getColor())
+		return false;
 	ChessBoard* board = game.getChessBoard();
 	if (!board->checkObstacles(this) && !dynamic_cast<Knight*>(getPieceToMove()))
 		return false;
