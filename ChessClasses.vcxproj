@@ -172,6 +172,7 @@
     <ClInclude Include="src\Pieces\Pawn.h" />
     <ClInclude Include="src\Pieces\Queen.h" />
     <ClInclude Include="src\Pieces\Rook.h" />
+    <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
