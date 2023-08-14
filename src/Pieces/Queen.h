@@ -1,7 +1,7 @@
 #pragma once
 #include "ChessPiece.h"
 
-class Queen : ChessPiece
+class Queen : public ChessPiece
 {
 public:
 	Queen(const Color& color, const Square& square) : ChessPiece(color, square, Type::QUEEN) {}
