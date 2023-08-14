@@ -84,17 +84,17 @@ std::string typeToString(const Type& type)
 	switch (type) 
 	{
 	case Type::KING:
-		return "King";
+		return "K";
 	case Type::ROOK:
-		return "Rook";
+		return "R";
 	case Type::QUEEN:
-		return "Queen";
+		return "Q";
 	case Type::KNIGHT:
-		return "Knight";
+		return "K";
 	case Type::PAWN:
-		return "Pawn";
+		return "";
 	case Type::BISHOP:
-		return "Bishop";
+		return "B";
 	default:
 		return "None";
 	}
