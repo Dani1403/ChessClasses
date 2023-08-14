@@ -1,5 +1,27 @@
 #include "ChessGame.h"
 
+void ChessGame::addPawns(ChessBoard* board, Color color)
+{
+	int row = (color == Color::WHITE) ? 1 : 6;
+	for (int i = 0; i < board->BOARD_SIZE; i++)
+	{
+		board->addPiece(new Pawn(color, { row, i }));
+	}
+}
+
+void ChessGame::addPieces(ChessBoard* board, Color color)
+{
+	int row = (color == Color::WHITE) ? 0 : 7;
+	board->addPiece(new Rook(color, { row, 0 }));
+	board->addPiece(new Knight(color, { row, 1 }));
+	board->addPiece(new Bishop(color, { row, 2 }));
+	board->addPiece(new Queen(color, { row, 3 }));
+	board->addPiece(new King(color, { row, 4 }));
+	board->addPiece(new Bishop(color, { row, 5 }));
+	board->addPiece(new Knight(color, { row, 6 }));
+	board->addPiece(new Rook(color, { row, 7 }));
+}
+
 bool ChessGame::isInCheck(Color color)
 {
 	ChessBoard* board = getChessBoard();
