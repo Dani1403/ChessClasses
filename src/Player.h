@@ -12,7 +12,7 @@ public:
 
 	Color getColor() const { return m_color; }
 
-	ChessMove* getMoveFromCommandLine(const std::ostream& os);
+	std::string getMoveFromUser(std::istream& is);
 
 private:
 	std::string m_name;

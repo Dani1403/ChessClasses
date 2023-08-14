@@ -154,6 +154,7 @@
     <ClCompile Include="src\Pieces\Pawn.cpp" />
     <ClCompile Include="src\Pieces\Queen.cpp" />
     <ClCompile Include="src\Pieces\Rook.cpp" />
+    <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
