@@ -10,6 +10,8 @@ public:
 		ChessMove(source, destination, kingToMove), m_rookToMove(rookToMove), m_side(side)
 	{}
 
+	std::string moveDescription() const override;
+
 	Rook* getRookToMove() const { return m_rookToMove; }
 
 	bool execute(ChessGame& game) const override;

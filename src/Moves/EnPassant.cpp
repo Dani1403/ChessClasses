@@ -1,7 +1,7 @@
 #include "EnPassant.h"
 #include "../ChessGame.h"
 
-bool EnPassant::execute(ChessGame& game) const 
+bool EnPassant::execute(ChessGame& game) const
 {
 	return Capture::execute(game);
 }

@@ -11,6 +11,9 @@ public:
 		m_source(source), m_destination(destination), m_pieceToMove(pieceToMove) {}
 	virtual ~ChessMove() = default;
 
+	virtual std::string moveDescription() const;
+	std::ostream& operator<<(std::ostream& os) const;
+
 	Square getSource() const { return m_source; }
 	Square getDest() const { return m_destination; }
 	ChessPiece* getPieceToMove() const { return m_pieceToMove; }

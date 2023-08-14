@@ -7,6 +7,10 @@
 #include <array>
 #include <iostream>
 
+class ChessMove;
+
+class ChessPiece;
+
 enum class Color { NONE = 0, WHITE, BLACK };
 
 enum class Type
@@ -30,6 +34,8 @@ std::string colorToString(const Color& color);
 std::string typeToString(const Type& type);
 
 std::string squareToAlgebraic(const Square& square);
+
+std::string moveDescription(const ChessMove& move);
 
 bool isOnSameRow(const Square& s1, const Square& s2);
 

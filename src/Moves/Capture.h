@@ -7,6 +7,8 @@ public:
 	Capture(const Square& source, const Square& destination, ChessPiece* pieceToMove, ChessPiece* capturedPiece) : 
 		ChessMove(source, destination, pieceToMove), m_capturedPiece(capturedPiece) {}
 
+	std::string moveDescription() const override;
+
 	ChessPiece* getCapturedPiece() const { return m_capturedPiece; }
 
 	virtual bool execute(ChessGame&) const override;

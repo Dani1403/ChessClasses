@@ -9,6 +9,8 @@ public:
 		ChessMove(source, destination, pawnToPromote), m_newPiece(newPiece)
 	{}
 
+	std::string moveDescription() const override;
+
 	ChessPiece* getNewPiece() const { return m_newPiece; }
 
 	bool execute(ChessGame& game) const override;

@@ -15,6 +15,9 @@ public:
 	virtual ~ChessPiece() = default;
 	ChessPiece& operator=(const ChessPiece& other) = default;
 
+	std::string pieceDescription() const;
+	std::ostream& operator<<(std::ostream& os) const;
+
 	Color getColor() const { return m_color; }
 	Square getSquare() const { return m_position; }
 	Type getType() const { return m_type; }
@@ -25,10 +28,8 @@ public:
 	virtual bool isValidMove(const Square& source, const Square& destination) const = 0;
 	virtual bool isValidCapture(const Square& source, const Square& destination) const { return isValidMove(source, destination); }
 
-private:
+protected:
 	Color m_color;
 	Square m_position;
 	Type m_type;
 };
-
-std::string pieceDescription(const ChessPiece& piece);

@@ -1,10 +1,15 @@
 #include "ChessPiece.h"
-#include "../utilities.h"
 
-std::string pieceDescription(const ChessPiece& piece)
+std::string ChessPiece::pieceDescription() const 
 {
-	const Color color = piece.getColor();
-	const Type type = piece.getType();
-	const Square square = piece.getSquare();
-	return "Color : " + colorToString(color) + " Type : " + typeToString(type) + " Square : " + squareToAlgebraic(square);
+	return "Color : " + colorToString(m_color) + "\n" +
+		" Type : " + typeToString(m_type) + "\n" +
+		" Square : " + squareToAlgebraic(m_position);
+}
+
+std::ostream& ChessPiece::operator<<(std::ostream& os) const 
+{
+	os << "Piece" << std::endl;
+	os << pieceDescription() << std::endl;
+	return os;
 }

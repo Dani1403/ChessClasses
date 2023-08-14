@@ -13,4 +13,5 @@ public:
 	bool isInCheck(Color color);
 private:
 	std::unique_ptr<ChessBoard> m_chessBoard;
+	std::vector<ChessMove*> m_moves;
 };

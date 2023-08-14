@@ -1,6 +1,12 @@
 #include "Promotion.h"
 #include "../ChessGame.h"
 
+std::string Promotion::moveDescription() const
+{
+	return ChessMove::moveDescription() + "\n Promoted piece: " + 
+		getNewPiece()->pieceDescription();
+}
+
 bool Promotion::execute(ChessGame& game) const
 {
 	ChessBoard* board = game.getChessBoard();

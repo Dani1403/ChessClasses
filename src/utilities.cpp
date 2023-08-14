@@ -99,3 +99,8 @@ std::string typeToString(const Type& type)
 		return "None";
 	}
 }
+
+std::string moveDescription(const ChessMove& move)
+{
+
+}

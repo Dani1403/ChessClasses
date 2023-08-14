@@ -14,3 +14,9 @@ void Capture::undo(ChessGame& game) const
 	ChessMove::undo(game);
 	game.getChessBoard()->addPiece(getCapturedPiece());
 }
+
+std::string Capture::moveDescription() const
+{
+	return ChessMove::moveDescription() + "\n" +
+		"Captured piece: " + getCapturedPiece()->pieceDescription();
+}
