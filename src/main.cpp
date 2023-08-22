@@ -5,7 +5,7 @@ int main()
 {
 	ChessBoard board;
 	try {
-		board.addPiece(std::make_shared<Pawn>(Pawn(Color::BLACK, { 1, 1 })));
+		board.addPiece(std::make_shared<King>(King(Color::BLACK, { 1, 1 })));
 		board.addPiece(std::make_shared<Pawn>(Pawn(Color::BLACK, { 1, 2 })));
 		std::cout << *(board.getBoard()[1][1]);
 		std::cout << *(board.getBoard()[1][2]);

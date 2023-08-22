@@ -9,7 +9,7 @@ std::string ChessPiece::pieceDescription() const
 
 std::ostream& operator<<(std::ostream& os, const ChessPiece& piece)
 {
-	os << "Piece" << std::endl;
+	os << "Piece: " << std::endl;
 	os << piece.pieceDescription() << std::endl;
 	return os;
 }
