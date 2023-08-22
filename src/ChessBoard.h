@@ -12,22 +12,22 @@ public:
 
 	ChessBoard();
 
-	void removePiece(ChessPiece* piece);
-	void addPiece(ChessPiece* piece);
-	void movePiece(ChessPiece* piece, const Square& destination);
+	void removePiece(std::shared_ptr<ChessPiece> piece);
+	void addPiece(std::shared_ptr<ChessPiece> piece);
+	void movePiece(std::shared_ptr<ChessPiece> piece, const Square& destination);
 	bool checkObstacles(const ChessMove* move) const;
 
-	std::array<std::array<ChessPiece*, BOARD_SIZE>, BOARD_SIZE> getBoard() const { return m_board; }
-	ChessPiece* getPieceAt(const Square& square) const;
+	std::array<std::array<std::shared_ptr<ChessPiece>, BOARD_SIZE>, BOARD_SIZE> getBoard() const { return m_board; }
+	std::shared_ptr<ChessPiece> getPieceAt(const Square& square) const;
 	Square getKingPosition(Color color);
 
 private:
-	std::array<std::array<ChessPiece*, BOARD_SIZE>, BOARD_SIZE> m_board;
+	std::array<std::array<std::shared_ptr<ChessPiece>, BOARD_SIZE>, BOARD_SIZE> m_board;
 
 	std::map<Color, Square> m_kingPositions;
 
 	bool checkRowForObstacle(const Square& src, const Square& dest) const;
 	bool checkColForObstacle(const Square& src, const Square& dest) const;
 	bool checkDiagForObstacle(const Square& src, const Square& dest) const;
-	void addKingPosition(King* king);
+	void addKingPosition(std::shared_ptr<King> king);
 };

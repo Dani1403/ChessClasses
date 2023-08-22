@@ -3,6 +3,13 @@
 
 int main()
 {
-	std::cout << "Compilation Success" << std::endl;
+	ChessGame game;
+	try {
+		game.initBoard();
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 	return 0;
 }

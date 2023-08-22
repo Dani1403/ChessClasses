@@ -4,16 +4,16 @@
 class Capture : public ChessMove
 {
 public:
-	Capture(const Square& source, const Square& destination, ChessPiece* pieceToMove, ChessPiece* capturedPiece) : 
+	Capture(const Square& source, const Square& destination, std::shared_ptr<ChessPiece> pieceToMove, std::shared_ptr<ChessPiece> capturedPiece) : 
 		ChessMove(source, destination, pieceToMove), m_capturedPiece(capturedPiece) {}
 
 	std::string moveDescription() const override;
 
-	ChessPiece* getCapturedPiece() const { return m_capturedPiece; }
+	std::shared_ptr<ChessPiece> getCapturedPiece() const { return m_capturedPiece; }
 
 	virtual bool execute(ChessGame&) const override;
 	virtual void undo(ChessGame&) const override;
 private:
-	ChessPiece* m_capturedPiece;
+	std::shared_ptr<ChessPiece> m_capturedPiece;
 };
 

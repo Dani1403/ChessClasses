@@ -17,7 +17,7 @@ public:
 	ChessGame() {}
 	~ChessGame() {}
 
-	ChessBoard* getChessBoard() { return m_chessBoard.get(); }
+	ChessBoard* getChessBoard() { return m_chessBoard; }
 
 	void initBoard();
 	void play();
@@ -31,7 +31,7 @@ public:
 	bool isGameOver();
 
 private:
-	std::unique_ptr<ChessBoard> m_chessBoard;
+	ChessBoard* m_chessBoard;
 	std::vector<ChessMove*> m_moves;
 	std::vector<Player> m_players;
 	Player m_currentPlayer;

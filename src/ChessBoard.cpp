@@ -10,7 +10,7 @@ ChessBoard::ChessBoard()
 	}
 }
 
-void ChessBoard::removePiece(ChessPiece* piece)
+void ChessBoard::removePiece(std::shared_ptr<ChessPiece> piece)
 {
 	Square pos = piece->getSquare();
 	if (m_board[pos.row][pos.col] == nullptr)
@@ -18,7 +18,7 @@ void ChessBoard::removePiece(ChessPiece* piece)
 	m_board[pos.row][pos.col] = nullptr;
 }
 
-void ChessBoard::addKingPosition(King* king)
+void ChessBoard::addKingPosition(std::shared_ptr<King> king)
 {
 	m_kingPositions[king->getColor()] = king->getSquare();
 }
@@ -28,18 +28,18 @@ Square ChessBoard::getKingPosition(Color color)
 	return m_kingPositions[color];
 }
 
-void ChessBoard::addPiece(ChessPiece* piece)
+void ChessBoard::addPiece(std::shared_ptr<ChessPiece> piece)
 {
 	Square pos = piece->getSquare();
 	if (m_board[pos.row][pos.col] != nullptr)
 		throw SquareNotEmpty();
 	m_board[pos.row][pos.col] = piece;
-	King* king = dynamic_cast<King*>(piece);
+	std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(piece);
 	if (king)
 		addKingPosition(king);
 }
 
-void ChessBoard::movePiece(ChessPiece* piece, const Square& destination)
+void ChessBoard::movePiece(std::shared_ptr<ChessPiece> piece, const Square& destination)
 {
 	removePiece(piece);
 	piece->setPosition(destination);
@@ -92,7 +92,7 @@ bool ChessBoard::checkObstacles(const ChessMove* move) const
 	return false;
 }
 
-ChessPiece* ChessBoard::getPieceAt(const Square& square) const
+std::shared_ptr<ChessPiece> ChessBoard::getPieceAt(const Square& square) const
 {
 	return m_board[square.row][square.col];
 }
