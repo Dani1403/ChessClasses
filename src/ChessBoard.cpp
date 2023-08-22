@@ -30,10 +30,13 @@ Square ChessBoard::getKingPosition(Color color)
 
 void ChessBoard::addPiece(std::shared_ptr<ChessPiece> piece)
 {
+	if (!piece)
+		return;
 	Square pos = piece->getSquare();
+
 	if (m_board[pos.row][pos.col] != nullptr)
 		throw SquareNotEmpty();
-	m_board[pos.row][pos.col] = piece;
+	m_board[pos.row][pos.col] = std::move(piece);
 	std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(piece);
 	if (king)
 		addKingPosition(king);

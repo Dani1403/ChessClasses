@@ -14,7 +14,7 @@ Square algebraicToSquare(const std::string& notation)
 
 std::string squareToAlgebraic(const Square& square)
 {
-	char col = 'a' + square.col;
+	char col = 'a' + square.col - 1;
 	char row = '0' + square.row;
 	return std::string{ col, row };
 }
