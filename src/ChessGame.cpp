@@ -1,14 +1,14 @@
 #include "ChessGame.h"
 
-ChessGame::ChessGame()
+ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard()))
 {
 	initBoard();
 }
 
 void ChessGame::initBoard()
 {
-		m_chessBoard->addInitialPieces(Color::WHITE);
-		m_chessBoard->addInitialPieces(Color::BLACK);
+	m_chessBoard->addInitialPieces(Color::WHITE);
+	m_chessBoard->addInitialPieces(Color::BLACK);
 }
 
 bool ChessGame::isInCheck(Color color)
