@@ -8,14 +8,14 @@ bool isSquareValid(const Square& square)
 Square algebraicToSquare(const std::string& notation)
 {
 	int col = notation[0] - 'a';
-	int row = notation[1] - '0';
+	int row = notation[1] - '1';
 	return Square{ row, col };
 }
 
 std::string squareToAlgebraic(const Square& square)
 {
 	char col = 'a' + square.col;
-	char row = '0' + square.row;
+	char row = '1' + square.row;
 	return std::string{ col, row };
 }
 

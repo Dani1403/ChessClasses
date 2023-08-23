@@ -20,7 +20,7 @@ public:
 	void undo();
 
 	bool isInCheck(Color color);
-	//bool isInCheckmate(Color color);
+	bool isInCheckmate(Color color);
 	//bool isStaleMate();
 	//bool isGameOver();
 

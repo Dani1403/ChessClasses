@@ -29,6 +29,13 @@ bool ChessGame::isInCheck(Color color)
 	return false;
 }
 
+bool ChessGame::isInCheckmate(Color color)
+{
+	if (!isInCheck(color))
+		return false;
+	return true;
+}
+
 void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 {
 	std::cout << "Applied: \n" << *move;
