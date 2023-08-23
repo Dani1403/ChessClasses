@@ -6,7 +6,7 @@ class SquareNotValid : public std::exception
 public:
 	const char* what() const override
 	{
-		return "Square coordinates not valid (should be 1 <= row, col <= 8)";
+		return "Square coordinates not valid (should be 0 <= row, col <= 7)";
 	}
 };
 

@@ -1,6 +1,11 @@
 #pragma once
 #include "Pieces/ChessPiece.h"
+#include "Pieces/Queen.h"
+#include "Pieces/Bishop.h"
 #include "Pieces/King.h"
+#include "Pieces/Knight.h"
+#include "Pieces/Pawn.h"
+#include "Pieces/Rook.h"
 
 class ChessMove;
 
@@ -11,6 +16,8 @@ public:
 	static const int BOARD_SIZE = 8;
 
 	ChessBoard();
+	void addInitialPieces(Color color);
+	void initBoard();
 
 	void removePiece(std::shared_ptr<ChessPiece> piece);
 	void addPiece(std::shared_ptr<ChessPiece> piece);

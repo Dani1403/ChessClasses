@@ -9,7 +9,7 @@ std::string Promotion::moveDescription() const
 
 bool Promotion::execute(ChessGame& game) const
 {
-	ChessBoard* board = game.getChessBoard();
+	std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	board->removePiece(getPieceToMove());
 	board->addPiece(getNewPiece());
 	return true;
@@ -17,7 +17,7 @@ bool Promotion::execute(ChessGame& game) const
 
 void Promotion::undo(ChessGame& game) const
 {
-	ChessBoard* board = game.getChessBoard();
+	std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	board->removePiece(getNewPiece());
 	board->addPiece(getPieceToMove());
 }

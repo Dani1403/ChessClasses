@@ -3,16 +3,17 @@
 
 int main()
 {
-	ChessBoard board;
 	try {
-		board.addPiece(std::make_shared<King>(King(Color::BLACK, { 1, 1 })));
-		board.addPiece(std::make_shared<Pawn>(Pawn(Color::BLACK, { 1, 2 })));
-		std::cout << *(board.getBoard()[1][1]);
-		std::cout << *(board.getBoard()[1][2]);
+		ChessGame game;
+		std::shared_ptr<ChessBoard> board = game.getChessBoard();
+		std::shared_ptr<ChessPiece> pawn = board->getPieceAt({ 1,0 });
+		std::shared_ptr<ChessMove> move = std::make_shared<ChessMove>(ChessMove({ 1,0 }, { 2 ,0 }, pawn));
+		game.makeMove(move);
 	}
 	catch (const std::exception& e)
 	{
 		std::cout << e.what() << std::endl;
 	}
+	std::cout << "Compilation successful";
 	return 0;
 }

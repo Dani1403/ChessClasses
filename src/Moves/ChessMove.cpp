@@ -3,14 +3,14 @@
 
 bool ChessMove::execute(ChessGame& game) const 
 {
-	ChessBoard* board = game.getChessBoard();
+	std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	board->movePiece(getPieceToMove(), getDest());
 	return true;
 }
 
 void ChessMove::undo(ChessGame& game) const 
 {
-	ChessBoard* board = game.getChessBoard();
+	std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	board->movePiece(getPieceToMove(), getSource());
 }
 

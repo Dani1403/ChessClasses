@@ -3,7 +3,7 @@
 
 bool Capture::execute(ChessGame& game) const 
 {
-	ChessBoard* board = game.getChessBoard();
+	std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	board->removePiece(getCapturedPiece());
 	board->movePiece(getPieceToMove(), getDest());
 	return true; 
