@@ -2,7 +2,13 @@
 
 ChessGame::ChessGame()
 {
-	m_chessBoard->initBoard();
+	initBoard();
+}
+
+void ChessGame::initBoard()
+{
+		m_chessBoard->addInitialPieces(Color::WHITE);
+		m_chessBoard->addInitialPieces(Color::BLACK);
 }
 
 bool ChessGame::isInCheck(Color color)

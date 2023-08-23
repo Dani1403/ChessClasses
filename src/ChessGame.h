@@ -10,6 +10,8 @@ public:
 	ChessGame();
 	~ChessGame() {}
 
+	void initBoard();
+
 	std::shared_ptr<ChessBoard> getChessBoard() { return m_chessBoard; }
 
 	//void play();

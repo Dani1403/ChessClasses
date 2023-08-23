@@ -17,7 +17,6 @@ public:
 
 	ChessBoard();
 	void addInitialPieces(Color color);
-	void initBoard();
 
 	void removePiece(std::shared_ptr<ChessPiece> piece);
 	void addPiece(std::shared_ptr<ChessPiece> piece);
@@ -25,7 +24,7 @@ public:
 	bool checkObstacles(const ChessMove* move) const;
 
 	std::array<std::array<std::shared_ptr<ChessPiece>, BOARD_SIZE>, BOARD_SIZE> getBoard() const { return m_board; }
-	std::shared_ptr<ChessPiece> getPieceAt(const Square& square) const;
+	std::shared_ptr<ChessPiece> getPieceAt(const Square& square);
 	Square getKingPosition(Color color);
 
 private:

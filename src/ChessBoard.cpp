@@ -28,17 +28,6 @@ void ChessBoard::addInitialPieces(Color color)
 	addPiece(std::make_shared<Rook>(Rook(color, { row, 7 })));
 }
 
-void ChessBoard::initBoard()
-{
-	addInitialPieces(Color::WHITE);
-	addInitialPieces(Color::BLACK);
-	for (int row = 2; row < 6; row++)
-	{
-		for (int col = 0; col < BOARD_SIZE; col++)
-			m_board[row][col] = nullptr;
-	}
-}
-
 void ChessBoard::removePiece(std::shared_ptr<ChessPiece> piece)
 {
 	Square pos = piece->getSquare();
@@ -123,7 +112,7 @@ bool ChessBoard::checkObstacles(const ChessMove* move) const
 	return false;
 }
 
-std::shared_ptr<ChessPiece> ChessBoard::getPieceAt(const Square& square) const
+std::shared_ptr<ChessPiece> ChessBoard::getPieceAt(const Square& square)
 {
 	return m_board[square.row][square.col];
 }
