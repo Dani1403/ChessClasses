@@ -4,7 +4,7 @@ std::string ChessPiece::pieceDescription() const
 {
 	return "Color : " + colorToString(getColor()) + "\n" +
 		" Type : " + typeToString(getType()) + "\n" +
-		" Square : " + squareToAlgebraic(getSquare());
+		" Square : " + squareToAlgebraic(getSquare()) + "\n";
 }
 
 std::ostream& operator<<(std::ostream& os, const ChessPiece& piece)

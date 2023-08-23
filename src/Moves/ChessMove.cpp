@@ -18,11 +18,11 @@ std::string ChessMove::moveDescription() const
 {
 	return "Source: " + squareToAlgebraic(getSource()) + "\n" + 
 		"Destination: " + squareToAlgebraic(getDest()) + "\n" + 
-		"Piece To Move: " + getPieceToMove()->pieceDescription();
+		"Piece To Move: \n" + getPieceToMove()->pieceDescription();
 }
 
 std::ostream& operator<<(std::ostream& os, const ChessMove& move)
 {
-	os << "Move: " + move.moveDescription();
+	os << "Move: \n" + move.moveDescription();
 	return os;
 }
