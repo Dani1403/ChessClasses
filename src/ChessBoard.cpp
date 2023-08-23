@@ -51,8 +51,6 @@ void ChessBoard::addPiece(std::shared_ptr<ChessPiece> piece)
 	if (!piece)
 		return;
 	Square pos = piece->getSquare();
-	if (m_board[pos.row][pos.col] != nullptr)
-		throw SquareNotEmpty();
 	m_board[pos.row][pos.col] = piece;
 	std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(piece);
 	if (king)

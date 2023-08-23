@@ -14,6 +14,13 @@ int main()
 		std::shared_ptr<ChessMove> move2 = std::make_shared<ChessMove>(ChessMove({ 6,5 },
 			{4,5}, pawn2));
 		game.makeMove(move2);
+		std::shared_ptr<ChessPiece> wQueen = board->getPieceAt(algebraicToSquare("d1"));
+		std::cout << *(wQueen);
+		std::shared_ptr<ChessMove> check = std::make_shared<ChessMove>(ChessMove(algebraicToSquare("d1"),
+			algebraicToSquare("h5"), wQueen));
+		game.makeMove(check);
+		std::string result = game.isInCheck(Color::WHITE) ? "Success" : "Fail";
+		std::cout << result << std::endl;
 	}
 	catch (const std::exception& e)
 	{
