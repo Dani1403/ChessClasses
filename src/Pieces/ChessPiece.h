@@ -16,7 +16,6 @@ public:
 	ChessPiece& operator=(const ChessPiece& other) = default;
 
 	std::string pieceDescription() const;
-	friend std::ostream& operator<<(std::ostream& os, const ChessPiece& piece);
 
 	Color getColor() const { return m_color; }
 	Square getSquare() const { return m_position; }
@@ -33,3 +32,5 @@ protected:
 	Square m_position;
 	Type m_type;
 };
+
+std::ostream& operator<<(std::ostream& os, const ChessPiece& piece);

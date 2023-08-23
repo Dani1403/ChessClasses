@@ -21,8 +21,8 @@ std::string ChessMove::moveDescription() const
 		"Piece To Move: " + getPieceToMove()->pieceDescription();
 }
 
-std::ostream& ChessMove::operator<<(std::ostream& os) const
+std::ostream& operator<<(std::ostream& os, const ChessMove& move)
 {
-	os << "Move: " + moveDescription();
+	os << "Move: " + move.moveDescription();
 	return os;
 }

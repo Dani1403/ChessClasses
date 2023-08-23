@@ -31,7 +31,7 @@ bool ChessGame::isInCheck(Color color)
 
 void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 {
-	std::cout << "Applied" << move;
+	std::cout << "Applied: \n" << *move;
 	m_moves.push_back(move);
 	move->execute(*this);
 }

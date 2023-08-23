@@ -12,7 +12,6 @@ public:
 	virtual ~ChessMove() = default;
 
 	virtual std::string moveDescription() const;
-	std::ostream& operator<<(std::ostream& os) const;
 
 	Square getSource() const { return m_source; }
 	Square getDest() const { return m_destination; }
@@ -29,3 +28,5 @@ protected:
 	Square m_source, m_destination;
 	std::shared_ptr<ChessPiece> m_pieceToMove;
 };
+
+std::ostream& operator<<(std::ostream& os, const ChessMove& move);
