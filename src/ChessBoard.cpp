@@ -97,7 +97,7 @@ bool ChessBoard::checkDiagForObstacle(const Square& src, const Square& dest) con
 	return true;
 }
 
-bool ChessBoard::checkObstacles(const ChessMove* move) const
+bool ChessBoard::checkObstacles(std::shared_ptr<ChessMove> move) const
 {
 	Square src = move->getSource();
 	Square dest = move->getDest();
@@ -108,6 +108,17 @@ bool ChessBoard::checkObstacles(const ChessMove* move) const
 	else if (isOnSameDiag(src, dest))
 		return checkDiagForObstacle(src, dest);
 	return false;
+}
+
+std::vector<std::shared_ptr<ChessMove>> ChessBoard::getPossibleMoves(std::shared_ptr<ChessPiece> piece)
+{
+	/*
+* Check for :
+* Regular / Capture
+* Castle if King
+* Promotion / En Passant if Pawn
+*/
+	return std::vector<std::shared_ptr<ChessMove>>();
 }
 
 std::shared_ptr<ChessPiece> ChessBoard::getPieceAt(const Square& square)

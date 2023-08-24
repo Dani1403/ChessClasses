@@ -22,7 +22,7 @@ public:
 	bool isInCheck(Color color);
 	bool isInCheckmate(Color color);
 	//bool isStaleMate();
-	//bool isGameOver();
+	bool isGameOver();
 
 private:
 	std::shared_ptr<ChessBoard> m_chessBoard;
