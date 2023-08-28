@@ -3,14 +3,32 @@
 
 ChessBoard::ChessBoard()
 {
-	for (int i = 0; i < BOARD_SIZE; i++)
+	for (int row = 0; row < BOARD_SIZE; row++)
 	{
-		for (int j = 0; j < BOARD_SIZE; j++)
-			m_board[i][j] = nullptr;
+		for (int col = 0; col < BOARD_SIZE; col++)
+			m_board[row][col] = nullptr;
 	}
 }
 
-void ChessBoard::removePiece(ChessPiece* piece)
+void ChessBoard::addInitialPieces(Color color)
+{
+	int row = (color == Color::WHITE) ? 1 : 6;
+	for (int i = 0; i < BOARD_SIZE; i++)
+	{
+		addPiece(std::make_shared<Pawn>(Pawn(color, { row, i })));
+	}
+	row = (color == Color::WHITE) ? 0 : 7;
+	addPiece(std::make_shared<Rook>(Rook(color, { row, 0 })));
+	addPiece(std::make_shared<Knight>(Knight(color, { row, 1 })));
+	addPiece(std::make_shared<Bishop>(Bishop(color, { row, 2 })));
+	addPiece(std::make_shared<Queen>(Queen(color, { row, 3 })));
+	addPiece(std::make_shared<King>(King(color, { row, 4 })));
+	addPiece(std::make_shared<Bishop>(Bishop(color, { row, 5 })));
+	addPiece(std::make_shared<Knight>(Knight(color, { row, 6 })));
+	addPiece(std::make_shared<Rook>(Rook(color, { row, 7 })));
+}
+
+void ChessBoard::removePiece(std::shared_ptr<ChessPiece> piece)
 {
 	Square pos = piece->getSquare();
 	if (m_board[pos.row][pos.col] == nullptr)
@@ -18,7 +36,7 @@ void ChessBoard::removePiece(ChessPiece* piece)
 	m_board[pos.row][pos.col] = nullptr;
 }
 
-void ChessBoard::addKingPosition(King* king)
+void ChessBoard::addKingPosition(std::shared_ptr<King> king)
 {
 	m_kingPositions[king->getColor()] = king->getSquare();
 }
@@ -28,18 +46,18 @@ Square ChessBoard::getKingPosition(Color color)
 	return m_kingPositions[color];
 }
 
-void ChessBoard::addPiece(ChessPiece* piece)
+void ChessBoard::addPiece(std::shared_ptr<ChessPiece> piece)
 {
+	if (!piece)
+		return;
 	Square pos = piece->getSquare();
-	if (m_board[pos.row][pos.col] != nullptr)
-		throw SquareNotEmpty();
 	m_board[pos.row][pos.col] = piece;
-	King* king = dynamic_cast<King*>(piece);
+	std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(piece);
 	if (king)
 		addKingPosition(king);
 }
 
-void ChessBoard::movePiece(ChessPiece* piece, const Square& destination)
+void ChessBoard::movePiece(std::shared_ptr<ChessPiece> piece, const Square& destination)
 {
 	removePiece(piece);
 	piece->setPosition(destination);
@@ -79,7 +97,7 @@ bool ChessBoard::checkDiagForObstacle(const Square& src, const Square& dest) con
 	return true;
 }
 
-bool ChessBoard::checkObstacles(const ChessMove* move) const
+bool ChessBoard::checkObstacles(std::shared_ptr<ChessMove> move) const
 {
 	Square src = move->getSource();
 	Square dest = move->getDest();
@@ -92,7 +110,18 @@ bool ChessBoard::checkObstacles(const ChessMove* move) const
 	return false;
 }
 
-ChessPiece* ChessBoard::getPieceAt(const Square& square) const
+std::vector<std::shared_ptr<ChessMove>> ChessBoard::getPossibleMoves(std::shared_ptr<ChessPiece> piece)
+{
+	/*
+* Check for :
+* Regular / Capture
+* Castle if King
+* Promotion / En Passant if Pawn
+*/
+	return std::vector<std::shared_ptr<ChessMove>>();
+}
+
+std::shared_ptr<ChessPiece> ChessBoard::getPieceAt(const Square& square)
 {
 	return m_board[square.row][square.col];
 }

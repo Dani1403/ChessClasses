@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Player.h"
 #include "ChessBoard.h"
 #include "Moves/ChessMove.h"
 #include "Moves/Capture.h"
@@ -7,23 +7,26 @@
 class ChessGame
 {
 public:
-	ChessGame() {}
+	ChessGame();
 	~ChessGame() {}
 
-	ChessBoard* getChessBoard() { return m_chessBoard.get(); }
+	void initBoard();
 
-	void init();
-	void play();
+	std::shared_ptr<ChessBoard> getChessBoard() { return m_chessBoard; }
 
-	void makeMove(ChessMove* move);
+	//void play();
+
+	void makeMove(std::shared_ptr<ChessMove> move);
 	void undo();
 
 	bool isInCheck(Color color);
 	bool isInCheckmate(Color color);
-	bool isStaleMate();
+	//bool isStaleMate();
 	bool isGameOver();
 
 private:
-	std::unique_ptr<ChessBoard> m_chessBoard;
-	std::vector<ChessMove*> m_moves;
+	std::shared_ptr<ChessBoard> m_chessBoard;
+	std::vector<std::shared_ptr<ChessMove>> m_moves;
+	std::vector<Player> m_players;
+	Player m_currentPlayer;
 };

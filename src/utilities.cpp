@@ -2,20 +2,20 @@
 
 bool isSquareValid(const Square& square)
 {
-	return square.row >= 1 && square.row <= 8 && square.col >= 1 && square.col <= 8;
+	return square.row >= 0 && square.row <= 7 && square.col >= 0 && square.col <= 7;
 }
 
 Square algebraicToSquare(const std::string& notation)
 {
 	int col = notation[0] - 'a';
-	int row = notation[1] - '0';
+	int row = notation[1] - '1';
 	return Square{ row, col };
 }
 
 std::string squareToAlgebraic(const Square& square)
 {
 	char col = 'a' + square.col;
-	char row = '0' + square.row;
+	char row = '1' + square.row;
 	return std::string{ col, row };
 }
 

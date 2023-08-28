@@ -7,6 +7,7 @@ class ChessBoard;
 class Player
 {
 public:
+	Player() {}
 	Player(const std::string& name, Color color):
 		m_name(name), m_color(color) {}
 
@@ -15,6 +16,6 @@ public:
 	std::string getMoveFromUser(std::istream& is);
 
 private:
-	std::string m_name;
-	Color m_color;
+	std::string m_name = "Dummy";
+	Color m_color = Color::NONE;
 };

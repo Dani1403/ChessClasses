@@ -2,14 +2,14 @@
 
 std::string ChessPiece::pieceDescription() const 
 {
-	return "Color : " + colorToString(m_color) + "\n" +
-		" Type : " + typeToString(m_type) + "\n" +
-		" Square : " + squareToAlgebraic(m_position);
+	return "Color : " + colorToString(getColor()) + "\n" +
+		" Type : " + typeToString(getType()) + "\n" +
+		" Square : " + squareToAlgebraic(getSquare()) + "\n";
 }
 
-std::ostream& ChessPiece::operator<<(std::ostream& os) const 
+std::ostream& operator<<(std::ostream& os, const ChessPiece& piece)
 {
-	os << "Piece" << std::endl;
-	os << pieceDescription() << std::endl;
+	os << "Piece: " << std::endl;
+	os << piece.pieceDescription() << std::endl;
 	return os;
 }

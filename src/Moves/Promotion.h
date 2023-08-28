@@ -5,18 +5,18 @@
 class Promotion : public ChessMove
 {
 public:
-	Promotion(const Square& source, const Square& destination, Pawn* pawnToPromote, ChessPiece* newPiece) :
+	Promotion(const Square& source, const Square& destination, std::shared_ptr<Pawn> pawnToPromote, std::shared_ptr<ChessPiece> newPiece) :
 		ChessMove(source, destination, pawnToPromote), m_newPiece(newPiece)
 	{}
 
 	std::string moveDescription() const override;
 
-	ChessPiece* getNewPiece() const { return m_newPiece; }
+	std::shared_ptr<ChessPiece> getNewPiece() const { return m_newPiece; }
 
 	bool execute(ChessGame& game) const override;
 	void undo(ChessGame& game) const override;
 
 private:
-	ChessPiece* m_newPiece;
+	std::shared_ptr<ChessPiece> m_newPiece;
 };
 
