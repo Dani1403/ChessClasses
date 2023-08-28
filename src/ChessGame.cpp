@@ -6,6 +6,7 @@ ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard())
 	m_players.push_back(Player("Daniel", Color::WHITE));
 	m_players.push_back(Player("Anna", Color::BLACK));
 	m_currentPlayer = m_players.front();
+	std::cout << "First player : " << colorToString(m_currentPlayer.getColor()) << std::endl;
 }
 
 void ChessGame::initBoard()
@@ -16,11 +17,9 @@ void ChessGame::initBoard()
 
 void ChessGame::moveToNextPlayer()
 {
-	for (std::list<Player>::iterator it = m_players.begin(); it != m_players.end(); it++)
-	{
-		if (*(it) != m_currentPlayer)
-			m_currentPlayer = *(it);
-	}
+	m_players.push_back(m_players.front());
+	m_players.pop_front();
+	m_currentPlayer = m_players.front();
 }
 
 void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
@@ -30,7 +29,7 @@ void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 	*/
 	if (!move->isValid(*this))
 	{
-		std::cout << "Invalid move";
+		std::cout << "Invalid move\n";
 		return;
 	}
 	move->execute(*this);
@@ -41,7 +40,9 @@ void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 	//	return;
 	// }
 	m_moves.push_back(move);
+	moveToNextPlayer();
 	std::cout << "Applied: \n" << *move;
+	std::cout << "next player : " << colorToString(m_currentPlayer.getColor()) << std::endl;
 }
 
 void ChessGame::undo()

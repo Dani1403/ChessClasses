@@ -70,9 +70,9 @@ bool ChessBoard::checkRowForObstacle(const Square& src, const Square& dest) cons
 	for (int col = startCol(src, dest) + 1; col != endCol(src, dest); col++)
 	{
 		if (m_board[row][col] != nullptr)
-			return false;
+			return true;
 	}
-	return true;
+	return false;
 }
 
 bool ChessBoard::checkColForObstacle(const Square& src, const Square& dest) const
@@ -81,9 +81,9 @@ bool ChessBoard::checkColForObstacle(const Square& src, const Square& dest) cons
 	for (int row = startRow(src, dest) + 1; row != endRow(src, dest); row++)
 	{
 		if (m_board[row][col] != nullptr)
-			return false;
+			return true;
 	}
-	return true;
+	return false;
 }
 
 bool ChessBoard::checkDiagForObstacle(const Square& src, const Square& dest) const
@@ -92,9 +92,9 @@ bool ChessBoard::checkDiagForObstacle(const Square& src, const Square& dest) con
 		row < endRow(src, dest) && col < endCol(src, dest); row++, col += isDownwardDiag(src, dest) ? -1 : 1)
 	{
 		if (m_board[row][col] != nullptr)
-			return false;
+			return true;
 	}
-	return true;
+	return false;
 }
 
 bool ChessBoard::checkObstacles(const Square& src, const Square& dest) const
