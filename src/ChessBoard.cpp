@@ -97,10 +97,8 @@ bool ChessBoard::checkDiagForObstacle(const Square& src, const Square& dest) con
 	return true;
 }
 
-bool ChessBoard::checkObstacles(std::shared_ptr<ChessMove> move) const
+bool ChessBoard::checkObstacles(const Square& src, const Square& dest) const
 {
-	Square src = move->getSource();
-	Square dest = move->getDest();
 	if (isOnSameRow(src, dest))
 		return checkRowForObstacle(src, dest);
 	else if (isOnSameCol(src, dest))

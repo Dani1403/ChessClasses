@@ -28,7 +28,7 @@ public:
 	void removePiece(std::shared_ptr<ChessPiece> piece);
 	void addPiece(std::shared_ptr<ChessPiece> piece);
 	void movePiece(std::shared_ptr<ChessPiece> piece, const Square& destination);
-	bool checkObstacles(std::shared_ptr<ChessMove> move) const;
+	bool checkObstacles(const Square& src, const Square& dest) const;
 
 	std::vector<std::shared_ptr<ChessMove>> getPossibleMoves(std::shared_ptr<ChessPiece> piece);
 

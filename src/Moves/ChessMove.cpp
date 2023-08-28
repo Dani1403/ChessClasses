@@ -1,6 +1,18 @@
 #include "ChessMove.h"
 #include "../ChessGame.h"
 
+bool ChessMove::isValid(ChessGame& game) const 
+{
+	if (m_pieceToMove->getColor() != game.getCurrentPlayer().getColor())
+		return false;
+	std::shared_ptr<ChessBoard> board = game.getChessBoard();
+	if (board->getPieceAt(m_destination) != nullptr)
+		return false;
+	if (board->checkObstacles(m_source, m_destination) && (dynamic_cast<Knight*>(m_pieceToMove.get()) == nullptr))
+		return false;
+	return true;
+}
+
 bool ChessMove::execute(ChessGame& game) const 
 {
 	std::shared_ptr<ChessBoard> board = game.getChessBoard();

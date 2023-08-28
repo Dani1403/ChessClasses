@@ -12,7 +12,8 @@ public:
 
 	void initBoard();
 
-	std::shared_ptr<ChessBoard> getChessBoard() { return m_chessBoard; }
+	std::shared_ptr<ChessBoard> getChessBoard() const { return m_chessBoard; }
+	const Player& getCurrentPlayer() const { return m_currentPlayer; }
 
 	//void play();
 

@@ -21,6 +21,7 @@ public:
 	void setDest(const Square& newDestination) { m_destination = newDestination; }
 	void setPieceToMove(std::shared_ptr<ChessPiece> newPieceToMove) { m_pieceToMove = newPieceToMove; }
 
+	virtual bool isValid(ChessGame& game) const;
 	virtual bool execute(ChessGame& game) const;
 	virtual void undo(ChessGame& game) const;
 
