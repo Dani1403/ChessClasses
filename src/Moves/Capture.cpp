@@ -3,13 +3,11 @@
 
 bool Capture::isValid(ChessGame& game) const
 {
-	if (m_pieceToMove->getColor() != game.getCurrentPlayer().getColor())
-		return false;
 	std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	std::shared_ptr<ChessPiece> piece = board->getPieceAt(m_destination);
-	if (piece == nullptr || (piece->getColor() != game.getCurrentPlayer().getColor()))
+	if (!ChessMove::isValid(game) && (piece == nullptr))
 		return false;
-	if (board->checkObstacles(m_source, m_destination) && (dynamic_cast<Knight*>(m_pieceToMove.get()) == nullptr))
+	if (piece == nullptr || (piece->getColor() != game.getCurrentPlayer().getColor()))
 		return false;
 	return true;
 }
