@@ -15,6 +15,8 @@ public:
 
 	std::string getMoveFromUser(std::istream& is);
 
+	bool operator!=(const Player& other) const { return this->m_color != other.getColor(); }
+
 private:
 	std::string m_name = "Dummy";
 	Color m_color = Color::NONE;

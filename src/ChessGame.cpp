@@ -3,6 +3,9 @@
 ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard()))
 {
 	initBoard();
+	m_players.push_back(Player("Daniel", Color::WHITE));
+	m_players.push_back(Player("Anna", Color::BLACK));
+	m_currentPlayer = m_players.front();
 }
 
 void ChessGame::initBoard()
@@ -11,15 +14,33 @@ void ChessGame::initBoard()
 	m_chessBoard->addInitialPieces(Color::BLACK);
 }
 
+void ChessGame::moveToNextPlayer()
+{
+	for (std::list<Player>::iterator it = m_players.begin(); it != m_players.end(); it++)
+	{
+		if (*(it) != m_currentPlayer)
+			m_currentPlayer = *(it);
+	}
+}
+
 void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 {
 	/*
 	* TODO : check logic with board functions (obstacles, check, ...)
 	*/
-	m_moves.push_back(move);
-	move->execute(*this);
-	if (isInCheck(move->getPieceToMove()->getColor()))
+	if (!move->isValid(*this))
+	{
 		std::cout << "Invalid move";
+		return;
+	}
+	move->execute(*this);
+	//if (isInCheck(move->getPieceToMove()->getColor()))
+	// {
+	//	std::cout << "Invalid move";
+	//	move->undo(*this);
+	//	return;
+	// }
+	m_moves.push_back(move);
 	std::cout << "Applied: \n" << *move;
 }
 

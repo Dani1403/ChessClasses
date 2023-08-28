@@ -5,6 +5,7 @@
 #include <vector>
 #include <map>
 #include <array>
+#include <list>
 #include <iostream>
 
 enum class Color { NONE = 0, WHITE, BLACK };

@@ -19,6 +19,7 @@ public:
 
 	void makeMove(std::shared_ptr<ChessMove> move);
 	void undo();
+	void moveToNextPlayer();
 
 	bool isInCheck(Color color);
 	bool isInCheckmate(Color color);
@@ -28,6 +29,6 @@ public:
 private:
 	std::shared_ptr<ChessBoard> m_chessBoard;
 	std::vector<std::shared_ptr<ChessMove>> m_moves;
-	std::vector<Player> m_players;
+	std::list<Player> m_players;
 	Player m_currentPlayer;
 };
