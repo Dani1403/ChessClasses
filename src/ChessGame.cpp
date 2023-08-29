@@ -24,9 +24,6 @@ void ChessGame::moveToNextPlayer()
 
 void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 {
-	/*
-	* TODO : check logic with board functions (obstacles, check, ...)
-	*/
 	if (!move->isValid(*this))
 	{
 		std::cout << "Invalid move\n";
