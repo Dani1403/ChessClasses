@@ -7,20 +7,26 @@
 class ChessGame
 {
 public:
+	/* Constructor and destructors */
 	ChessGame();
 	~ChessGame() {}
-
 	void initBoard();
 
+	/* Getters */
 	std::shared_ptr<ChessBoard> getChessBoard() const { return m_chessBoard; }
 	const Player& getCurrentPlayer() const { return m_currentPlayer; }
 
-	//void play();
 
+
+	/* Main loop functions and move logic*/
+		/* Move Logic */
 	void makeMove(std::shared_ptr<ChessMove> move);
 	void undo();
+
+	//void play();
 	void moveToNextPlayer();
 
+	/* Status Logic */
 	bool isInCheck(Color color);
 	bool isInCheckmate(Color color);
 	//bool isStaleMate();
