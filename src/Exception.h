@@ -1,6 +1,19 @@
 #pragma once
 #include <exception>
 
+class InvalidMove : public std::exception
+{
+public:
+	InvalidMove(std::string cause) : m_cause(cause) {};
+	std::string message() const { return "Invalid move : " + m_cause; }
+	const char* what() const override
+	{
+		return message().c_str();
+	}
+private:
+	std::string m_cause;
+};
+
 class SquareNotValid : public std::exception
 {
 public:

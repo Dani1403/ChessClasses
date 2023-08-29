@@ -6,8 +6,10 @@ bool ChessMove::isValid(ChessGame& game) const
 	bool success = true;
 	if (m_pieceToMove->getColor() != game.getCurrentPlayer().getColor())
 		success = false;
-	std::shared_ptr<ChessBoard> board = game.getChessBoard();
+	std::shared_ptr<ChessBoard> board = game.getChessBoard(); 
 	if (board->getPieceAt(m_destination) != nullptr)
+		success = false;
+	if (!m_pieceToMove->isValidMove(m_source, m_destination))
 		success = false;
 	if (board->checkObstacles(m_source, m_destination) && (dynamic_cast<Knight*>(m_pieceToMove.get()) == nullptr))
 		success = false;
