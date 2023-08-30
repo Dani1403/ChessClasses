@@ -10,6 +10,23 @@ ChessBoard::ChessBoard()
 	}
 }
 
+void ChessBoard::draw()
+{
+	for (auto row = m_board.rbegin(); row != m_board.rend(); ++row)
+	{
+		for (auto piece = row->begin(); piece != row->end(); ++piece)
+		{
+			if (*piece == nullptr)
+			{
+				std::cout << "        | ";
+				continue;
+			}
+			std::cout << colorToString((* piece)->getColor()) + " " + typeToString((*piece)->getType()) + " | ";
+		}
+		std::cout << "\n" << " ------------------------------------------------------------------------------" << std::endl;
+	}
+}
+
 void ChessBoard::addInitialPieces(Color color)
 {
 	int row = (color == Color::WHITE) ? 1 : 6;

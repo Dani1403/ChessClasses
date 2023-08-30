@@ -13,7 +13,6 @@ class ChessMove;
 * TODO:
 *		-  get Possible Regular / Capture / Castle / Promotion / En Passant
 *		-  render simple board
-*		-	 check move logic
 */
 
 class ChessBoard
@@ -24,6 +23,8 @@ public:
 
 	ChessBoard();
 	void addInitialPieces(Color color);
+
+	void draw();
 
 	void removePiece(std::shared_ptr<ChessPiece> piece);
 	void addPiece(std::shared_ptr<ChessPiece> piece);

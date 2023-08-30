@@ -71,7 +71,7 @@ bool ChessGame::isInCheck(Color color)
 			try
 			{
 				isInCheck = capture.checkValidity(*this);
-				return isInCheck;
+				return true;
 			}
 			catch (const InvalidMove& invalid)
 			{

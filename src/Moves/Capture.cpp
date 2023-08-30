@@ -3,7 +3,7 @@
 
 bool Capture::checkValidity(ChessGame& game) const
 {
-	bool success;
+	bool success = false;
 	std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	std::shared_ptr<ChessPiece> piece = board->getPieceAt(m_destination);
 	try

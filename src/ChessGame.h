@@ -16,8 +16,6 @@ public:
 	std::shared_ptr<ChessBoard> getChessBoard() const { return m_chessBoard; }
 	const Player& getCurrentPlayer() const { return m_currentPlayer; }
 
-
-
 	/* Main loop functions and move logic*/
 		/* Move Logic */
 	void makeMove(std::shared_ptr<ChessMove> move);
