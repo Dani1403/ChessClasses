@@ -57,14 +57,17 @@ bool ChessGame::isInCheck(Color color)
 	{
 		for (std::shared_ptr<ChessPiece> piece : row)
 		{
-			ChessMove capture = Capture(piece->getSquare(), kingPos, piece, m_chessBoard->getPieceAt(kingPos));
-			try
+			if (piece != nullptr && piece->getColor() != color)
 			{
-				isInCheck = capture.checkValidity(*this);
-			}
-			catch (const InvalidMove& invalid)
-			{
-				continue;
+				ChessMove capture = Capture(piece->getSquare(), kingPos, piece, m_chessBoard->getPieceAt(kingPos));
+				try
+				{
+					isInCheck = capture.checkValidity(*this);
+				}
+				catch (const InvalidMove& invalid)
+				{
+					continue;
+				}
 			}
 		}
 	}
