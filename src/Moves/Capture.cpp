@@ -12,8 +12,8 @@ bool Capture::checkValidity(ChessGame& game) const
 	}
 	catch (const InvalidMove& invalid)
 	{
-		if (invalid.message() != "There is already a piece at the destination" &&
-			invalid.message() != "Invalid movement for this piece")
+		if (invalid.getCause() != std::string("There is already a piece at the destination") &&
+			invalid.getCause() != std::string("Invalid movement for this piece"))
 			throw invalid;
 	}
 	if (piece == nullptr)

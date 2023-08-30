@@ -5,6 +5,7 @@ class InvalidMove : public std::exception
 {
 public:
 	InvalidMove(std::string cause) : m_cause(cause) {};
+	std::string getCause() const { return m_cause; }
 	std::string message() const { return "Invalid move : " + m_cause; }
 	const char* what() const override
 	{

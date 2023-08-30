@@ -36,13 +36,13 @@ void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 		return;
 	}
 	move->execute(*this);
-	if (isInCheck(m_currentPlayer.getColor()))
-	{
-		std::cout << "The move results in you being in check" << std::endl;
-		move->undo(*this);
-		moveToNextPlayer();
-		return;
-	}
+	//if (isInCheck(m_currentPlayer.getColor()))
+	//{
+	//	std::cout << "The move results in you being in check" << std::endl;
+	//	move->undo(*this);
+	//	moveToNextPlayer();
+	//	return;
+	//}
 	m_moves.push_back(move);
 	m_chessBoard->draw();
 	moveToNextPlayer();
