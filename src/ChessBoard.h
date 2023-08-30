@@ -12,7 +12,6 @@ class ChessMove;
 /*
 * TODO:
 *		-  get Possible Regular / Capture / Castle / Promotion / En Passant
-*		-  render simple board
 */
 
 class ChessBoard

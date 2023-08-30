@@ -20,6 +20,7 @@ void ChessGame::moveToNextPlayer()
 	m_players.push_back(m_players.front());
 	m_players.pop_front();
 	m_currentPlayer = m_players.front();
+	std::cout << "next player : " << colorToString(m_currentPlayer.getColor()) << std::endl << std::endl;
 }
 
 void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
@@ -43,9 +44,8 @@ void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 		return;
 	}
 	m_moves.push_back(move);
+	m_chessBoard->draw();
 	moveToNextPlayer();
-	std::cout << "Applied: \n" << *move;
-	std::cout << "next player : " << colorToString(m_currentPlayer.getColor()) << std::endl;
 }
 
 void ChessGame::undo()
