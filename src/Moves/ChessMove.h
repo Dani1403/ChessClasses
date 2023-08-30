@@ -34,8 +34,10 @@ public:
 	* - there is no piece at the destination
 	*	- there is no obstacle between the source and the destination
 	*	- the move doesnt end up with the current player being in check
+	* 
+	* - > raise the appropriate exception in case of invalid move
 	*/
-	virtual bool isValid(ChessGame& game) const;
+	virtual void checkValidity(ChessGame& game) const;
 
 	/*
 	* apply the move to the current game

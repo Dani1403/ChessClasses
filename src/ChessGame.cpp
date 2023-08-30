@@ -24,18 +24,17 @@ void ChessGame::moveToNextPlayer()
 
 void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 {
-	if (!move->isValid(*this))
+	try
 	{
-		std::cout << "Invalid move\n";
+		move->checkValidity(*this);
+	}
+	catch (const InvalidMove& invalid)
+	{
+		std::cout << invalid.message() << std::endl;
+		moveToNextPlayer();
 		return;
 	}
 	move->execute(*this);
-	//if (isInCheck(move->getPieceToMove()->getColor()))
-	// {
-	//	std::cout << "Invalid move";
-	//	move->undo(*this);
-	//	return;
-	// }
 	m_moves.push_back(move);
 	moveToNextPlayer();
 	std::cout << "Applied: \n" << *move;

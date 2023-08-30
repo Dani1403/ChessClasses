@@ -4,6 +4,7 @@
 class Pawn : public ChessPiece
 {
 	bool m_canPromote = false;
+	bool m_hasMoved = false;
 public:
 	Pawn(const Color& color, const Square& square) : ChessPiece(color, square, Type::PAWN) {}
 	bool canPromote() const { return m_canPromote; }

@@ -1,23 +1,21 @@
 #include "ChessMove.h"
 #include "../ChessGame.h"
 
-bool ChessMove::isValid(ChessGame& game) const 
+void ChessMove::checkValidity(ChessGame& game) const 
 {
-	bool success = true;
 	if (m_pieceToMove->getColor() != game.getCurrentPlayer().getColor())
-		success = false;
+		throw InvalidMove("The piece you want to move is not of your color");
 	std::shared_ptr<ChessBoard> board = game.getChessBoard(); 
 	if (board->getPieceAt(m_destination) != nullptr)
-		success = false;
+		throw InvalidMove("There is already a piece at the destination");
 	if (!m_pieceToMove->isValidMove(m_source, m_destination))
-		success = false;
+		throw InvalidMove("Invalid movement for this piece");
 	if (board->checkObstacles(m_source, m_destination) && (dynamic_cast<Knight*>(m_pieceToMove.get()) == nullptr))
-		success = false;
+		throw InvalidMove("There is an obstacle");
 	execute(game);
 	if (game.isInCheck(m_pieceToMove->getColor()))
-		success = false;
+		throw InvalidMove("The move results in you being in check");
 	undo(game);
-	return success;
 }
 
 bool ChessMove::execute(ChessGame& game) const 

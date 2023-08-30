@@ -1,15 +1,24 @@
 #include "Capture.h"
 #include "../ChessGame.h"
 
-bool Capture::isValid(ChessGame& game) const
+void Capture::checkValidity(ChessGame& game) const
 {
 	std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	std::shared_ptr<ChessPiece> piece = board->getPieceAt(m_destination);
-	if (!ChessMove::isValid(game) && (piece == nullptr))
-		return false;
-	if (piece == nullptr || (piece->getColor() != game.getCurrentPlayer().getColor()))
-		return false;
-	return true;
+	try
+	{
+		ChessMove::checkValidity(game);
+	}
+	catch (const InvalidMove& invalid)
+	{
+		if (invalid.message() != "There is already a piece at the destination" &&
+			invalid.message() != "Invalid movement for this piece")
+			throw invalid;
+	}
+	if (piece == nullptr)
+		throw InvalidMove("There is no piece at the destination");
+	if (piece->getColor() == game.getCurrentPlayer().getColor())
+		throw InvalidMove("The piece to capture is of your color");
 }
 
 bool Capture::execute(ChessGame& game) const 
