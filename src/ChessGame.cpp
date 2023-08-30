@@ -51,20 +51,24 @@ void ChessGame::undo()
 
 bool ChessGame::isInCheck(Color color)
 {
+	bool isInCheck = false;
 	Square kingPos = m_chessBoard->getKingPosition(color);
 	for (const auto& row : m_chessBoard->getBoard())
 	{
 		for (std::shared_ptr<ChessPiece> piece : row)
 		{
 			ChessMove capture = Capture(piece->getSquare(), kingPos, piece, m_chessBoard->getPieceAt(kingPos));
-			if (capture.execute(*this)) 
+			try
 			{
-				capture.undo(*this);
-				return true;
+				isInCheck = capture.checkValidity(*this);
+			}
+			catch (const InvalidMove& invalid)
+			{
+				continue;
 			}
 		}
 	}
-	return false;
+	return isInCheck;
 }
 
 bool ChessGame::isInCheckmate(Color color)

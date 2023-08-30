@@ -11,7 +11,7 @@ public:
 
 	std::shared_ptr<ChessPiece> getCapturedPiece() const { return m_capturedPiece; }
 
-	virtual void checkValidity(ChessGame& game) const override;
+	virtual bool checkValidity(ChessGame& game) const override;
 	virtual bool execute(ChessGame& game) const override;
 	virtual void undo(ChessGame& game) const override;
 private:

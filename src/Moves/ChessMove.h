@@ -37,7 +37,7 @@ public:
 	* 
 	* - > raise the appropriate exception in case of invalid move
 	*/
-	virtual void checkValidity(ChessGame& game) const;
+	virtual bool checkValidity(ChessGame& game) const;
 
 	/*
 	* apply the move to the current game

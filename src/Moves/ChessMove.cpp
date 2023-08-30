@@ -1,7 +1,7 @@
 #include "ChessMove.h"
 #include "../ChessGame.h"
 
-void ChessMove::checkValidity(ChessGame& game) const 
+bool ChessMove::checkValidity(ChessGame& game) const 
 {
 	if (m_pieceToMove->getColor() != game.getCurrentPlayer().getColor())
 		throw InvalidMove("The piece you want to move is not of your color");
@@ -16,6 +16,7 @@ void ChessMove::checkValidity(ChessGame& game) const
 	if (game.isInCheck(m_pieceToMove->getColor()))
 		throw InvalidMove("The move results in you being in check");
 	undo(game);
+	return true;
 }
 
 bool ChessMove::execute(ChessGame& game) const 
