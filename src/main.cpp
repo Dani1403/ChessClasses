@@ -19,7 +19,7 @@ int main()
 		std::shared_ptr<ChessMove> check = std::make_shared<ChessMove>(ChessMove(algebraicToSquare("d1"),
 			algebraicToSquare("h5"), wQueen));
 		game.makeMove(check);
-		std::string result = game.isInCheck(Color::WHITE) ? "Success" : "Fail";
+		std::string result = game.isInCheck(Color::BLACK) ? "Success" : "Fail";
 		std::cout << result << std::endl;
 	}
 	catch (const std::exception& e)

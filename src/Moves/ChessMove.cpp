@@ -12,10 +12,6 @@ bool ChessMove::checkValidity(ChessGame& game) const
 		throw InvalidMove("Invalid movement for this piece");
 	if (board->checkObstacles(m_source, m_destination) && (dynamic_cast<Knight*>(m_pieceToMove.get()) == nullptr))
 		throw InvalidMove("There is an obstacle");
-	execute(game);
-	if (game.isInCheck(m_pieceToMove->getColor()))
-		throw InvalidMove("The move results in you being in check");
-	undo(game);
 	return true;
 }
 

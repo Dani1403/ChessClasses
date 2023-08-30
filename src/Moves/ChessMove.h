@@ -33,8 +33,6 @@ public:
 	*	- there is a valid movement for this piece between source and destination
 	* - there is no piece at the destination
 	*	- there is no obstacle between the source and the destination
-	*	- the move doesnt end up with the current player being in check
-	* 
 	* - > raise the appropriate exception in case of invalid move
 	*/
 	virtual bool checkValidity(ChessGame& game) const;

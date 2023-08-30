@@ -90,9 +90,9 @@ std::string typeToString(const Type& type)
 	case Type::QUEEN:
 		return "Q";
 	case Type::KNIGHT:
-		return "K";
+		return "Kn";
 	case Type::PAWN:
-		return "";
+		return "P";
 	case Type::BISHOP:
 		return "B";
 	default:
