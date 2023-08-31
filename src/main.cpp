@@ -26,6 +26,9 @@ int main()
 		std::shared_ptr<ChessMove> check = std::make_shared<ChessMove>(ChessMove(algebraicToSquare("d1"), algebraicToSquare("h5"), queen));
 		game.makeMove(check);
 
+		std::shared_ptr<ChessMove> moveButCheck = std::make_shared<ChessMove>(ChessMove(algebraicToSquare("c6"), algebraicToSquare("b8"), knight));
+		game.makeMove(moveButCheck);
+
 	}
 	catch (const std::exception& e)
 	{
