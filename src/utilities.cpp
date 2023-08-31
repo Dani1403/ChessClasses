@@ -1,5 +1,10 @@
 #include "utilities.h"
 
+Color opposite(Color color)
+{
+	return ((color == Color::WHITE) ? Color::BLACK : Color::WHITE);
+}
+
 bool isSquareValid(const Square& square)
 {
 	return square.row >= 0 && square.row <= 7 && square.col >= 0 && square.col <= 7;

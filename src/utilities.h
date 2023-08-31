@@ -10,6 +10,8 @@
 
 enum class Color { NONE = 0, WHITE, BLACK };
 
+Color opposite(Color color);
+
 enum class Type
 {
 	NONE = 0, PAWN, KNIGHT, BISHOP, QUEEN, ROOK, KING
