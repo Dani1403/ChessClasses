@@ -31,7 +31,7 @@ bool isOnSameCol(const Square& s1, const Square& s2)
 
 bool isOnSameDiag(const Square& s1, const Square& s2)
 {
-	return abs(s1.row - s2.row) == abs(s1.col - s2.col);
+	return (abs(s1.row - s2.row) == abs(s1.col - s2.col));
 }
 
 bool isDownwardDiag(const Square& s1, const Square& s2)

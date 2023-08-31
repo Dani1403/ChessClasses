@@ -5,7 +5,6 @@ bool Capture::checkValidity(ChessGame& game) const
 {
 	bool success = false;
 	std::shared_ptr<ChessBoard> board = game.getChessBoard();
-	std::shared_ptr<ChessPiece> piece = board->getPieceAt(m_destination);
 	try
 	{
 		success = ChessMove::checkValidity(game);
@@ -16,10 +15,12 @@ bool Capture::checkValidity(ChessGame& game) const
 			invalid.getCause() != std::string("Invalid movement for this piece"))
 			throw invalid;
 	}
-	if (piece == nullptr)
+	if (m_capturedPiece == nullptr)
 		throw InvalidMove("There is no piece at the destination");
-	if (piece->getColor() == game.getCurrentPlayer().getColor())
+	if (m_capturedPiece->getColor() == game.getCurrentPlayer().getColor())
 		throw InvalidMove("The piece to capture is of your color");
+	if (!m_pieceToMove->isValidCapture(m_source, m_destination))
+		throw InvalidMove("This is not a valid capture for this piece");
 	return success;
 }
 
