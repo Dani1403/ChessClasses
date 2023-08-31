@@ -16,16 +16,16 @@ int main()
 		game.makeMove(move2);
 
 		std::shared_ptr<ChessMove> capture = std::make_shared<Capture>(Capture(algebraicToSquare("e4"), algebraicToSquare("f5"), pawn1, pawn2));
-		//std::cout << *capture << std::endl;
 		game.makeMove(capture);
 
-		//std::cout << (isOnSameDiag(algebraicToSquare("e4"), algebraicToSquare("f5")) ? "diag" : "no diag") << std::endl;
-		std::cout << (pawn1->isValidCapture(algebraicToSquare("e4"), algebraicToSquare("f5")) ? "capture" : "no capture") << std::endl;
+		std::shared_ptr<ChessPiece> knight = board->getPieceAt(algebraicToSquare("b8"));
+		std::shared_ptr<ChessMove> move3 = std::make_shared<ChessMove>(ChessMove(algebraicToSquare("b8"), algebraicToSquare("c6"), knight));
+		game.makeMove(move3);
 
-		//std::shared_ptr<ChessPiece> wQueen = board->getPieceAt(algebraicToSquare("d1"));
-		//std::shared_ptr<ChessMove> check = std::make_shared<ChessMove>(ChessMove(algebraicToSquare("d1"),
-		//	algebraicToSquare("h5"), wQueen));
-		//game.makeMove(check);
+		std::shared_ptr<ChessPiece> queen = board->getPieceAt(algebraicToSquare("d1"));
+		std::shared_ptr<ChessMove> check = std::make_shared<ChessMove>(ChessMove(algebraicToSquare("d1"), algebraicToSquare("h5"), queen));
+		game.makeMove(check);
+
 	}
 	catch (const std::exception& e)
 	{
