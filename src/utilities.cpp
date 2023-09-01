@@ -79,6 +79,14 @@ int dist(const Square& s1, const Square& s2)
 	return static_cast<int>(sqrt(rowDiff*rowDiff + colDiff*colDiff));
 }
 
+void displayInstructionToMove(std::ostream& os)
+{
+	os << "To enter your move, follow the instruction below: " << std::endl;
+	os << "1 - Enter the case of the piece you want to move" << std::endl;
+	os << "2 - Enter X if you want to capture" << std::endl;
+	os << "2 - Enter the destination case for your piece" << std::endl;
+}
+
 std::string colorToString(const Color& color)
 {
 	return color == Color::WHITE ? "white" : "black";

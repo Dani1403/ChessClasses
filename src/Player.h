@@ -13,7 +13,9 @@ public:
 
 	Color getColor() const { return m_color; }
 
-	std::string getMoveFromUser(std::istream& is);
+	std::string getMoveFromUser(std::istream& is) const;
+
+	std::shared_ptr<ChessMove> getMove() const;
 
 	bool operator!=(const Player& other) const { return this->m_color != other.getColor(); }
 

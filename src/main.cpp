@@ -20,11 +20,16 @@ int main()
 
 		std::shared_ptr<ChessPiece> knight = board->getPieceAt(algebraicToSquare("b8"));
 		std::shared_ptr<ChessMove> move3 = std::make_shared<ChessMove>(ChessMove(algebraicToSquare("b8"), algebraicToSquare("c6"), knight));
-		game.makeMove(move3);
+		game.makeMove(move3);  
+		game.makeMove(move3); 
 
 		std::shared_ptr<ChessPiece> queen = board->getPieceAt(algebraicToSquare("d1"));
 		std::shared_ptr<ChessMove> check = std::make_shared<ChessMove>(ChessMove(algebraicToSquare("d1"), algebraicToSquare("h5"), queen));
 		game.makeMove(check);
+
+		std::cout << (isOnSameDiag(queen->getSquare(), board->getKingPosition(Color::BLACK)) ? "diag" : "no diag") << std::endl;
+
+		//std::cout << game.isInCheck(opposite(game.getCurrentPlayer().getColor())) << std::endl;
 
 		std::shared_ptr<ChessMove> moveButCheck = std::make_shared<ChessMove>(ChessMove(algebraicToSquare("c6"), algebraicToSquare("b8"), knight));
 		game.makeMove(moveButCheck);

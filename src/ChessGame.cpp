@@ -29,22 +29,19 @@ void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 	{
 		move->checkValidity(*this);
 		move->execute(*this);
-		m_moves.push_back(move);
-		m_chessBoard->draw();
-		moveToNextPlayer();
 	}
 	catch (const InvalidMove& invalid)
 	{
 		std::cout << invalid.message() << std::endl;
 		return;
 	}
-	if (isInCheck(opposite(m_currentPlayer.getColor())))
+	if (isInCheck(m_currentPlayer.getColor()))
 	{
-		std::cout << "The move results in you being in check" << std::endl;
 		move->undo(*this);
-		moveToNextPlayer();
-		return;
+		m_moves.pop_back();
 	}
+	m_chessBoard->draw();
+	moveToNextPlayer();
 }
 
 void ChessGame::undo()
@@ -59,6 +56,7 @@ bool ChessGame::isInCheck(Color color)
 {
 	Square kingPos = m_chessBoard->getKingPosition(color);
 	std::shared_ptr<ChessPiece> king = m_chessBoard->getPieceAt(kingPos);
+	//std::cout << *king << std::endl;
 	for (const auto& row : m_chessBoard->getBoard())
 	{
 		for (std::shared_ptr<ChessPiece> piece : row)
@@ -68,16 +66,11 @@ bool ChessGame::isInCheck(Color color)
 			std::shared_ptr<Capture> possibleCapture = std::make_shared<Capture>(piece->getSquare(), kingPos, piece, king);
 			try
 			{
-				if (piece->isValidCapture(piece->getSquare(), kingPos))
-				{
-					std::cout << "capture" << std::endl;
-					std::cout << *piece << std::endl;
-				}
 				return possibleCapture->checkValidity(*this);
 			}
 			catch (const InvalidMove& invalid)
 			{
-				std::cout << invalid.getCause() << std::endl;
+				continue;
 			}
 		}
 	}
