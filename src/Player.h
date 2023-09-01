@@ -3,6 +3,7 @@
 
 class ChessMove;
 class ChessBoard;
+class ChessGame;
 
 class Player
 {
@@ -15,7 +16,7 @@ public:
 
 	std::string getMoveFromUser(std::istream& is) const;
 
-	std::shared_ptr<ChessMove> getMove() const;
+	std::shared_ptr<ChessMove> getMove(ChessGame& game) const;
 
 	bool operator!=(const Player& other) const { return this->m_color != other.getColor(); }
 

@@ -82,9 +82,9 @@ int dist(const Square& s1, const Square& s2)
 void displayInstructionToMove(std::ostream& os)
 {
 	os << "To enter your move, follow the instruction below: " << std::endl;
-	os << "1 - Enter the case of the piece you want to move" << std::endl;
+	os << "1 - Enter the case of the piece you want to move " << std::endl;
 	os << "2 - Enter X if you want to capture" << std::endl;
-	os << "2 - Enter the destination case for your piece" << std::endl;
+	os << "3 - Enter the destination case for your piece" << std::endl;
 }
 
 std::string colorToString(const Color& color)
