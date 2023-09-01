@@ -23,6 +23,15 @@ void ChessGame::moveToNextPlayer()
 	std::cout << "next player : " << colorToString(m_currentPlayer.getColor()) << std::endl << std::endl;
 }
 
+void ChessGame::play()
+{
+	while (!isGameOver())
+	{
+		playerTurn();
+		moveToNextPlayer();
+	}
+}
+
 void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 {
 	try

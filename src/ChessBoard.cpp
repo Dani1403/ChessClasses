@@ -12,8 +12,10 @@ ChessBoard::ChessBoard()
 
 void ChessBoard::draw()
 {
-	for (auto row = m_board.rbegin(); row != m_board.rend(); ++row)
+	int rowNum = 1;
+	for (auto row = m_board.rbegin(); row != m_board.rend(); ++row, ++rowNum)
 	{
+		std::cout << rowNum << "\t";
 		for (auto piece = row->begin(); piece != row->end(); ++piece)
 		{
 			if (*piece == nullptr)
@@ -23,9 +25,9 @@ void ChessBoard::draw()
 			}
 			std::cout << colorToString((* piece)->getColor()) + " " + typeToString((*piece)->getType()) + " | ";
 		}
-		std::cout << "\n" << " ------------------------------------------------------------------------------" << std::endl;
+		std::cout << "\n" << "       ------------------------------------------------------------------------------" << std::endl;
 	}
-	std::cout << "\n";
+	std::cout << " \t   a\t     b\t       c        d\t   e\t     f\t       g\t h\n";
 }
 
 void ChessBoard::addInitialPieces(Color color)

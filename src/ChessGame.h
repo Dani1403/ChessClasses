@@ -22,7 +22,7 @@ public:
 	void undo();
 
 	void moveToNextPlayer();
-	//void play();
+	void play();
 	void playerTurn();
 
 	/* Status Logic */

@@ -5,7 +5,7 @@ int main()
 {
 	try {
 		ChessGame game;
-		game.playerTurn();
+		game.play();
 		//std::shared_ptr<ChessBoard> board = game.getChessBoard();
 		//std::shared_ptr<ChessPiece> pawn1 = board->getPieceAt(algebraicToSquare("e2"));
 		//std::shared_ptr<ChessMove> move1 = std::make_shared<ChessMove>(ChessMove(algebraicToSquare("e2"), algebraicToSquare("e4"), pawn1));
