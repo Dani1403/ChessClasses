@@ -40,8 +40,13 @@ void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 		move->undo(*this);
 		m_moves.pop_back();
 	}
+}
+
+void ChessGame::playerTurn()
+{
+	std::shared_ptr<ChessMove> move = m_currentPlayer.getMove(*this);
+	makeMove(move);
 	m_chessBoard->draw();
-	moveToNextPlayer();
 }
 
 void ChessGame::undo()

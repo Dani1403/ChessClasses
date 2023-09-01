@@ -21,8 +21,9 @@ public:
 	void makeMove(std::shared_ptr<ChessMove> move);
 	void undo();
 
-	//void play();
 	void moveToNextPlayer();
+	//void play();
+	void playerTurn();
 
 	/* Status Logic */
 	bool isInCheck(Color color);
