@@ -25,6 +25,7 @@ void ChessGame::moveToNextPlayer()
 
 void ChessGame::play()
 {
+	m_chessBoard->draw();
 	while (!isGameOver())
 	{
 		playerTurn();

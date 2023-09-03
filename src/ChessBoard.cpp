@@ -12,10 +12,10 @@ ChessBoard::ChessBoard()
 
 void ChessBoard::draw()
 {
-	int rowNum = 1;
+	int rowNum = 0;
 	for (auto row = m_board.rbegin(); row != m_board.rend(); ++row, ++rowNum)
 	{
-		std::cout << rowNum << "\t";
+		std::cout << BOARD_SIZE - rowNum << "\t";
 		for (auto piece = row->begin(); piece != row->end(); ++piece)
 		{
 			if (*piece == nullptr)
