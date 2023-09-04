@@ -18,7 +18,7 @@ public:
 
 	/* Main loop functions and move logic*/
 		/* Move Logic */
-	void makeMove(std::shared_ptr<ChessMove> move);
+	bool makeMove(std::shared_ptr<ChessMove> move);
 	void undo();
 
 	void moveToNextPlayer();

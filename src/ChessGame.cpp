@@ -33,29 +33,34 @@ void ChessGame::play()
 	}
 }
 
-void ChessGame::makeMove(std::shared_ptr<ChessMove> move)
+bool ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 {
-	try
-	{
-		move->checkValidity(*this);
-		move->execute(*this);
-	}
-	catch (const InvalidMove& invalid)
-	{
-		std::cout << invalid.message() << std::endl;
-		return;
-	}
+	move->checkValidity(*this);
+	move->execute(*this);
 	if (isInCheck(m_currentPlayer.getColor()))
 	{
 		move->undo(*this);
 		m_moves.pop_back();
 	}
+	return true;
 }
 
 void ChessGame::playerTurn()
 {
-	std::shared_ptr<ChessMove> move = m_currentPlayer.getMove(*this);
-	makeMove(move);
+	bool moved = false;
+	while (!moved)
+	{
+		try 
+		{
+			std::shared_ptr<ChessMove> move = m_currentPlayer.getMove(*this);
+			moved = makeMove(move);
+		}
+		catch (const InvalidMove& invalid)
+		{
+			std::cout << invalid.message() << std::endl << std::endl;
+			continue;
+		}
+	}
 	m_chessBoard->draw();
 }
 
@@ -71,7 +76,6 @@ bool ChessGame::isInCheck(Color color)
 {
 	Square kingPos = m_chessBoard->getKingPosition(color);
 	std::shared_ptr<ChessPiece> king = m_chessBoard->getPieceAt(kingPos);
-	//std::cout << *king << std::endl;
 	for (const auto& row : m_chessBoard->getBoard())
 	{
 		for (std::shared_ptr<ChessPiece> piece : row)
