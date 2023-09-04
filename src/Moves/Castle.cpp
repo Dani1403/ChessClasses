@@ -1,6 +1,11 @@
 #include "Castle.h"
 #include "../ChessGame.h"
 
+bool Castle::checkValidity(ChessGame& game) const
+{
+	return true;
+}
+
 bool Castle::execute(ChessGame& game) const
 {
 	m_kingMove.execute(game);

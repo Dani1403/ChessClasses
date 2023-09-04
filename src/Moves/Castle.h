@@ -14,6 +14,7 @@ public:
 
 	std::shared_ptr<Rook> getRookToMove() const { return m_rookToMove; }
 
+	bool checkValidity(ChessGame& game) const override;
 	bool execute(ChessGame& game) const override;
 	void undo(ChessGame& game) const override;
 private:
