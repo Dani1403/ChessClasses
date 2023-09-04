@@ -8,6 +8,10 @@
 #include <list>
 #include <iostream>
 
+const std::string CASTLE_KINGSIDE = "O-O";
+const std::string CASTLE_QUEENSIDE = "O-O-O";
+const char CAPTURE_SYMBOL = 'X';
+
 enum class Color { NONE = 0, WHITE, BLACK };
 
 Color opposite(Color color);
@@ -55,3 +59,5 @@ int endCol(const Square& s1, const Square& s2);
 int dist(const Square& s1, const Square& s2);
 
 void displayInstructionToMove(std::ostream& os);
+
+int offsetForCastle(Side side) { return side == Side::KING ? 2 : -2; }

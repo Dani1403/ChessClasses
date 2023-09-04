@@ -19,9 +19,8 @@ public:
 private:
 	Side m_side;
 	std::shared_ptr<Rook> m_rookToMove;
-	int offset() const { return m_side == Side::KING ? 2 : -2; }
-	Square kingDest() { return { getPieceToMove()->getSquare().row, getPieceToMove()->getSquare().col + offset() }; };
-	Square rookDest() { return { kingDest().row, kingDest().col - (offset() / 2) }; };
+	Square kingDest() { return { getPieceToMove()->getSquare().row, getPieceToMove()->getSquare().col + offsetForCastle(m_side) }; };
+	Square rookDest() { return { kingDest().row, kingDest().col - (offsetForCastle(m_side) / 2) }; };
 	ChessMove m_kingMove = ChessMove(getPieceToMove()->getSquare(), kingDest(), getPieceToMove());
 	ChessMove m_rookMove = ChessMove(getRookToMove()->getSquare(), rookDest(), getRookToMove());
 };
