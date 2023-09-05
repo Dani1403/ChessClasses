@@ -3,6 +3,8 @@
 #include "../Pieces/Rook.h"
 #include "../Pieces/King.h"
 
+int offsetForCastle(Side side) { return side == Side::KING ? 2 : -2; }
+
 class Castle : public ChessMove
 {
 public:

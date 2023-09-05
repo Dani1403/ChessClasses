@@ -79,12 +79,17 @@ int dist(const Square& s1, const Square& s2)
 	return static_cast<int>(sqrt(rowDiff*rowDiff + colDiff*colDiff));
 }
 
-void displayInstructionToMove(std::ostream& os)
+void displayInstructionToMove()
 {
-	os << "To enter your move, follow the instruction below: " << std::endl;
-	os << "1 - Enter the case of the piece you want to move " << std::endl;
-	os << "2 - Enter X if you want to capture" << std::endl;
-	os << "3 - Enter the destination case for your piece" << std::endl;
+	std::cout << "To enter your move, follow the instruction below: " << std::endl;
+	std::cout << "1 - Enter the case of the piece you want to move " << std::endl;
+	std::cout << "2 - Enter X if you want to capture" << std::endl;
+	std::cout << "3 - Enter the destination case for your piece" << std::endl;
+}
+
+void displayMoveEndsInCheck()
+{
+	std::cout << "The move you want to play result in you being in check" << std::endl;
 }
 
 std::string colorToString(const Color& color)

@@ -58,6 +58,6 @@ int endCol(const Square& s1, const Square& s2);
 
 int dist(const Square& s1, const Square& s2);
 
-void displayInstructionToMove(std::ostream& os);
+void displayInstructionToMove();
 
-int offsetForCastle(Side side) { return side == Side::KING ? 2 : -2; }
+void displayMoveEndsInCheck();

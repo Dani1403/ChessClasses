@@ -39,8 +39,10 @@ bool ChessGame::makeMove(std::shared_ptr<ChessMove> move)
 	move->execute(*this);
 	if (isInCheck(m_currentPlayer.getColor()))
 	{
+		displayMoveEndsInCheck();
 		move->undo(*this);
 		m_moves.pop_back();
+		return false;
 	}
 	return true;
 }
@@ -54,6 +56,7 @@ void ChessGame::playerTurn()
 		{
 			std::shared_ptr<ChessMove> move = m_currentPlayer.getMove(*this);
 			moved = makeMove(move);
+			if (!moved) continue;
 		}
 		catch (const InvalidMove& invalid)
 		{
@@ -72,6 +75,7 @@ void ChessGame::undo()
 	m_moves.pop_back();
 }
 
+// TODO : correct
 bool ChessGame::isInCheck(Color color)
 {
 	Square kingPos = m_chessBoard->getKingPosition(color);
@@ -83,14 +87,8 @@ bool ChessGame::isInCheck(Color color)
 			if (piece == nullptr || piece->getColor() == color)
 				continue;
 			std::shared_ptr<Capture> possibleCapture = std::make_shared<Capture>(piece->getSquare(), kingPos, piece, king);
-			try
-			{
-				return possibleCapture->checkValidity(*this);
-			}
-			catch (const InvalidMove& invalid)
-			{
-				continue;
-			}
+			if (checkPossibleCapture(possibleCapture))
+				return true;
 		}
 	}
 	return false;
@@ -116,4 +114,17 @@ bool ChessGame::isGameOver()
 	* Ideally implemented with stalemate and repetitions
 	*/
 	return (isInCheckmate(Color::BLACK) || isInCheckmate(Color::WHITE));
+}
+
+bool ChessGame::checkPossibleCapture(std::shared_ptr<Capture> capture)
+{
+	try
+	{
+		capture->checkValidity(*this);
+	}
+	catch (const InvalidMove& invalid)
+	{
+		return false;
+	}
+	return true;
 }

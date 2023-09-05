@@ -36,4 +36,6 @@ private:
 	std::vector<std::shared_ptr<ChessMove>> m_moves;
 	std::list<Player> m_players;
 	Player m_currentPlayer;
+
+	bool checkPossibleCapture(std::shared_ptr<Capture> capture);
 };

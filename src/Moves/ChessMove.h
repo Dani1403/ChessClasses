@@ -41,6 +41,7 @@ public:
 	* apply the move to the current game
 	*/
 	virtual bool execute(ChessGame& game) const;
+	//virtual void updatePieces();
 
 	virtual void undo(ChessGame& game) const;
 
