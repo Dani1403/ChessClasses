@@ -36,6 +36,7 @@ bool ChessGame::isInCheck(Color color)
 {
 	Square kingPos = m_chessBoard->getKingPosition(color);
 	std::shared_ptr<ChessPiece> king = m_chessBoard->getPieceAt(kingPos);
+	moveToNextPlayer();
 	for (const auto& row : m_chessBoard->getBoard())
 	{
 		for (std::shared_ptr<ChessPiece> piece : row)
@@ -44,9 +45,13 @@ bool ChessGame::isInCheck(Color color)
 				continue;
 			std::shared_ptr<Capture> possibleCapture = std::make_shared<Capture>(piece->getSquare(), kingPos, piece, king);
 			if (checkPossibleCapture(possibleCapture))
+			{
+				moveToNextPlayer();
 				return true;
+			}
 		}
 	}
+	moveToNextPlayer();
 	return false;
 }
 
@@ -74,26 +79,26 @@ bool ChessGame::isGameOver()
 
 // MOVE AND PLAYER TURN LOGIC
 
-bool ChessGame::makeMove(std::shared_ptr<ChessMove> move)
-{
-	move->checkValidity(*this);
-	move->execute(*this);
-	if (isInCheck(m_currentPlayer.getColor()))
-	{
-		displayMoveEndsInCheck();
-		move->undo(*this);
-		m_moves.pop_back();
-		return false;
-	}
-	return true;
-}
-
 void ChessGame::undo()
 {
 	std::shared_ptr<ChessMove> move = m_moves.back();
 	if (move != nullptr)
 		move->undo(*this);
 	m_moves.pop_back();
+}
+
+bool ChessGame::makeMove(std::shared_ptr<ChessMove> move)
+{
+	move->checkValidity(*this);
+	move->execute(*this);
+	m_moves.push_back(move);
+	if (isInCheck(m_currentPlayer.getColor()))
+	{
+		displayMoveEndsInCheck();
+		undo();
+		return false;
+	}
+	return true;
 }
 
 void ChessGame::playerTurn()
@@ -121,7 +126,7 @@ void ChessGame::moveToNextPlayer()
 	m_players.push_back(m_players.front());
 	m_players.pop_front();
 	m_currentPlayer = m_players.front();
-	std::cout << "next player : " << colorToString(m_currentPlayer.getColor()) << std::endl << std::endl;
+	//std::cout << "next player : " << colorToString(m_currentPlayer.getColor()) << std::endl << std::endl;
 }
 
 
