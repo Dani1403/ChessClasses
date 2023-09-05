@@ -22,8 +22,8 @@ public:
 	void undo();
 
 	void moveToNextPlayer();
-	void play();
 	void playerTurn();
+	void play();
 
 	/* Status Logic */
 	bool isInCheck(Color color);

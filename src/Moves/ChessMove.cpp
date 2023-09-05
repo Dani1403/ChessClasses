@@ -3,9 +3,9 @@
 
 bool ChessMove::checkValidity(ChessGame& game) const 
 {
+	std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	if (m_pieceToMove->getColor() != game.getCurrentPlayer().getColor())
 		throw InvalidMove("The piece you want to move is not of your color");
-	std::shared_ptr<ChessBoard> board = game.getChessBoard(); 
 	if (board->getPieceAt(m_destination) != nullptr)
 		throw InvalidMove("There is already a piece at the destination");
 	if (!m_pieceToMove->isValidMove(m_source, m_destination))

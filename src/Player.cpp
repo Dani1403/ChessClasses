@@ -31,6 +31,8 @@ std::shared_ptr<ChessMove> Player::getMove(ChessGame& game) const
 	Square source = algebraicToSquare(input.substr(0, 2));
 	Square destination = algebraicToSquare(input.substr(input.length() - 2));
 	std::shared_ptr<ChessPiece> pieceToMove = board->getPieceAt(source);
+	if (!pieceToMove)
+		throw InvalidMove("There is no piece in the source you selected");
 
 	//Capture
 	if (input.at(2) == CAPTURE_SYMBOL)
