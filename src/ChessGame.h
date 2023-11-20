@@ -9,7 +9,10 @@ class ChessGame
 public:
 	/* Constructor and destructors */
 	ChessGame();
-	~ChessGame() {}
+	~ChessGame() = default;
+	ChessGame(const ChessGame& other) = delete;
+	ChessGame& operator=(const ChessGame& other) = delete;
+
 	void initBoard();
 
 	/* Getters */

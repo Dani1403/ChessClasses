@@ -108,11 +108,15 @@ bool ChessBoard::checkColForObstacle(const Square& src, const Square& dest) cons
 
 bool ChessBoard::checkDiagForObstacle(const Square& src, const Square& dest) const
 {
-	for (int row = startRow(src, dest) + 1, col = startCol(src, dest) + 1;
-		row < endRow(src, dest) && col < endCol(src, dest); row++, col += isDownwardDiag(src, dest) ? -1 : 1)
+	int offset = isDownwardDiag(src, dest) ? -1 : 1;
+	for (int row = startRow(src, dest) + 1, col = startCol(src, dest) + offset;
+		row < endRow(src, dest) && col < endCol(src, dest); row++, col += offset)
 	{
 		if (m_board[row][col] != nullptr)
+		{
+			std::cout << *(m_board[row][col]) << std::endl;
 			return true;
+		}
 	}
 	return false;
 }

@@ -25,14 +25,14 @@ bool ChessGame::checkPossibleCapture(std::shared_ptr<Capture> capture)
 	{
 		capture->checkValidity(*this);
 	}
-	catch (const InvalidMove& invalid)
+	catch (const InvalidMove&)
 	{
 		return false;
 	}
 	return true;
 }
 
-bool ChessGame::isInCheck(Color color)
+bool ChessGame::isInCheck(const Color color)
 {
 	Square kingPos = m_chessBoard->getKingPosition(color);
 	std::shared_ptr<ChessPiece> king = m_chessBoard->getPieceAt(kingPos);
@@ -43,7 +43,7 @@ bool ChessGame::isInCheck(Color color)
 		{
 			if (piece == nullptr || piece->getColor() == color)
 				continue;
-			std::shared_ptr<Capture> possibleCapture = std::make_shared<Capture>(piece->getSquare(), kingPos, piece, king);
+			const auto possibleCapture = std::make_shared<Capture>(piece->getSquare(), kingPos, piece, king);
 			if (checkPossibleCapture(possibleCapture))
 			{
 				moveToNextPlayer();
