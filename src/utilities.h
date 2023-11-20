@@ -11,6 +11,14 @@
 const std::string CASTLE_KINGSIDE = "O-O";
 const std::string CASTLE_QUEENSIDE = "O-O-O";
 const char CAPTURE_SYMBOL = 'X';
+const char PROMOTION_SYMBOL = '=';
+const char CHECK_SYMBOL = '+';
+
+
+const std::string NOT_YOUR_COLOR = "The piece you want to move is not of your color";
+const std::string DESTINATION_SQUARE_NOT_EMPTY = "There is already a piece at the destination";
+const std::string INVALID_MOVEMENT = "Invalid movement for this piece";
+const std::string OBSTACLE = "There is an obstacle";
 
 enum class Color { NONE = 0, WHITE, BLACK };
 

@@ -39,7 +39,7 @@ bool ChessGame::isInCheck(const Color color)
 	moveToNextPlayer();
 	for (const auto& row : m_chessBoard->getBoard())
 	{
-		for (std::shared_ptr<ChessPiece> piece : row)
+		for (const auto& piece : row)
 		{
 			if (piece == nullptr || piece->getColor() == color)
 				continue;
