@@ -55,7 +55,7 @@ bool ChessGame::isInCheck(const Color color)
 	return false;
 }
 
-bool ChessGame::isInCheckmate(Color color)
+bool ChessGame::isInCheckmate(const Color color)
 {
 	if (!isInCheck(color))
 		return false;

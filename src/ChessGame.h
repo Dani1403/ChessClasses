@@ -29,8 +29,8 @@ public:
 	void play();
 
 	/* Status Logic */
-	bool isInCheck(Color color);
-	bool isInCheckmate(Color color);
+	bool isInCheck(const Color color);
+	bool isInCheckmate(const Color color);
 	//bool isStaleMate();
 	bool isGameOver();
 
