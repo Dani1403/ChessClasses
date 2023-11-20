@@ -11,9 +11,12 @@ bool Capture::checkValidity(ChessGame& game) const
 	}
 	catch (const InvalidMove& invalid)
 	{
+// TODO  :  The following code is bugged, because it never enters the if statement, even if the exception is thrown
 		if (invalid.getCause() != DESTINATION_SQUARE_NOT_EMPTY &&
 			invalid.getCause() != INVALID_MOVEMENT)
+		{
 			throw invalid;
+		}
 	}
 	if (m_capturedPiece == nullptr)
 		throw InvalidMove(DESTINATION_SQUARE_EMPTY);
