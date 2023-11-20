@@ -16,11 +16,11 @@ bool Capture::checkValidity(ChessGame& game) const
 			throw invalid;
 	}
 	if (m_capturedPiece == nullptr)
-		throw InvalidMove("There is no piece at the destination");
+		throw InvalidMove(DESTINATION_SQUARE_EMPTY);
 	if (m_capturedPiece->getColor() == game.getCurrentPlayer().getColor())
-		throw InvalidMove("The piece to capture is of your color");
+		throw InvalidMove(YOUR_COLOR);
 	if (!m_pieceToMove->isValidCapture(m_source, m_destination))
-		throw InvalidMove("This is not a valid capture for this piece");
+		throw InvalidMove(INVALID_CAPTURE);
 	return success;
 }
 

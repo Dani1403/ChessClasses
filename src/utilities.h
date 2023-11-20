@@ -16,8 +16,11 @@ const char CHECK_SYMBOL = '+';
 
 
 const std::string NOT_YOUR_COLOR = "The piece you want to move is not of your color";
+const std::string YOUR_COLOR = "The piece you want to capture is of your color";
 const std::string DESTINATION_SQUARE_NOT_EMPTY = "There is already a piece at the destination";
+const std::string DESTINATION_SQUARE_EMPTY = "There is no piece at the destination";
 const std::string INVALID_MOVEMENT = "Invalid movement for this piece";
+const std::string INVALID_CAPTURE = "Invalid capture for this piece";
 const std::string OBSTACLE = "There is an obstacle";
 
 enum class Color { NONE = 0, WHITE, BLACK };
