@@ -5,13 +5,13 @@ bool ChessMove::checkValidity(ChessGame& game) const
 {
 	std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	if (m_pieceToMove->getColor() != game.getCurrentPlayer().getColor())
-		throw InvalidMove("The piece you want to move is not of your color");
+		throw InvalidMove(NOT_YOUR_COLOR);
 	if (board->getPieceAt(m_destination) != nullptr)
-		throw InvalidMove("There is already a piece at the destination");
+		throw InvalidMove(DESTINATION_SQUARE_NOT_EMPTY);
 	if (!m_pieceToMove->isValidMove(m_source, m_destination))
-		throw InvalidMove("Invalid movement for this piece");
+		throw InvalidMove(INVALID_MOVEMENT);
 	if (board->checkObstacles(m_source, m_destination) && (dynamic_cast<Knight*>(m_pieceToMove.get()) == nullptr))
-		throw InvalidMove("There is an obstacle");
+		throw InvalidMove(OBSTACLE);
 	return true;
 }
 
