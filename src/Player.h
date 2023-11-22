@@ -1,6 +1,10 @@
 #pragma once
 #include "utilities.h"
 #include "Moves/Castle.h"
+#include "Moves/Promotion.h"
+#include "Moves/Capture.h"
+
+
 
 class ChessMove;
 class ChessBoard;
