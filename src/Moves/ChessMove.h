@@ -39,10 +39,16 @@ public:
 
 	/*
 	* apply the move to the current game
+	*	@param game : the game to apply the move to
+	*	@return true if the move was applied, false otherwise
 	*/
 	virtual bool execute(ChessGame& game) const;
 	//virtual void updatePieces();
 
+	/*
+	 * undo the move on the current game
+	 * @param game : the game to undo the move on
+	 */
 	virtual void undo(ChessGame& game) const;
 
 protected:
@@ -50,4 +56,10 @@ protected:
 	std::shared_ptr<ChessPiece> m_pieceToMove;
 };
 
+/*
+ * output operator for a move
+ * @param os : the output stream
+ * @param move : the move to output
+ * @return the output stream
+ */
 std::ostream& operator<<(std::ostream& os, const ChessMove& move);

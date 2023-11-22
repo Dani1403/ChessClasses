@@ -22,8 +22,6 @@ public:
 	std::shared_ptr<ChessBoard> getChessBoard() const { return m_chessBoard; }
 	const Player& getCurrentPlayer() const { return m_currentPlayer; }
 
-	////////// Main loop functions and move logic
-
 	/*
 	 * Checks if the move is valid and if it is, makes the move
 	 * @param move The move to be made
@@ -51,20 +49,18 @@ public:
 	 */
 	void play();
 
-	//////////////////// Status Logic
-
 	/*
 	 * check if a given color is in check
 	 * @param color The color to check
 	 * @return True if the color is in check, false otherwise
-   */
+	 */
 	bool isInCheck(const Color color);
 
 	/*
 	 * check if a given color is in checkmate
-   * @param color The color to check
-   * @return True if the color is in checkmate, false otherwise
-   */
+	 * @param color The color to check
+	 * @return True if the color is in checkmate, false otherwise
+	 */
 	bool isInCheckmate(const Color color);
 
 
@@ -72,8 +68,8 @@ public:
 
 	/*
 	 * check if the game is over
-   * @return True if the game is over, false otherwise
-   */
+	 * @return True if the game is over, false otherwise
+	 */
 	bool isGameOver();
 
 private:
