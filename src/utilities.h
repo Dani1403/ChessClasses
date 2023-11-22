@@ -28,6 +28,7 @@ const std::string DESTINATION_SQUARE_EMPTY = "There is no piece at the destinati
 const std::string INVALID_MOVEMENT = "Invalid movement for this piece";
 const std::string INVALID_CAPTURE = "Invalid capture for this piece";
 const std::string OBSTACLE = "There is an obstacle";
+const std::string INVALID_CASTLE = "Invalid castle";
 
 enum class Color { NONE = 0, WHITE, BLACK };
 
@@ -78,6 +79,8 @@ int startCol(const Square& s1, const Square& s2);
 int endCol(const Square& s1, const Square& s2);
 
 int dist(const Square& s1, const Square& s2);
+
+int offsetForCastle(const Side side);
 
 void displayExitGameInstructions();
 

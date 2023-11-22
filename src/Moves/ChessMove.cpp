@@ -3,7 +3,7 @@
 
 bool ChessMove::checkValidity(ChessGame& game) const 
 {
-	std::shared_ptr<ChessBoard> board = game.getChessBoard();
+	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	if (board->getPieceAt(m_destination) != nullptr)
 		throw InvalidMove(DESTINATION_SQUARE_NOT_EMPTY);
 	if (!m_pieceToMove->isValidMove(m_source, m_destination))

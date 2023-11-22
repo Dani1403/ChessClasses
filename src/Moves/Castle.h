@@ -3,7 +3,6 @@
 #include "../Pieces/Rook.h"
 #include "../Pieces/King.h"
 
-int offsetForCastle(Side side) { return side == Side::KING ? 2 : -2; }
 
 class Castle : public ChessMove
 {
@@ -19,11 +18,12 @@ public:
 	bool checkValidity(ChessGame& game) const override;
 	bool execute(ChessGame& game) const override;
 	void undo(ChessGame& game) const override;
+
 private:
-	Side m_side;
 	std::shared_ptr<Rook> m_rookToMove;
-	Square kingDest() { return { getPieceToMove()->getSquare().row, getPieceToMove()->getSquare().col + offsetForCastle(m_side) }; };
-	Square rookDest() { return { kingDest().row, kingDest().col - (offsetForCastle(m_side) / 2) }; };
+	Side m_side;
+	Square kingDest() const{ return { getPieceToMove()->getSquare().row, getPieceToMove()->getSquare().col + offsetForCastle(m_side) }; };
+	Square rookDest() const { return { kingDest().row, kingDest().col - (offsetForCastle(m_side) / 2) }; };
 	ChessMove m_kingMove = ChessMove(getPieceToMove()->getSquare(), kingDest(), getPieceToMove());
 	ChessMove m_rookMove = ChessMove(getRookToMove()->getSquare(), rookDest(), getRookToMove());
 };

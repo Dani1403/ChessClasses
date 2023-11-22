@@ -124,3 +124,8 @@ std::string typeToString(const Type& type)
 		return "None";
 	}
 }
+
+int offsetForCastle(const Side side)
+{
+	return side == Side::KING ? 2 : -2;
+}
