@@ -4,14 +4,14 @@
 bool ChessMove::checkValidity(ChessGame& game) const 
 {
 	std::shared_ptr<ChessBoard> board = game.getChessBoard();
-	if (m_pieceToMove->getColor() != game.getCurrentPlayer().getColor())
-		throw InvalidMove(NOT_YOUR_COLOR);
 	if (board->getPieceAt(m_destination) != nullptr)
 		throw InvalidMove(DESTINATION_SQUARE_NOT_EMPTY);
 	if (!m_pieceToMove->isValidMove(m_source, m_destination))
 		throw InvalidMove(INVALID_MOVEMENT);
 	if (board->checkObstacles(m_source, m_destination) && (dynamic_cast<Knight*>(m_pieceToMove.get()) == nullptr))
 		throw InvalidMove(OBSTACLE);
+	if (m_pieceToMove->getColor() != game.getCurrentPlayer().getColor())
+		throw InvalidMove(NOT_YOUR_COLOR);
 	return true;
 }
 
