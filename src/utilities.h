@@ -96,6 +96,10 @@ void displayExitGameInstructions();
 
 void displayInstructionToMove();
 
+void displayInstructionToPromote();
+
+void displayInstructionToCastle();
+
 void displayMoveEndsInCheck();
 
 int rowForPawnPromotion(const Color color);
