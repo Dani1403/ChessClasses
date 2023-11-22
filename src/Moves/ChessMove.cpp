@@ -19,6 +19,12 @@ bool ChessMove::execute(ChessGame& game) const
 {
 	std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	board->movePiece(getPieceToMove(), getDest());
+	if (dynamic_cast<Pawn*>(m_pieceToMove.get()) != nullptr)
+		dynamic_cast<Pawn*>(m_pieceToMove.get())->setHasMoved(true);
+	if (dynamic_cast<King*>(m_pieceToMove.get()) != nullptr)
+    dynamic_cast<King*>(m_pieceToMove.get())->setHasMoved(true);
+	if (dynamic_cast<Rook*>(m_pieceToMove.get()) != nullptr)
+    dynamic_cast<Rook*>(m_pieceToMove.get())->setHasMoved(true);
 	return true;
 }
 

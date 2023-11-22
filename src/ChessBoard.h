@@ -85,7 +85,7 @@ public:
 private:
   std::array<std::array<std::shared_ptr<ChessPiece>, BOARD_SIZE>, BOARD_SIZE> m_board;
 
-  std::map<Color, Square> m_kingPositions;
+  std::map<Color, Square> m_kingPositions = {};
 
   bool checkRowForObstacle(const Square& src, const Square& dest) const;
   bool checkColForObstacle(const Square& src, const Square& dest) const;

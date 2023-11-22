@@ -20,6 +20,7 @@ const std::string EXIT_SYMBOL_LOWER = "q";
 const std::string EXIT_SYMBOL_UPPER = "Q";
 const std::string EXIT_MESSAGE = "Thank you for playing :) See you next Time !";
 
+const std::string NOT_ON_STARTING_ROW = "The pawn you want to move twice is not on the starting row";
 const std::string NOT_YOUR_COLOR = "The piece you want to move is not of your color";
 const std::string YOUR_COLOR = "The piece you want to capture is of your color";
 const std::string DESTINATION_SQUARE_NOT_EMPTY = "There is already a piece at the destination";
@@ -31,7 +32,7 @@ const std::string OBSTACLE = "There is an obstacle";
 const std::string INVALID_CASTLE_PIECES = "Invalid castle";
 const std::string INVALID_CASTLE_KING = "Invalid castle for the king, it has already moved";
 const std::string INVALID_CASTLE_ROOK = "Invalid castle for the rook, it has already moved";
-const std::string INVALID_CASTLE_KING_CHECK = "Invalid castle, you are in check";
+const std::string INVALID_CASTLE_CHECK = "Invalid castle, you are in check";
 
 enum class Color { NONE = 0, WHITE, BLACK };
 
@@ -84,6 +85,8 @@ int endCol(const Square& s1, const Square& s2);
 int dist(const Square& s1, const Square& s2);
 
 int offsetForCastle(const Side side);
+
+int rookColForCastle(const Side side);
 
 void displayExitGameInstructions();
 

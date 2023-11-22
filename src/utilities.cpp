@@ -129,3 +129,8 @@ int offsetForCastle(const Side side)
 {
 	return side == Side::KING ? 2 : -2;
 }
+
+int rookColForCastle(const Side side)
+{
+	return side == Side::KING ? 7 : 0;
+}

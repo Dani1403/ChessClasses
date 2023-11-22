@@ -1,6 +1,8 @@
 #include "ChessBoard.h"
 #include "Moves/Capture.h"
 
+//#define DEBUG_CASTLE
+
 ChessBoard::ChessBoard()
 {
 	for (int row = 0; row < BOARD_SIZE; row++)
@@ -8,6 +10,8 @@ ChessBoard::ChessBoard()
 		for (int col = 0; col < BOARD_SIZE; col++)
 			m_board[row][col] = nullptr;
 	}
+	m_kingPositions[Color::WHITE] = { 0, 4 };
+	m_kingPositions[Color::BLACK] = { 7, 4 };
 }
 
 void ChessBoard::draw()
@@ -39,13 +43,16 @@ void ChessBoard::addInitialPieces(Color color)
 	}
 	row = (color == Color::WHITE) ? 0 : 7;
 	addPiece(std::make_shared<Rook>(Rook(color, { row, 0 })));
+	addPiece(std::make_shared<King>(King(color, { row, 4 })));
+	addPiece(std::make_shared<Rook>(Rook(color, { row, 7 })));
+#ifndef DEBUG_CASTLE
 	addPiece(std::make_shared<Knight>(Knight(color, { row, 1 })));
 	addPiece(std::make_shared<Bishop>(Bishop(color, { row, 2 })));
 	addPiece(std::make_shared<Queen>(Queen(color, { row, 3 })));
-	addPiece(std::make_shared<King>(King(color, { row, 4 })));
 	addPiece(std::make_shared<Bishop>(Bishop(color, { row, 5 })));
 	addPiece(std::make_shared<Knight>(Knight(color, { row, 6 })));
-	addPiece(std::make_shared<Rook>(Rook(color, { row, 7 })));
+#endif // !DEBUG_CASTLE
+
 }
 
 void ChessBoard::removePiece(std::shared_ptr<ChessPiece> piece)

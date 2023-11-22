@@ -1,5 +1,6 @@
 #pragma once
 #include "utilities.h"
+#include "Moves/Castle.h"
 
 class ChessMove;
 class ChessBoard;
@@ -38,4 +39,6 @@ public:
 private:
 	std::string m_name = "Dummy";
 	Color m_color = Color::NONE;
+
+	std::shared_ptr<Castle> getCastle(const ChessGame& game, std::shared_ptr<ChessBoard> board, const Side side) const;
 };

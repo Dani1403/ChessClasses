@@ -7,7 +7,12 @@ bool Castle::checkValidity(ChessGame& game) const
   if (board->checkObstacles(m_source, m_destination) && (dynamic_cast<Knight*>(m_pieceToMove.get()) == nullptr))
     throw InvalidMove(OBSTACLE);
   if (m_rookToMove->hasMoved())
-    throw InvalidMove(INVA);
+    throw InvalidMove(INVALID_CASTLE_ROOK);
+  const std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(m_pieceToMove);
+  if (king->hasMoved())
+    throw InvalidMove(INVALID_CASTLE_KING);
+  if (game.isInCheck(game.getCurrentPlayer().getColor()))
+    throw InvalidMove(INVALID_CASTLE_CHECK);
   return true;
 }
 
