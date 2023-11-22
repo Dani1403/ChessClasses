@@ -34,6 +34,7 @@ const std::string INVALID_CASTLE_KING = "Invalid castle for the king, it has alr
 const std::string INVALID_CASTLE_ROOK = "Invalid castle for the rook, it has already moved";
 const std::string INVALID_CASTLE_CHECK = "Invalid castle, you are in check";
 const std::string INVALID_PROMOTION_PIECE = "The piece you want to promote is not a pawn";
+const std::string INVALID_PROMOTED_PIECE = "You cannot promote into a pawn or a King";
 
 enum class Color { NONE = 0, WHITE, BLACK };
 

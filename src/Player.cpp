@@ -27,6 +27,23 @@ std::shared_ptr<Castle> Player::getCastle(const ChessGame& game, std::shared_ptr
 
 }
 
+std::shared_ptr<ChessPiece> Player::getPromotedPiece(Type type, Color color, Square square) const
+{
+	switch (type)
+	{
+		case Type::QUEEN:
+			return std::make_shared<Queen>(Queen(color, square));
+		case Type::ROOK:
+			return std::make_shared<Rook>(Rook(color, square));
+		case Type::BISHOP:
+			return std::make_shared<Bishop>(Bishop(color, square));
+		case Type::KNIGHT:
+			return std::make_shared<Knight>(Knight(color, square));
+	  default:
+			throw InvalidMove(INVALID_PROMOTED_PIECE);
+	}
+}
+
 
 
 std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
@@ -60,12 +77,15 @@ std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 	}
 
 	//Promotion
-	if (input[4] == PROMOTION_SYMBOL)
+	if (input[3] == PROMOTION_SYMBOL)
 	{
 		std::shared_ptr<Pawn> pawnToPromote = std::dynamic_pointer_cast<Pawn>(pieceToMove);
 		if (!pawnToPromote)
-      throw InvalidMove(INVALID_PROMOTION_PIECE);
-		return std::make_shared<Promotion>(source, destination, pieceToMove, );
+			throw InvalidMove(INVALID_PROMOTION_PIECE);
+		const Type promotionType = charToType(input[2]);
+		const Color color = pawnToPromote->getColor();
+		std::shared_ptr<ChessPiece> promotedPiece = getPromotedPiece(promotionType, color, { rowForPawnPromotion(color), pawnToPromote->getSquare().col });
+		return std::make_shared<Promotion>(source, destination, pawnToPromote, promotedPiece);
 	}
 
 	// Regular

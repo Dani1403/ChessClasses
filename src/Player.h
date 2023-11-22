@@ -41,4 +41,5 @@ private:
 	Color m_color = Color::NONE;
 
 	std::shared_ptr<Castle> getCastle(const ChessGame& game, std::shared_ptr<ChessBoard> board, const Side side) const;
+	std::shared_ptr<ChessPiece> getPromotedPiece(Type type, Color color, Square square) const;
 };
