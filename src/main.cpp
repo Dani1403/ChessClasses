@@ -3,6 +3,9 @@
 int main()
 {
 	ChessGame game;
-	game.play();
+	try
+	{
+		game.play();
+	} catch ()
 	return 0;
 }

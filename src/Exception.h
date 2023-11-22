@@ -1,6 +1,16 @@
 #pragma once
 #include <exception>
 
+class QuitGame : public std::exception
+{
+	public:
+	const char* what() const override
+	{
+		return "Quit Game";
+	}
+
+};
+
 class InvalidMove : public std::exception
 {
 public:
