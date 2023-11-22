@@ -8,8 +8,8 @@ class ChessGame;
 class Player
 {
 public:
-	Player() {}
-	Player(const std::string& name, Color color):
+	Player() = default;
+	Player(const std::string& name, const Color color):
 		m_name(name), m_color(color) {}
 
 	Color getColor() const { return m_color; }
@@ -26,7 +26,7 @@ public:
 	 * @param game - the game to get the move for.
 	 * @return a move the player wants to make.
 	 */
-	std::shared_ptr<ChessMove> getMove(ChessGame& game) const;
+	std::shared_ptr<ChessMove> getMove(const ChessGame& game) const;
 
 	/*
 	 * Compare two players by their color.

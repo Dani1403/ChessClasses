@@ -13,7 +13,7 @@ std::string Player::getMoveFromUser(std::istream& is) const
 	return input;
 }
 
-std::shared_ptr<ChessMove> Player::getMove(ChessGame& game) const
+std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 {
 	std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	std::string input = getMoveFromUser(std::cin);
