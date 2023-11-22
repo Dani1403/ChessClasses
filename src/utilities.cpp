@@ -79,9 +79,13 @@ int dist(const Square& s1, const Square& s2)
 	return static_cast<int>(sqrt(rowDiff*rowDiff + colDiff*colDiff));
 }
 
-void displayInstructionToMove()
+void displayExitGameInstructions()
 {
 	std::cout << "To exit the game please enter the letter q" << std::endl;
+}
+
+void displayInstructionToMove()
+{
 	std::cout << "To enter your move, follow the instruction below: " << std::endl;
 	std::cout << "1 - Enter the case of the piece you want to move " << std::endl;
 	std::cout << "2 - Enter X if you want to capture" << std::endl;

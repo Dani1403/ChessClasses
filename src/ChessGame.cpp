@@ -126,7 +126,6 @@ void ChessGame::moveToNextPlayer()
 	m_players.push_back(m_players.front());
 	m_players.pop_front();
 	m_currentPlayer = m_players.front();
-	//std::cout << "next player : " << colorToString(m_currentPlayer.getColor()) << std::endl << std::endl;
 }
 
 

@@ -7,6 +7,7 @@
 
 std::string Player::getMoveFromUser(std::istream& is) const
 {
+	displayExitGameInstructions();
 	displayInstructionToMove();
 	std::string input;
 	is >> input;

@@ -75,6 +75,8 @@ int endCol(const Square& s1, const Square& s2);
 
 int dist(const Square& s1, const Square& s2);
 
+void displayExitGameInstructions();
+
 void displayInstructionToMove();
 
 void displayMoveEndsInCheck();

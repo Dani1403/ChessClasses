@@ -27,7 +27,7 @@ void ChessBoard::draw()
 		}
 		std::cout << "\n" << "       ------------------------------------------------------------------------------" << std::endl;
 	}
-	std::cout << " \t   a\t     b\t       c        d\t   e\t     f\t       g\t h\n";
+	std::cout << " \t   a\t     b\t       c        d\t   e\t     f\t       g\t h\n" << std::endl;
 }
 
 void ChessBoard::addInitialPieces(Color color)
