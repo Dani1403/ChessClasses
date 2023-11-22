@@ -33,6 +33,7 @@ const std::string INVALID_CASTLE_PIECES = "Invalid castle";
 const std::string INVALID_CASTLE_KING = "Invalid castle for the king, it has already moved";
 const std::string INVALID_CASTLE_ROOK = "Invalid castle for the rook, it has already moved";
 const std::string INVALID_CASTLE_CHECK = "Invalid castle, you are in check";
+const std::string INVALID_PROMOTION_PIECE = "The piece you want to promote is not a pawn";
 
 enum class Color { NONE = 0, WHITE, BLACK };
 
@@ -58,11 +59,13 @@ bool isSquareValid(const Square& square);
 
 Square algebraicToSquare(const std::string& notation);
 
+std::string squareToAlgebraic(const Square& square);
+
 std::string colorToString(const Color& color);
 
 std::string typeToString(const Type& type);
 
-std::string squareToAlgebraic(const Square& square);
+Type charToType(const char& c);
 
 bool isOnSameRow(const Square& s1, const Square& s2);
 
@@ -93,3 +96,5 @@ void displayExitGameInstructions();
 void displayInstructionToMove();
 
 void displayMoveEndsInCheck();
+
+int rowForPawnPromotion(const Color color);

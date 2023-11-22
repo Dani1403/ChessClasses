@@ -126,6 +126,27 @@ std::string typeToString(const Type& type)
 	}
 }
 
+Type charToType(const char& c)
+{
+    switch (c)
+  {
+  case 'K':
+    return Type::KING;
+  case 'R':
+    return Type::ROOK;
+  case 'Q':
+    return Type::QUEEN;
+  case 'k':
+    return Type::KNIGHT;
+  case 'P':
+    return Type::PAWN;
+  case 'B':
+    return Type::BISHOP;
+  default:
+    return Type::NONE;
+  }
+}
+
 int offsetForCastle(const Side side)
 {
 	return side == Side::KING ? 2 : -2;
@@ -134,4 +155,9 @@ int offsetForCastle(const Side side)
 int rookColForCastle(const Side side)
 {
 	return side == Side::KING ? 7 : 0;
+}
+
+int rowForPawnPromotion(const Color& color)
+{
+	return color == Color::WHITE ? 7 : 0;
 }

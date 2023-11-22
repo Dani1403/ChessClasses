@@ -13,6 +13,7 @@ public:
 
 	std::shared_ptr<ChessPiece> getNewPiece() const { return m_newPiece; }
 
+	bool checkValidity(ChessGame& game) const override;
 	bool execute(ChessGame& game) const override;
 	void undo(ChessGame& game) const override;
 

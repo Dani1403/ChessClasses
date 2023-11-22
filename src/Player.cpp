@@ -3,6 +3,7 @@
 #include "Moves/Capture.h"
 #include "ChessBoard.h"
 #include "ChessGame.h"
+#include "Moves/Promotion.h"
 
 std::string Player::getMoveFromUser(std::istream& is) const
 {
@@ -56,6 +57,15 @@ std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 	{
 		std::shared_ptr<ChessPiece> capturedPiece = board->getPieceAt(destination);
 		return std::make_shared<Capture>(source, destination, pieceToMove, capturedPiece);
+	}
+
+	//Promotion
+	if (input[4] == PROMOTION_SYMBOL)
+	{
+		std::shared_ptr<Pawn> pawnToPromote = std::dynamic_pointer_cast<Pawn>(pieceToMove);
+		if (!pawnToPromote)
+      throw InvalidMove(INVALID_PROMOTION_PIECE);
+		return std::make_shared<Promotion>(source, destination, pieceToMove, );
 	}
 
 	// Regular

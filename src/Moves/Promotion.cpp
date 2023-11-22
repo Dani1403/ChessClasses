@@ -7,6 +7,11 @@ std::string Promotion::moveDescription() const
 		getNewPiece()->pieceDescription();
 }
 
+bool Promotion::checkValidity(ChessGame& game) const
+{
+	return ChessMove::checkValidity(game);
+}
+
 bool Promotion::execute(ChessGame& game) const
 {
 	std::shared_ptr<ChessBoard> board = game.getChessBoard();
