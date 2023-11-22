@@ -1,7 +1,6 @@
 #include "Player.h"
 #include "Moves/ChessMove.h"
 #include "Moves/Capture.h"
-
 #include "ChessBoard.h"
 #include "ChessGame.h"
 
@@ -33,10 +32,12 @@ std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 {
 	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	const std::string input = getMoveFromUser(std::cin);
-	  
+
+	// Exit
 	if (input == EXIT_SYMBOL_LOWER || input == EXIT_SYMBOL_UPPER)
 		throw ExitGame();
 
+	// Castle
 	if (input == CASTLE_KINGSIDE || input == CASTLE_QUEENSIDE)
 	{
 		const Side side = input == CASTLE_KINGSIDE ? Side::KING : Side::QUEEN;
