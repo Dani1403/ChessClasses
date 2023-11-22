@@ -160,5 +160,7 @@ std::vector<std::shared_ptr<ChessMove>> ChessBoard::getPossibleMoves(std::shared
 
 std::shared_ptr<ChessPiece> ChessBoard::getPieceAt(const Square& square)
 {
+	if (!isSquareValid(square))
+		return nullptr;
 	return m_board[square.row][square.col];
 }

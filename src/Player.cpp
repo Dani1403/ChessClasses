@@ -15,8 +15,8 @@ std::string Player::getMoveFromUser(std::istream& is) const
 
 std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 {
-	std::shared_ptr<ChessBoard> board = game.getChessBoard();
-	std::string input = getMoveFromUser(std::cin);
+	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
+	const std::string input = getMoveFromUser(std::cin);
 
 	// Castling
 	//if (input == CASTLE_KINGSIDE || input == CASTLE_QUEENSIDE)
@@ -32,7 +32,7 @@ std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 	Square destination = algebraicToSquare(input.substr(input.length() - 2));
 	std::shared_ptr<ChessPiece> pieceToMove = board->getPieceAt(source);
 	if (!pieceToMove)
-		throw InvalidMove("There is no piece in the source you selected");
+		throw InvalidMove(SOURCE_SQUARE_EMPTY);
 
 	//Capture
 	if (input.at(2) == CAPTURE_SYMBOL)
