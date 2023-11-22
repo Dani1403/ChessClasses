@@ -29,7 +29,7 @@ std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 		std::shared_ptr<King> kingToMove = std::dynamic_pointer_cast<King>(board->getPieceAt(kingPos));
 		std::shared_ptr<Rook> rookToMove = std::dynamic_pointer_cast<Rook>(board->getPieceAt(rookPos));
 		if (!kingToMove || !rookToMove)
-			throw InvalidMove(INVALID_CASTLE);
+			throw InvalidMove(INVALID_CASTLE_PIECES);
 		return std::make_shared<Castle>(kingPos, rookToMove->getSquare(), kingToMove, rookToMove, side);
 	}
 

@@ -28,7 +28,10 @@ const std::string DESTINATION_SQUARE_EMPTY = "There is no piece at the destinati
 const std::string INVALID_MOVEMENT = "Invalid movement for this piece";
 const std::string INVALID_CAPTURE = "Invalid capture for this piece";
 const std::string OBSTACLE = "There is an obstacle";
-const std::string INVALID_CASTLE = "Invalid castle";
+const std::string INVALID_CASTLE_PIECES = "Invalid castle";
+const std::string INVALID_CASTLE_KING = "Invalid castle for the king, it has already moved";
+const std::string INVID_CASTLE_ROOK = "Invalid castle for the rook, it has already moved";
+const std::string INVALID_CASTLE_KING_CHECK = "Invalid castle, you are in check";
 
 enum class Color { NONE = 0, WHITE, BLACK };
 
