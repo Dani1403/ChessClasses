@@ -36,20 +36,20 @@ public:
 	/*
 	 * Remove a certain piece from the board
 	 * @param piece - the piece to remove
-   */
+	 */
 	void removePiece(std::shared_ptr<ChessPiece> piece);
 
 	/*
-   * Add a piece to the board
-   * @param piece - the piece to add
-   */
+	 * Add a piece to the board
+	 * @param piece - the piece to add
+	 */
 	void addPiece(std::shared_ptr<ChessPiece> piece);
 
 	/*
-   * Move a piece to a certain square
-   * @param piece - the piece to move
-   * @param destination - the square to move the piece to
-   */
+	 * Move a piece to a certain square
+	 * @param piece - the piece to move
+	 * @param destination - the square to move the piece to
+	 */
 	void movePiece(std::shared_ptr<ChessPiece> piece, const Square& destination);
 
 	/*
@@ -57,29 +57,29 @@ public:
 	 * @param src - the source square
 	 * @param dest - the destination square
 	 * @return true if there are obstacles between the squares, false otherwise
-   */
+	 */
 	bool checkObstacles(const Square& src, const Square& dest) const;
 
 	std::vector<std::shared_ptr<ChessMove>> getPossibleMoves(std::shared_ptr<ChessPiece> piece);
 
 	/*
 	 * Get the board
-   * @return the board
-   */
+	 * @return the board
+	 */
 	std::array<std::array<std::shared_ptr<ChessPiece>, BOARD_SIZE>, BOARD_SIZE> getBoard() const { return m_board; }
 
 	/*
-   * Get the piece at a certain square
-   * @param square - the square to get the piece from
-   * @return the piece at the square
-   */
+	 * Get the piece at a certain square
+	 * @param square - the square to get the piece from
+	 * @return the piece at the square
+	 */
 	std::shared_ptr<ChessPiece> getPieceAt(const Square& square);
 
 	/*
 	 * Get the king position of a certain color
-   * @param color - the color of the king
-   * @return the king position
-   */
+	 * @param color - the color of the king
+	 * @return the king position
+	 */
 	Square getKingPosition(Color color);
 
 private:
