@@ -10,7 +10,8 @@
 
 const std::string CASTLE_KINGSIDE = "O-O";
 const std::string CASTLE_QUEENSIDE = "O-O-O";
-const char CAPTURE_SYMBOL = 'X';
+const char CAPTURE_SYMBOL_UPPER = 'X';
+const char CAPTURE_SYMBOL_LOWER = 'x';
 const char PROMOTION_SYMBOL = '=';
 const char CHECK_SYMBOL = '+';
 

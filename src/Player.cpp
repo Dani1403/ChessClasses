@@ -35,7 +35,8 @@ std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 		throw InvalidMove(SOURCE_SQUARE_EMPTY);
 
 	//Capture
-	if (input.at(2) == CAPTURE_SYMBOL)
+	if (input.at(2) == CAPTURE_SYMBOL_UPPER ||
+		  input.at(2) == CAPTURE_SYMBOL_LOWER)
 	{
 		std::shared_ptr<ChessPiece> capturedPiece = board->getPieceAt(destination);
 		return std::make_shared<Capture>(source, destination, pieceToMove, capturedPiece);
