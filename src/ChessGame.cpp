@@ -46,7 +46,6 @@ bool ChessGame::isInCheck(const Color color)
 			const auto possibleCapture = std::make_shared<Capture>(piece->getSquare(), kingPos, piece, king);
 			if (checkPossibleCapture(possibleCapture))
 			{
-				std::cout << *possibleCapture << std::endl;
 				moveToNextPlayer();
 				return true;
 			}
