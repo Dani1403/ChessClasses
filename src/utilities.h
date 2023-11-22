@@ -43,6 +43,10 @@ enum class Side { KING, QUEEN };
 struct Square
 {
 	int row, col;
+	bool operator==(const Square& other) const
+	{
+		return row == other.row && col == other.col;
+	}
 };
 
 bool isSquareValid(const Square& square);

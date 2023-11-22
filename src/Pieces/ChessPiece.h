@@ -21,6 +21,8 @@ public:
 	Square getSquare() const { return m_position; }
 	Type getType() const { return m_type; }
 
+	bool operator==(const ChessPiece& other) const { return m_color == other.m_color && m_position == other.m_position && m_type == other.m_type; }
+
 	void setPosition(const Square& newPosition) { m_position = newPosition; }
 	void setType(const Type& newType) { m_type = newType; }
 

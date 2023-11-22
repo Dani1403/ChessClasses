@@ -28,6 +28,11 @@ void ChessMove::undo(ChessGame& game) const
 	board->movePiece(getPieceToMove(), getSource());
 }
 
+bool ChessMove::operator==(const ChessMove& other) const
+{
+	return (m_source == other.m_source) && (m_destination == other.m_destination) && (*m_pieceToMove == *other.m_pieceToMove);
+}
+
 std::string ChessMove::moveDescription() const
 {
 	return "Source: " + squareToAlgebraic(getSource()) + "\n" + 

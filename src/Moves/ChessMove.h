@@ -51,6 +51,8 @@ public:
 	 */
 	virtual void undo(ChessGame& game) const;
 
+	bool operator==(const ChessMove& other) const;
+
 protected:
 	Square m_source, m_destination;
 	std::shared_ptr<ChessPiece> m_pieceToMove;
