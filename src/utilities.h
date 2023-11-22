@@ -14,7 +14,10 @@ const char CAPTURE_SYMBOL_UPPER = 'X';
 const char CAPTURE_SYMBOL_LOWER = 'x';
 const char PROMOTION_SYMBOL = '=';
 const char CHECK_SYMBOL = '+';
+const char CHECKMATE_SYMBOL = '#';
 
+const std::string EXIT_SYMBOL = "q";
+const std::string EXIT_MESSAGE = "Thank you for playing :) See you next Time !";
 
 const std::string NOT_YOUR_COLOR = "The piece you want to move is not of your color";
 const std::string YOUR_COLOR = "The piece you want to capture is of your color";

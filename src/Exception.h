@@ -1,12 +1,12 @@
 #pragma once
 #include <exception>
 
-class QuitGame : public std::exception
+class ExitGame : public std::exception
 {
 	public:
 	const char* what() const override
 	{
-		return "Quit Game";
+		return "Exit Game";
 	}
 
 };

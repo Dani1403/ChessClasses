@@ -6,6 +6,9 @@ int main()
 	try
 	{
 		game.play();
-	} catch ()
+	} catch (const ExitGame&)
+	{
+	  std::cout << EXIT_MESSAGE << std::endl;
+	}
 	return 0;
 }
