@@ -81,10 +81,13 @@ int dist(const Square& s1, const Square& s2)
 
 void displayInstructionToMove()
 {
+	std::cout << "To exit the game please enter the letter q" << std::endl;
 	std::cout << "To enter your move, follow the instruction below: " << std::endl;
 	std::cout << "1 - Enter the case of the piece you want to move " << std::endl;
 	std::cout << "2 - Enter X if you want to capture" << std::endl;
 	std::cout << "3 - Enter the destination case for your piece" << std::endl;
+	std::cout << "Example : e2e4 or e4Xd5" << std::endl;
+	std::cout << "Enter your move : ";
 }
 
 void displayMoveEndsInCheck()

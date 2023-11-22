@@ -17,7 +17,7 @@ std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 {
 	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	const std::string input = getMoveFromUser(std::cin);
-	if (input == EXIT_SYMBOL)
+	if (input == EXIT_SYMBOL_LOWER || input == EXIT_SYMBOL_UPPER)
 		throw ExitGame();
 
 	// Castling
