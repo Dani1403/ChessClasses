@@ -83,38 +83,52 @@ std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMoves(std::shared_
 	return possibleMoves;
 }
 
+bool ChessGame::colorHasValidMove(const Color color)
+{
+	for (auto& row : m_chessBoard->getBoard())
+	{
+		for (auto& piece : row)
+		{
+			if (piece == nullptr || piece->getColor() != color)
+				continue;
+			std::vector<std::shared_ptr<ChessMove>> possibleMoves = getPossibleMovesForPiece(piece);
+			for (const auto& move : possibleMoves)
+			{
+				move->execute(*this);
+				if (!isInCheck(color))
+				{
+					undo();
+					return false;
+				}
+				undo();
+			}
+		}
+	}
+	return true;
+}
+
+
 bool ChessGame::isInCheckmate(const Color color)
 {
 	if (!isInCheck(color))
 		return false;
-	for (auto& row : m_chessBoard->getBoard())
-	{
-	  for (auto& piece : row)
-	  {
-	    if (piece == nullptr || piece->getColor() != color)
-	      continue;
-      std::vector<std::shared_ptr<ChessMove>> possibleMoves = getPossibleMoves(piece);
-      for (auto& move : possibleMoves)
-      {
-				move->execute(*this);
-				if (!isInCheck(color))
-				{
-				  undo();
-          return false;
-				}
-				undo();
-      }
-    }
-  }
-	return true;
+	return colorHasValidMove(color);
+}
+
+bool ChessGame::isInStaleMate(const Color color)
+{
+   if (isInCheck(color))
+    return false;
+  return colorHasValidMove(color);
 }
 
 bool ChessGame::isGameOver()
 {
 	/*
-	* Ideally implemented with stalemate and repetitions
+	* Ideally implemented with repetitions
 	*/
-	return (isInCheckmate(Color::BLACK) || isInCheckmate(Color::WHITE));
+	return isInCheckmate(Color::BLACK) || isInCheckmate(Color::WHITE) ||
+	       isInStaleMate(Color::BLACK) || isInStaleMate(Color::BLACK);
 }
 
 // MOVE AND PLAYER TURN LOGIC

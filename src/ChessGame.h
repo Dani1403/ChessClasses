@@ -27,7 +27,9 @@ public:
 	 * @param piece The piece to get the moves for
 	 * @return A vector containing all the possible moves for the piece
 	 */
-	std::vector<std::shared_ptr<ChessMove>> getPossibleMoves(std::shared_ptr<ChessPiece> piece);
+	std::vector<std::shared_ptr<ChessMove>> getPossibleMovesForPiece(std::shared_ptr<ChessPiece> piece);
+
+	bool colorHasValidMove(const Color color);
 
 	/*
 	 * Checks if the move is valid and if it is, makes the move
@@ -70,8 +72,7 @@ public:
 	 */
 	bool isInCheckmate(const Color color);
 
-
-	//bool isStaleMate();
+  bool isInStaleMate(const Color color);
 
 	/*
 	 * check if the game is over
