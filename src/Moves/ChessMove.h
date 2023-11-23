@@ -37,6 +37,9 @@ public:
 	*/
 	virtual bool checkValidity(ChessGame& game) const;
 
+	bool checkPossibleMove(ChessGame& game);
+
+
 	/*
 	* apply the move to the current game
 	*	@param game : the game to apply the move to

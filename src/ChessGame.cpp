@@ -19,18 +19,6 @@ void ChessGame::initBoard()
 
 // CHECK AND CHECKMATE LOGIC ~~~~~ ENDGAME LOGIC
 
-bool ChessGame::checkPossibleCapture(std::shared_ptr<Capture> capture)
-{
-	try
-	{
-		capture->checkValidity(*this);
-	}
-	catch (const InvalidMove&)
-	{
-		return false;
-	}
-	return true;
-}
 
 bool ChessGame::isInCheck(const Color color)
 {
@@ -44,7 +32,7 @@ bool ChessGame::isInCheck(const Color color)
 			if (piece == nullptr || piece->getColor() == color)
 				continue;
 			const auto possibleCapture = std::make_shared<Capture>(piece->getSquare(), kingPos, piece, king);
-			if (checkPossibleCapture(possibleCapture))
+			if (possibleCapture->checkPossibleMove(*this))
 			{
 				moveToNextPlayer();
 				return true;

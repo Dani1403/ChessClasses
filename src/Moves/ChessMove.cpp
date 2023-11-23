@@ -15,6 +15,19 @@ bool ChessMove::checkValidity(ChessGame& game) const
 	return true;
 }
 
+
+bool ChessMove::checkPossibleMove(ChessGame& game)
+{
+	try
+	{
+		this->checkValidity(game);
+	} catch (const InvalidMove&)
+	{
+		return false;
+	}
+	return true;
+}
+
 bool ChessMove::execute(ChessGame& game) const 
 {
 	std::shared_ptr<ChessBoard> board = game.getChessBoard();

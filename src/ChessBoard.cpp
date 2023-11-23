@@ -1,5 +1,8 @@
 #include "ChessBoard.h"
 #include "Moves/Capture.h"
+#include "Moves/ChessMove.h"
+#include "Moves/Castle.h"
+#include "Moves/Promotion.h"
 
 //#define DEBUG_CASTLE
 
@@ -154,15 +157,27 @@ bool ChessBoard::checkObstacles(const Square& src, const Square& dest) const
 	return false;
 }
 
-std::vector<std::shared_ptr<ChessMove>> ChessBoard::getPossibleMoves(std::shared_ptr<ChessPiece> piece)
+std::vector<std::shared_ptr<ChessMove>> ChessBoard::getPossibleMoves(std::shared_ptr<ChessPiece> pieceToCheck)
 {
+	std::vector<std::shared_ptr<ChessMove>> possibleMoves;
 	/*
 * Check for :
 * Regular / Capture
 * Castle if King
 * Promotion / En Passant if Pawn
 */
-	return std::vector<std::shared_ptr<ChessMove>>();
+	for (auto& row : m_board)
+	{
+		for (auto& piece : row)
+		{
+			if (piece)
+			{
+				std::shared_ptr<ChessMove> move = std::make_shared<Capture>(pieceToCheck->getSquare(), piece->getSquare(), pieceToCheck, piece);
+
+			}
+			  
+		}
+	}
 }
 
 std::shared_ptr<ChessPiece> ChessBoard::getPieceAt(const Square& square)
