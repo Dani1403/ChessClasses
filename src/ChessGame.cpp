@@ -80,6 +80,7 @@ std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMoves(std::shared_
       }
 		}
 	}
+	return possibleMoves;
 }
 
 bool ChessGame::isInCheckmate(const Color color)
