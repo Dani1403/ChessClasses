@@ -26,6 +26,9 @@ public:
 	 */
 	std::string getMoveFromUser(std::istream& is) const;
 
+	std::shared_ptr<Castle> getCastle(const ChessGame& game, std::shared_ptr<ChessBoard> board, const Side side) const;
+	std::shared_ptr<ChessPiece> getPromotedPiece(Type type, Color color, Square square) const;
+
 	/*
 	 * Get a move from the player.
 	 * @param game - the game to get the move for.
@@ -44,6 +47,4 @@ private:
 	std::string m_name = "Dummy";
 	Color m_color = Color::NONE;
 
-	std::shared_ptr<Castle> getCastle(const ChessGame& game, std::shared_ptr<ChessBoard> board, const Side side) const;
-	std::shared_ptr<ChessPiece> getPromotedPiece(Type type, Color color, Square square) const;
 };

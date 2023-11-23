@@ -1,5 +1,7 @@
 #include "ChessGame.h"
 
+#include "Moves/EnPassant.h"
+
 // INITIALIZATION
 
 ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard()))
@@ -41,6 +43,43 @@ bool ChessGame::isInCheck(const Color color)
 	}
 	moveToNextPlayer();
 	return false;
+}
+
+std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMoves(std::shared_ptr<ChessPiece> pieceToCheck)
+{
+	std::vector<std::shared_ptr<ChessMove>> possibleMoves;
+	for (auto& row : m_chessBoard->getBoard())
+	{
+		for (auto& piece : row)
+		{
+			if (piece)
+			{
+				std::shared_ptr<ChessMove> move = std::make_shared<Capture>(pieceToCheck->getSquare(), piece->getSquare(), pieceToCheck, piece);
+				if (move->checkPossibleMove(*this))
+          possibleMoves.push_back(move);
+			}
+			std::shared_ptr<ChessMove> move = std::make_shared<ChessMove>(pieceToCheck->getSquare(), piece->getSquare(), pieceToCheck);
+			if (move->checkPossibleMove(*this))
+        possibleMoves.push_back(move);
+			if (dynamic_cast<King*>(pieceToCheck.get()) != nullptr)
+			{
+				std::shared_ptr<ChessMove> castleKing = getCurrentPlayer().getCastle(*this, m_chessBoard, Side::KING);
+				if (castleKing->checkPossibleMove(*this))
+					possibleMoves.push_back(castleKing);
+				std::shared_ptr<ChessMove> castleQueen = getCurrentPlayer().getCastle(*this, m_chessBoard, Side::QUEEN);
+				if (castleQueen->checkPossibleMove(*this))
+					possibleMoves.push_back(castleQueen);
+			}
+			std::shared_ptr<Pawn> pawn = std::dynamic_pointer_cast<Pawn>(pieceToCheck);
+			if (pawn)
+			{
+				Color color = pawn->getColor();
+				std::shared_ptr<ChessMove> promotion = std::make_shared<Promotion>(pieceToCheck->getSquare(), piece->getSquare(), pawn, getCurrentPlayer().getPromotedPiece(Type::QUEEN, color, { rowForPawnPromotion(color), pawn->colForPromotion() }));
+        if (promotion->checkPossibleMove(*this))
+          possibleMoves.push_back(promotion);
+      }
+		}
+	}
 }
 
 bool ChessGame::isInCheckmate(const Color color)

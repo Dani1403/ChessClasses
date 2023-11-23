@@ -83,7 +83,7 @@ std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 			throw InvalidMove(INVALID_PROMOTION_PIECE);
 		const Type promotionType = charToType(input[3]);
 		const Color color = pawnToPromote->getColor();
-		std::shared_ptr<ChessPiece> promotedPiece = getPromotedPiece(promotionType, color, { rowForPawnPromotion(color), pawnToPromote->getSquare().col });
+		std::shared_ptr<ChessPiece> promotedPiece = getPromotedPiece(promotionType, color, { rowForPawnPromotion(color), pawnToPromote->colForPromotion() });
 		return std::make_shared<Promotion>(source, promotedPiece->getSquare(), pawnToPromote, promotedPiece);
 	}
 

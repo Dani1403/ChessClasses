@@ -60,8 +60,6 @@ public:
    */
   bool checkObstacles(const Square& src, const Square& dest) const;
 
-  std::vector<std::shared_ptr<ChessMove>> getPossibleMoves(std::shared_ptr<ChessPiece> piece);
-
   /*
    * Get the board
    * @return the board

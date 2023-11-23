@@ -23,6 +23,13 @@ public:
 	const Player& getCurrentPlayer() const { return m_currentPlayer; }
 
 	/*
+	 *  Get all the possible moves for a given piece
+	 * @param piece The piece to get the moves for
+	 * @return A vector containing all the possible moves for the piece
+	 */
+	std::vector<std::shared_ptr<ChessMove>> getPossibleMoves(std::shared_ptr<ChessPiece> piece);
+
+	/*
 	 * Checks if the move is valid and if it is, makes the move
 	 * @param move The move to be made
 	 * @return True if the move was made, false otherwise

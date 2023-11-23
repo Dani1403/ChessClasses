@@ -17,3 +17,8 @@ bool Pawn::isValidCapture(const Square& source, const Square& destination) const
 	return isOnSameDiag(source, destination) && 
 		(destination.row == source.row + (m_color == Color::WHITE ? 1 : -1));
 }
+
+int Pawn::colForPromotion() const
+{
+	return getSquare().col;
+}
