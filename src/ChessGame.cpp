@@ -45,7 +45,7 @@ bool ChessGame::isInCheck(const Color color)
 	return false;
 }
 
-std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMoves(std::shared_ptr<ChessPiece> pieceToCheck)
+std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std::shared_ptr<ChessPiece> pieceToCheck)
 {
 	std::vector<std::shared_ptr<ChessMove>> possibleMoves;
 	for (auto& row : m_chessBoard->getBoard())

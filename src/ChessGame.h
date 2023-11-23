@@ -23,15 +23,6 @@ public:
 	const Player& getCurrentPlayer() const { return m_currentPlayer; }
 
 	/*
-	 *  Get all the possible moves for a given piece
-	 * @param piece The piece to get the moves for
-	 * @return A vector containing all the possible moves for the piece
-	 */
-	std::vector<std::shared_ptr<ChessMove>> getPossibleMovesForPiece(std::shared_ptr<ChessPiece> piece);
-
-	bool colorHasValidMove(const Color color);
-
-	/*
 	 * Checks if the move is valid and if it is, makes the move
 	 * @param move The move to be made
 	 * @return True if the move was made, false otherwise
@@ -65,6 +56,22 @@ public:
 	 */
 	bool isInCheck(const Color color);
 
+
+	/*
+	 *  Get all the possible moves for a given piece
+	 * @param piece The piece to get the moves for
+	 * @return A vector containing all the possible moves for the piece
+	 */
+	std::vector<std::shared_ptr<ChessMove>> getPossibleMovesForPiece(std::shared_ptr<ChessPiece> piece);
+
+
+	/*
+	 * check if a given color has a valid move
+	 * @param color The color to check
+	 * @return True if the color has a valid move, false otherwise
+   */
+	bool colorHasValidMove(const Color color);
+
 	/*
 	 * check if a given color is in checkmate
 	 * @param color The color to check
@@ -72,6 +79,11 @@ public:
 	 */
 	bool isInCheckmate(const Color color);
 
+	/*
+	 * check if a given color is in stalemate
+	 * @param color The color to check
+	 * @return True if the color is in stalemate, false otherwise
+	 */
   bool isInStaleMate(const Color color);
 
 	/*
