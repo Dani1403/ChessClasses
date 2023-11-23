@@ -106,7 +106,7 @@ void displayInstructionToPromote()
 	std::cout << " To Promote a Pawn: " << std::endl;
 	std::cout << "1 - Enter the case where the pawn is (example : d7)" << std::endl;
 	std::cout << "2 - Enter symbol = " << std::endl;
-	std::cout << "3 - Enter the type of the promoted Piece (Q - Queen, k - Knight, B - Bishop, R - Rook" << std::endl;
+	std::cout << "3 - Enter the type of the promoted Piece (Q - Queen, k - Knight, B - Bishop, R - Rook)" << std::endl;
 }
 
 
