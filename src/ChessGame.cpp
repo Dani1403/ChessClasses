@@ -48,20 +48,25 @@ bool ChessGame::isInCheck(const Color color)
 std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std::shared_ptr<ChessPiece> pieceToCheck)
 {
 	std::vector<std::shared_ptr<ChessMove>> possibleMoves;
-	for (auto& row : m_chessBoard->getBoard())
+	int intRow = 0, intCol = 0;
+	for (const auto& row : m_chessBoard->getBoard())
 	{
-		for (auto& piece : row)
+		for (const auto& piece : row)
 		{
+			const Square square = { intRow, intCol };
 			if (piece)
 			{
-				std::shared_ptr<ChessMove> move = std::make_shared<Capture>(pieceToCheck->getSquare(), piece->getSquare(), pieceToCheck, piece);
+				std::shared_ptr<ChessMove> move = std::make_shared<Capture>(pieceToCheck->getSquare(), square, pieceToCheck, piece);
 				if (move->checkPossibleMove(*this))
           possibleMoves.push_back(move);
 			}
-			std::shared_ptr<ChessMove> move = std::make_shared<ChessMove>(pieceToCheck->getSquare(), piece->getSquare(), pieceToCheck);
+
+			std::shared_ptr<ChessMove> move = std::make_shared<ChessMove>(pieceToCheck->getSquare(), square, pieceToCheck);
 			if (move->checkPossibleMove(*this))
         possibleMoves.push_back(move);
-			if (dynamic_cast<King*>(pieceToCheck.get()) != nullptr)
+
+			std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(pieceToCheck);
+			if (king)
 			{
 				std::shared_ptr<ChessMove> castleKing = getCurrentPlayer().getCastle(*this, m_chessBoard, Side::KING);
 				if (castleKing->checkPossibleMove(*this))
@@ -70,25 +75,29 @@ std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std:
 				if (castleQueen->checkPossibleMove(*this))
 					possibleMoves.push_back(castleQueen);
 			}
+
 			std::shared_ptr<Pawn> pawn = std::dynamic_pointer_cast<Pawn>(pieceToCheck);
 			if (pawn)
 			{
-				Color color = pawn->getColor();
-				std::shared_ptr<ChessMove> promotion = std::make_shared<Promotion>(pieceToCheck->getSquare(), piece->getSquare(), pawn, getCurrentPlayer().getPromotedPiece(Type::QUEEN, color, { rowForPawnPromotion(color), pawn->colForPromotion() }));
+				const Color color = pawn->getColor();
+				std::shared_ptr<ChessMove> promotion = std::make_shared<Promotion>(pieceToCheck->getSquare(), square, pawn, getCurrentPlayer().getPromotedPiece(Type::QUEEN, color, { rowForPawnPromotion(color), pawn->colForPromotion() }));
         if (promotion->checkPossibleMove(*this))
           possibleMoves.push_back(promotion);
       }
+			intCol == 7 ? intCol = 0 : intCol++;
 		}
+		intRow++;
 	}
 	return possibleMoves;
 }
 
 bool ChessGame::colorHasValidMove(const Color color)
 {
-	for (auto& row : m_chessBoard->getBoard())
+	for (int row = 0; row < m_chessBoard->BOARD_SIZE; row++)
 	{
-		for (auto& piece : row)
+		for (int col = 0; col < m_chessBoard->BOARD_SIZE; col++)
 		{
+			std::shared_ptr<ChessPiece> piece = m_chessBoard->getPieceAt({ row, col });
 			if (piece == nullptr || piece->getColor() != color)
 				continue;
 			std::vector<std::shared_ptr<ChessMove>> possibleMoves = getPossibleMovesForPiece(piece);
@@ -98,7 +107,7 @@ bool ChessGame::colorHasValidMove(const Color color)
 				if (!isInCheck(color))
 				{
 					undo();
-					return false;
+					return true;
 				}
 				undo();
 			}
@@ -112,14 +121,14 @@ bool ChessGame::isInCheckmate(const Color color)
 {
 	if (!isInCheck(color))
 		return false;
-	return colorHasValidMove(color);
+	return !colorHasValidMove(color);
 }
 
 bool ChessGame::isInStaleMate(const Color color)
 {
    if (isInCheck(color))
     return false;
-  return colorHasValidMove(color);
+  return !colorHasValidMove(color);
 }
 
 bool ChessGame::isGameOver()
@@ -127,14 +136,16 @@ bool ChessGame::isGameOver()
 	/*
 	* Ideally implemented with repetitions
 	*/
-	return isInCheckmate(Color::BLACK) || isInCheckmate(Color::WHITE) ||
-	       isInStaleMate(Color::BLACK) || isInStaleMate(Color::BLACK);
+	return isInCheckmate(Color::WHITE) || isInCheckmate(Color::BLACK) ||
+	       isInStaleMate(Color::WHITE) || isInStaleMate(Color::BLACK);
 }
 
 // MOVE AND PLAYER TURN LOGIC
 
 void ChessGame::undo()
 {
+	if (m_moves.empty())
+    return;
 	std::shared_ptr<ChessMove> move = m_moves.back();
 	if (move != nullptr)
 		move->undo(*this);
