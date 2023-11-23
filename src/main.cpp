@@ -3,12 +3,7 @@
 int main()
 {
 	ChessGame game;
-	try
-	{
-		game.play();
-	} catch (const ExitGame&)
-	{
-	  std::cout << EXIT_MESSAGE << std::endl;
-	}
+  game.play();
+  std::cout << EXIT_MESSAGE << std::endl;
 	return 0;
 }
