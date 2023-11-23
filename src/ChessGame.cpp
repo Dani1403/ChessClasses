@@ -87,14 +87,26 @@ bool ChessGame::isInCheckmate(const Color color)
 {
 	if (!isInCheck(color))
 		return false;
+	for (auto& row : m_chessBoard->getBoard())
+	{
+	  for (auto& piece : row)
+	  {
+	    if (piece == nullptr || piece->getColor() != color)
+	      continue;
+      std::vector<std::shared_ptr<ChessMove>> possibleMoves = getPossibleMoves(piece);
+      for (auto& move : possibleMoves)
+      {
+				move->execute(*this);
+				if (!isInCheck(color))
+				{
+				  undo();
+          return false;
+				}
+				undo();
+      }
+    }
+  }
 	return true;
-	/*
-	* For each remaining piece of the color
-	* Get all the available moves
-	* If after the move the color is no more in check return false
-	*		otherwise continue
-	* return true;
-	*/
 }
 
 bool ChessGame::isGameOver()
