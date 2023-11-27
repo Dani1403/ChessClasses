@@ -84,34 +84,32 @@ void ChessGame::appendCastle(std::vector<std::shared_ptr<ChessMove>>& moves)
 std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std::shared_ptr<ChessPiece> pieceToCheck)
 {
 	std::vector<std::shared_ptr<ChessMove>> possibleMoves;
-	int intRow = 0, intCol = 0;
-	for (auto& row : m_chessBoard->getBoard())
+	for (int row = 0; row < m_chessBoard->BOARD_SIZE; row++)
 	{
-		for (auto& pieceToCapture : row)
+		for (int col = 0; col < m_chessBoard->BOARD_SIZE; col++)
 		{
-			const Square square = { intRow, intCol };
+			std::shared_ptr<ChessPiece> pieceToCapture = m_chessBoard->getPieceAt({ row, col });
 			if (pieceToCapture)
-				appendCapture(possibleMoves, pieceToCheck, pieceToCapture, square);
-			appendRegular(possibleMoves, pieceToCheck, square);
+				appendCapture(possibleMoves, pieceToCheck, pieceToCapture, {row, col});
+			appendRegular(possibleMoves, pieceToCheck, {row, col});
 			std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(pieceToCheck);
 			if (king)
 				appendCastle(possibleMoves);
 			std::shared_ptr<Pawn> pawn = std::dynamic_pointer_cast<Pawn>(pieceToCheck);
 			if (pawn)
-				appendPromotion(possibleMoves, pawn, square);
-			intCol = (intCol == 7) ? 0 : intCol + 1;
+				appendPromotion(possibleMoves, pawn, {row, col});
 		}
-		intRow++;
 	}
 	return possibleMoves;
 }
 
-bool ChessGame::checkPossibleMoves(const std::vector<std::shared_ptr<ChessMove>>& possibleMoves)
+bool ChessGame::checkPossibleMoves(const std::vector<std::shared_ptr<ChessMove>>& possibleMoves, Color color)
 {
-   for (auto move : possibleMoves)
+	bool emptyVector = possibleMoves.empty();
+  for (auto move : possibleMoves)
   {
     move->execute(*this);
-    if (!isInCheck(m_currentPlayer.getColor()))
+    if (!isInCheck(color))
     {
       move->undo(*this);
       return true;
@@ -127,11 +125,13 @@ bool ChessGame::colorHasValidMove(const Color color)
 	{
 		for (int col = 0; col < m_chessBoard->BOARD_SIZE; col++)
 		{
+			Square square = { row, col };
 			std::shared_ptr<ChessPiece> piece = m_chessBoard->getPieceAt({ row, col });
 			if (piece == nullptr || piece->getColor() != color)
 				continue;
+			Type type = piece->getType();
 			std::vector<std::shared_ptr<ChessMove>> possibleMoves = getPossibleMovesForPiece(piece);
-      const bool hasValidMove = checkPossibleMoves(possibleMoves);
+      const bool hasValidMove = checkPossibleMoves(possibleMoves, color);
 			if (hasValidMove)
         return true;
 		}
@@ -149,9 +149,10 @@ bool ChessGame::isInCheckmate(const Color color)
 
 bool ChessGame::isInStaleMate(const Color color)
 {
-   if (isInCheck(color))
+  if (isInCheck(color))
     return false;
-  return !colorHasValidMove(color);
+	bool stalemate = !colorHasValidMove(color);
+	return stalemate;
 }
 
 bool ChessGame::isGameOver()
@@ -164,7 +165,7 @@ bool ChessGame::isGameOver()
 		return true;
 	} else if (isInStaleMate(currentColor))
 	{
-		std::cout << "Stalemate!" << std::endl;
+		std::cout << "Stalemate! " + colorToString(currentColor) + " got the draw " << std::endl;
 		return true;
 	} else if (isInCheckmate(opposite(currentColor)))
 	{
@@ -172,7 +173,7 @@ bool ChessGame::isGameOver()
 		return true;
 	} else if (isInStaleMate(opposite(currentColor)))
 	{
-		std::cout << "Stalemate!" << std::endl;
+		std::cout << "Stalemate! " + colorToString(opposite(currentColor)) + " got the draw" << std::endl;
 		return true;
 	} else
 		return false;

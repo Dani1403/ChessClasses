@@ -74,7 +74,7 @@ public:
 	 */
 	std::vector<std::shared_ptr<ChessMove>> getPossibleMovesForPiece(std::shared_ptr<ChessPiece> piece);
 
-	bool checkPossibleMoves(const std::vector<std::shared_ptr<ChessMove>>& possibleMoves);
+	bool checkPossibleMoves(const std::vector<std::shared_ptr<ChessMove>>& possibleMoves, Color color);
 
 	/*
 	 * check if a given color has a valid move
