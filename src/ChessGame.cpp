@@ -2,8 +2,7 @@
 
 #include "Moves/EnPassant.h"
 
-#define DEBUG_STALEMATE 
-
+#define DEBUG_CHECKMATE
 
 // INITIALIZATION
 
@@ -147,7 +146,7 @@ bool ChessGame::isGameOver()
 	/*
 	* Ideally implemented with repetitions
 	*/
-#ifndef DEBUG_STALEMATE
+#ifndef DEBUG_CHECKMATE
 	return isInCheckmate(Color::WHITE) || isInCheckmate(Color::BLACK) ||
 	       isInStaleMate(Color::WHITE) || isInStaleMate(Color::BLACK);
 #endif
