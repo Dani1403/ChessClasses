@@ -2,7 +2,7 @@
 
 #include "Moves/EnPassant.h"
 
-#define DEBUG_CHECKMATE
+//#define DEBUG_GET_MOVE
 
 // INITIALIZATION
 
@@ -143,17 +143,28 @@ bool ChessGame::isInStaleMate(const Color color)
 
 bool ChessGame::isGameOver()
 {
-	/*
-	* Ideally implemented with repetitions
-	*/
-#ifndef DEBUG_CHECKMATE
-	return isInCheckmate(Color::WHITE) || isInCheckmate(Color::BLACK) ||
-	       isInStaleMate(Color::WHITE) || isInStaleMate(Color::BLACK);
-#endif
-  const bool final = isInCheckmate(Color::WHITE) || isInCheckmate(Color::BLACK);
-	if (final)
-		std::cout << "There is a checkmate" << std::endl;
-	return final;
+#ifdef DEBUG_GET_MOVE
+	const Color currentColor = m_currentPlayer.getColor();
+	if (isInCheckmate(currentColor))
+	{
+		m_currentPlayer.displayVictory();
+		return true;
+	} else if (isInStaleMate(currentColor))
+	{
+		std::cout << "Stalemate!" << std::endl;
+		return true;
+	} else if (isInCheckmate(opposite(currentColor)))
+	{
+		m_players.back().displayVictory();
+		return true;
+	} else if (isInStaleMate(opposite(currentColor)))
+	{
+		std::cout << "Stalemate!" << std::endl;
+		return true;
+	} else
+		return false;
+#endif // DEBUG
+	return true;
 }
 
 // MOVE AND PLAYER TURN LOGIC
