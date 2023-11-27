@@ -5,6 +5,7 @@
 #include "Moves/Promotion.h"
 
 //#define DEBUG_CASTLE
+#define DEBUG_GET_MOVE
 
 ChessBoard::ChessBoard()
 {
@@ -44,6 +45,7 @@ void ChessBoard::addInitialPieces(Color color)
 	{
 		addPiece(std::make_shared<Pawn>(Pawn(color, { row, i })));
 	}
+#ifndef DEBUG_GET_MOVE
 	row = (color == Color::WHITE) ? 0 : 7;
 	addPiece(std::make_shared<Rook>(Rook(color, { row, 0 })));
 	addPiece(std::make_shared<King>(King(color, { row, 4 })));
@@ -55,7 +57,7 @@ void ChessBoard::addInitialPieces(Color color)
 	addPiece(std::make_shared<Bishop>(Bishop(color, { row, 5 })));
 	addPiece(std::make_shared<Knight>(Knight(color, { row, 6 })));
 #endif // !DEBUG_CASTLE
-
+#endif // !DEBUG_GET_MOVE
 }
 
 void ChessBoard::removePiece(std::shared_ptr<ChessPiece> piece)

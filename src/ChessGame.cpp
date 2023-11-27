@@ -49,8 +49,24 @@ bool ChessGame::isInCheck(const Color color)
 
 void ChessGame::appendMove(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessMove> move)
 {
+#ifdef DEBUG_GET_MOVE
+	bool result = false;
+	try
+	{
+		if (move->checkValidity(*this))
+		{
+			moves.push_back(move);
+			result = true;
+		}
+	} catch (const InvalidMove& invalid)
+	{
+		result = false;
+	}
+
+#else
 	if (move->checkPossibleMove(*this))
 		moves.push_back(move);
+#endif
 }
 
 void ChessGame::appendRegular(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, Square square)
@@ -81,6 +97,7 @@ void ChessGame::appendCastle(std::vector<std::shared_ptr<ChessMove>>& moves)
 	appendMove(moves, castleQueen);
 }
 
+// TODO : FIX THIS
 std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std::shared_ptr<ChessPiece> pieceToCheck)
 {
 	std::vector<std::shared_ptr<ChessMove>> possibleMoves;
