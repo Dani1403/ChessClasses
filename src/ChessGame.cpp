@@ -155,7 +155,7 @@ bool ChessGame::isGameOver()
 	const Color currentColor = m_currentPlayer.getColor();
 	if (isInCheckmate(currentColor))
 	{
-		m_currentPlayer.displayVictory();
+		m_players.back().displayVictory();
 		return true;
 	} else if (isInStaleMate(currentColor))
 	{
