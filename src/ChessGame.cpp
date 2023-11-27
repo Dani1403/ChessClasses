@@ -87,11 +87,26 @@ std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std:
         if (promotion->checkPossibleMove(*this))
           possibleMoves.push_back(promotion);
       }
-			intCol == 7 ? intCol = 0 : intCol++;
+			intCol = (intCol == 7) ? 0 : intCol + 1;
 		}
 		intRow++;
 	}
 	return possibleMoves;
+}
+
+bool ChessGame::checkPossibleMoves(std::vector<std::shared_ptr<ChessMove>> possibleMoves)
+{
+   for (const auto& move : possibleMoves)
+  {
+    move->execute(*this);
+    if (!isInCheck(m_currentPlayer.getColor()))
+    {
+      move->undo(*this);
+      return true;
+    }
+    move->undo(*this);
+  }
+  return false;
 }
 
 bool ChessGame::colorHasValidMove(const Color color)
@@ -104,19 +119,12 @@ bool ChessGame::colorHasValidMove(const Color color)
 			if (piece == nullptr || piece->getColor() != color)
 				continue;
 			std::vector<std::shared_ptr<ChessMove>> possibleMoves = getPossibleMovesForPiece(piece);
-			for (const auto& move : possibleMoves)
-			{
-				move->execute(*this);
-				if (!isInCheck(color))
-				{
-					move->undo(*this);
-					return true;
-				}
-				move->undo(*this);
-			}
+      const bool hasValidMove = checkPossibleMoves(possibleMoves);
+			if (hasValidMove)
+        return true;
 		}
 	}
-	return true;
+	return false;
 }
 
 
@@ -143,7 +151,10 @@ bool ChessGame::isGameOver()
 	return isInCheckmate(Color::WHITE) || isInCheckmate(Color::BLACK) ||
 	       isInStaleMate(Color::WHITE) || isInStaleMate(Color::BLACK);
 #endif
-	return isInCheckmate(Color::WHITE) || isInCheckmate(Color::BLACK);
+  const bool final = isInCheckmate(Color::WHITE) || isInCheckmate(Color::BLACK);
+	if (final)
+		std::cout << "There is a checkmate" << std::endl;
+	return final;
 }
 
 // MOVE AND PLAYER TURN LOGIC
