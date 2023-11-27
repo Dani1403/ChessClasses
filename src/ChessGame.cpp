@@ -2,6 +2,8 @@
 
 #include "Moves/EnPassant.h"
 
+#define DEBUG_GET_POSSIBLE_MOVES
+
 // INITIALIZATION
 
 ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard()))
@@ -136,8 +138,11 @@ bool ChessGame::isGameOver()
 	/*
 	* Ideally implemented with repetitions
 	*/
+#ifndef DEBUG_GET_POSSIBLE_MOVES
 	return isInCheckmate(Color::WHITE) || isInCheckmate(Color::BLACK) ||
 	       isInStaleMate(Color::WHITE) || isInStaleMate(Color::BLACK);
+#endif
+	return false;
 }
 
 // MOVE AND PLAYER TURN LOGIC
