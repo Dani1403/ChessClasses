@@ -9,11 +9,6 @@
 
 class ChessMove;
 
-/*
-* TODO:
-*		-  get Possible Regular / Capture / Castle / Promotion / En Passant
-*/
-
 class ChessBoard
 {
 public:

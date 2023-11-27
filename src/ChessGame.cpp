@@ -203,10 +203,16 @@ void ChessGame::moveToNextPlayer()
 
 void ChessGame::play()
 {
-	m_chessBoard->draw();
-	while (!isGameOver())
+	try
 	{
-		playerTurn();
-		moveToNextPlayer();
-	}
+		m_chessBoard->draw();
+		while (!isGameOver())
+		{
+			playerTurn();
+			moveToNextPlayer();
+		}
+	} catch (const std::exception& e)
+	{
+	     std::cout << e.what() << std::endl;
+  }
 }
