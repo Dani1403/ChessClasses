@@ -94,7 +94,7 @@ std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std:
 	return possibleMoves;
 }
 
-bool ChessGame::checkPossibleMoves(std::vector<std::shared_ptr<ChessMove>> possibleMoves)
+bool ChessGame::checkPossibleMoves(const std::vector<std::shared_ptr<ChessMove>>& possibleMoves)
 {
    for (const auto& move : possibleMoves)
   {
