@@ -2,8 +2,6 @@
 
 #include "Moves/EnPassant.h"
 
-#define DEBUG_GET_MOVE
-
 // INITIALIZATION
 
 ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard()))
@@ -49,24 +47,8 @@ bool ChessGame::isInCheck(const Color color)
 
 void ChessGame::appendMove(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessMove> move)
 {
-#ifdef DEBUG_GET_MOVE
-	bool result = false;
-	try
-	{
-		if (move->checkValidity(*this))
-		{
-			moves.push_back(move);
-			result = true;
-		}
-	} catch (const InvalidMove& invalid)
-	{
-		result = false;
-	}
-
-#else
 	if (move->checkPossibleMove(*this))
 		moves.push_back(move);
-#endif
 }
 
 void ChessGame::appendRegular(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, Square square)
@@ -122,7 +104,6 @@ std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std:
 
 bool ChessGame::checkPossibleMoves(const std::vector<std::shared_ptr<ChessMove>>& possibleMoves, Color color)
 {
-	bool emptyVector = possibleMoves.empty();
   for (auto move : possibleMoves)
   {
     move->execute(*this);
@@ -142,11 +123,9 @@ bool ChessGame::colorHasValidMove(const Color color)
 	{
 		for (int col = 0; col < m_chessBoard->BOARD_SIZE; col++)
 		{
-			Square square = { row, col };
-			std::shared_ptr<ChessPiece> piece = m_chessBoard->getPieceAt({ row, col });
+			std::shared_ptr<ChessPiece> piece = m_chessBoard->getPieceAt({row, col});
 			if (piece == nullptr || piece->getColor() != color)
 				continue;
-			Type type = piece->getType();
 			std::vector<std::shared_ptr<ChessMove>> possibleMoves = getPossibleMovesForPiece(piece);
       const bool hasValidMove = checkPossibleMoves(possibleMoves, color);
 			if (hasValidMove)
@@ -174,7 +153,6 @@ bool ChessGame::isInStaleMate(const Color color)
 
 bool ChessGame::isGameOver()
 {
-#ifdef DEBUG_GET_MOVE
 	const Color currentColor = m_currentPlayer.getColor();
 	if (isInCheckmate(currentColor))
 	{
@@ -182,20 +160,21 @@ bool ChessGame::isGameOver()
 		return true;
 	} else if (isInStaleMate(currentColor))
 	{
-		std::cout << "Stalemate! " + colorToString(currentColor) + " got the draw " << std::endl;
+		std::cout << "Stalemate! " + colorToString(currentColor) + " has no legal move " << std::endl;
 		return true;
-	} else if (isInCheckmate(opposite(currentColor)))
+	}
+	moveToNextPlayer();
+  if (isInCheckmate(opposite(currentColor)))
 	{
 		m_players.back().displayVictory();
 		return true;
 	} else if (isInStaleMate(opposite(currentColor)))
 	{
-		std::cout << "Stalemate! " + colorToString(opposite(currentColor)) + " got the draw" << std::endl;
+		std::cout << "Stalemate! " + colorToString(opposite(currentColor)) + " has no legal move" << std::endl;
 		return true;
-	} else
-		return false;
-#endif // DEBUG
-	return true;
+	}
+	moveToNextPlayer();
+  return false;
 }
 
 // MOVE AND PLAYER TURN LOGIC

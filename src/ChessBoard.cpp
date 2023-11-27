@@ -5,7 +5,7 @@
 #include "Moves/Promotion.h"
 
 //#define DEBUG_CASTLE
-#define DEBUG_GET_MOVE
+//#define DEBUG_GET_MOVE
 
 ChessBoard::ChessBoard()
 {
