@@ -57,6 +57,12 @@ public:
 	bool isInCheck(const Color color);
 
 
+	void appendMove(std::vector<std::shared_ptr<ChessMove>>&, std::shared_ptr<ChessMove>);
+
+	void appendPromotion(std::vector<std::shared_ptr<ChessMove>>& moves, std::shared_ptr<Pawn> pawn, Square square);
+
+  void appendCastle(std::vector<std::shared_ptr<ChessMove>>& moves);
+
 	/*
 	 *  Get all the possible moves for a given piece
 	 * @param piece The piece to get the moves for
