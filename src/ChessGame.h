@@ -59,6 +59,10 @@ public:
 
 	void appendMove(std::vector<std::shared_ptr<ChessMove>>&, std::shared_ptr<ChessMove>);
 
+	void appendRegular(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, Square square);
+
+	void appendCapture(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, std::shared_ptr<ChessPiece> captured, Square square);
+
 	void appendPromotion(std::vector<std::shared_ptr<ChessMove>>& moves, std::shared_ptr<Pawn> pawn, Square square);
 
   void appendCastle(std::vector<std::shared_ptr<ChessMove>>& moves);

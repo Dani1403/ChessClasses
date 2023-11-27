@@ -53,6 +53,19 @@ void ChessGame::appendMove(std::vector<std::shared_ptr <ChessMove>>& moves, std:
 		moves.push_back(move);
 }
 
+void ChessGame::appendRegular(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, Square square)
+{
+
+	std::shared_ptr<ChessMove> regularMove = std::make_shared<ChessMove>(piece->getSquare(), square, piece);
+	appendMove(moves, regularMove);
+}
+
+void ChessGame::appendCapture(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, std::shared_ptr<ChessPiece> captured, Square square)
+{
+	std::shared_ptr<ChessMove> capture = std::make_shared<Capture>(piece->getSquare(), square, piece, captured);
+	appendMove(moves, capture);
+}
+
 void ChessGame::appendPromotion(std::vector<std::shared_ptr<ChessMove>>& moves, std::shared_ptr<Pawn> pawn, Square square)
 {
 	const Color color = pawn->getColor();
@@ -74,19 +87,12 @@ std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std:
 	int intRow = 0, intCol = 0;
 	for (auto& row : m_chessBoard->getBoard())
 	{
-		for (auto& piece : row)
+		for (auto& pieceToCapture : row)
 		{
 			const Square square = { intRow, intCol };
-
-			if (piece)
-			{
-				std::shared_ptr<ChessMove> capture = std::make_shared<Capture>(pieceToCheck->getSquare(), square, pieceToCheck, piece);
-				appendMove(possibleMoves, capture);
-			}
-
-			std::shared_ptr<ChessMove> regularMove = std::make_shared<ChessMove>(pieceToCheck->getSquare(), square, pieceToCheck);
-			appendMove(possibleMoves, regularMove);
-
+			if (pieceToCapture)
+				appendCapture(possibleMoves, pieceToCheck, pieceToCapture, square);
+			appendRegular(possibleMoves, pieceToCheck, square);
 			std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(pieceToCheck);
 			if (king)
 				appendCastle(possibleMoves);
