@@ -79,7 +79,6 @@ void ChessGame::appendCastle(std::vector<std::shared_ptr<ChessMove>>& moves)
 	appendMove(moves, castleQueen);
 }
 
-// TODO : FIX THIS
 std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std::shared_ptr<ChessPiece> pieceToCheck)
 {
 	std::vector<std::shared_ptr<ChessMove>> possibleMoves;

@@ -56,17 +56,6 @@ public:
 	 */
 	bool isInCheck(const Color color);
 
-
-	void appendMove(std::vector<std::shared_ptr<ChessMove>>&, std::shared_ptr<ChessMove>);
-
-	void appendRegular(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, Square square);
-
-	void appendCapture(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, std::shared_ptr<ChessPiece> captured, Square square);
-
-	void appendPromotion(std::vector<std::shared_ptr<ChessMove>>& moves, std::shared_ptr<Pawn> pawn, Square square);
-
-  void appendCastle(std::vector<std::shared_ptr<ChessMove>>& moves);
-
 	/*
 	 *  Get all the possible moves for a given piece
 	 * @param piece The piece to get the moves for
@@ -74,6 +63,13 @@ public:
 	 */
 	std::vector<std::shared_ptr<ChessMove>> getPossibleMovesForPiece(std::shared_ptr<ChessPiece> piece);
 
+
+	/*
+	 * for all possible moves, check if the king is still in check after the move
+	 * @param possibleMoves The possible moves to check
+	 * @param color The color to check
+	 * @return true if the king is not in check after at least one move, false otherwise
+	 */
 	bool checkPossibleMoves(const std::vector<std::shared_ptr<ChessMove>>& possibleMoves, Color color);
 
 	/*
@@ -108,5 +104,16 @@ private:
 	std::vector<std::shared_ptr<ChessMove>> m_moves;
 	std::list<Player> m_players;
 	Player m_currentPlayer;
+
+
+	void appendMove(std::vector<std::shared_ptr<ChessMove>>&, std::shared_ptr<ChessMove>);
+
+	void appendRegular(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, Square square);
+
+	void appendCapture(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, std::shared_ptr<ChessPiece> captured, Square square);
+
+	void appendPromotion(std::vector<std::shared_ptr<ChessMove>>& moves, std::shared_ptr<Pawn> pawn, Square square);
+
+	void appendCastle(std::vector<std::shared_ptr<ChessMove>>& moves);
 
 };
