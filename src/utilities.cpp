@@ -86,7 +86,7 @@ void displayExitGameInstructions()
 
 void displayInstructionToMove()
 {
-	std::cout << "To enter your move, follow the instruction below: " << std::endl;
+	std::cout << "\n\nTo enter your move, follow the instruction below: " << std::endl;
 	std::cout << "1 - Enter the case of the piece you want to move " << std::endl;
 	std::cout << "2 - Enter X if you want to capture" << std::endl;
 	std::cout << "3 - Enter the destination case for your piece" << std::endl;
@@ -112,7 +112,7 @@ void displayInstructionToPromote()
 
 void displayMoveEndsInCheck()
 {
-	std::cout << "The move you want to play result in you being in check" << std::endl;
+	std::cout << "The move you want to play result in you being in check" << std::endl << std::endl;
 }
 
 std::string colorToString(const Color& color)

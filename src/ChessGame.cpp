@@ -2,7 +2,8 @@
 
 #include "Moves/EnPassant.h"
 
-#define DEBUG_GET_POSSIBLE_MOVES
+#define DEBUG_STALEMATE 
+
 
 // INITIALIZATION
 
@@ -51,9 +52,9 @@ std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std:
 {
 	std::vector<std::shared_ptr<ChessMove>> possibleMoves;
 	int intRow = 0, intCol = 0;
-	for (const auto& row : m_chessBoard->getBoard())
+	for (auto& row : m_chessBoard->getBoard())
 	{
-		for (const auto& piece : row)
+		for (auto& piece : row)
 		{
 			const Square square = { intRow, intCol };
 			if (piece)
@@ -108,10 +109,10 @@ bool ChessGame::colorHasValidMove(const Color color)
 				move->execute(*this);
 				if (!isInCheck(color))
 				{
-					undo();
+					move->undo(*this);
 					return true;
 				}
-				undo();
+				move->undo(*this);
 			}
 		}
 	}
@@ -138,11 +139,11 @@ bool ChessGame::isGameOver()
 	/*
 	* Ideally implemented with repetitions
 	*/
-#ifndef DEBUG_GET_POSSIBLE_MOVES
+#ifndef DEBUG_STALEMATE
 	return isInCheckmate(Color::WHITE) || isInCheckmate(Color::BLACK) ||
 	       isInStaleMate(Color::WHITE) || isInStaleMate(Color::BLACK);
 #endif
-	return false;
+	return isInCheckmate(Color::WHITE) || isInCheckmate(Color::BLACK);
 }
 
 // MOVE AND PLAYER TURN LOGIC

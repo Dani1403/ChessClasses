@@ -37,6 +37,12 @@ public:
 	*/
 	virtual bool checkValidity(ChessGame& game) const;
 
+
+	/* Uses checkValidity to check if a move is possible
+	 * @param game : the game to check the move on
+	 * @return true if the move is possible, false otherwise
+	 * Use this function when you don't want to handle the exceptions
+	 */
 	bool checkPossibleMove(ChessGame& game);
 
 
@@ -54,6 +60,11 @@ public:
 	 */
 	virtual void undo(ChessGame& game) const;
 
+	/*
+	 * equality operator for a move
+	 * @param other : the move to compare to
+	 * @return true if the moves are equal, false otherwise
+	 */
 	bool operator==(const ChessMove& other) const;
 
 protected:

@@ -97,7 +97,7 @@ void ChessBoard::movePiece(std::shared_ptr<ChessPiece> piece, const Square& dest
 bool ChessBoard::checkRowForObstacle(const Square& src, const Square& dest) const
 {
 	int row = src.row;
-	for (int col = startCol(src, dest) + 1; col != endCol(src, dest); col++)
+	for (int col = startCol(src, dest) + 1; col != endCol(src, dest) && col < 8; col++)
 	{
 		if (m_board[row][col] != nullptr)
 			return true;
