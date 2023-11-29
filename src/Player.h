@@ -19,6 +19,20 @@ public:
 
 	Color getColor() const { return m_color; }
 
+  std::string getName() const { return m_name; }
+
+  void setColor(const Color color) { m_color = color; }
+
+  void setName(const std::string& name) { m_name = name; }
+
+  /*
+   * Let the player input a name.
+   * @param is - the input stream to read from.
+   * @param color - the color of the player.
+   * @return a string representing the name the player wants to use.
+   */
+	std::string getNameFromUser(std::istream& is, const Color color) const;
+
 	/*
 	 * Let the player input a move.
 	 * @param is - the input stream to read from.

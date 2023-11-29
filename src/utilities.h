@@ -105,7 +105,11 @@ void askForWhitePlayerName(std::string& name);
 
 void askForBlackPlayerName(std::string& name);
 
+void displayWelcomeMessage();
+
 void displayExitGameInstructions();
+
+void askForName(const Color color);
 
 void askForMove();
 

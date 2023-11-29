@@ -84,6 +84,11 @@ void askForBlackPlayerName(std::string& name)
   std::cout << "Please enter the name of the black player : ";
 }
 
+void displayWelcomeMessage()
+{
+  std::cout << "Welcome to Chess++" << std::endl;
+}
+
 void askForWhitePlayerName(std::string& name)
 {
   std::cout << "Please enter the name of the white player : ";
@@ -92,6 +97,11 @@ void askForWhitePlayerName(std::string& name)
 void displayExitGameInstructions()
 {
 	std::cout << "  - To exit the game please enter 'quit'" << std::endl;
+}
+
+void askForName(const Color color)
+{
+  std::cout << "Please enter your name for " + colorToString(color) + " ";
 }
 
 void getCastleInstruction()

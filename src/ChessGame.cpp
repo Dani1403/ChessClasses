@@ -4,18 +4,29 @@
 
 ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard()))
 {
+  displayWelcomeMessage();
 	initBoard();
-	m_players.push_back(Player("Daniel", Color::WHITE));
-	m_players.push_back(Player("Anna", Color::BLACK));
-	m_currentPlayer = m_players.front();
-	std::cout << "First player : " << colorToString(m_currentPlayer.getColor()) << std::endl;
+  initPlayers();
 }
+
+void ChessGame::initPlayers()
+{
+  Player player1, player2;
+  player1.setColor(Color::WHITE);
+  player2.setColor(Color::BLACK);
+  player1.setName(player1.getNameFromUser(std::cin, Color::WHITE));
+  player2.setName(player2.getNameFromUser(std::cin, Color::BLACK));
+  m_players.push_back(player1);
+  m_players.push_back(player2);
+  m_currentPlayer = m_players.front();
+  std::cout << "First player : " << m_currentPlayer.getName() << std::endl;
+}
+
 
 void ChessGame::initBoard()
 {
 	m_chessBoard->addInitialPieces(Color::WHITE);
 	m_chessBoard->addInitialPieces(Color::BLACK);
-
 }
 
 bool ChessGame::isSquareAttacked(const Square square, const Color color)

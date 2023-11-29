@@ -13,6 +13,8 @@ public:
 	ChessGame(const ChessGame& other) = delete;
 	ChessGame& operator=(const ChessGame& other) = delete;
 
+  void initPlayers();
+
 	/*
 	 * Initializes the board with the pieces in their starting positions
 	 */

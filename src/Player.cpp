@@ -4,6 +4,14 @@
 #include "ChessGame.h"
 
 
+std::string Player::getNameFromUser(std::istream& is, const Color color) const
+{
+  askForName(color);
+  std::string name;
+  is >> name;
+  return name;
+}
+
 std::string Player::getMoveFromUser(std::istream& is) const
 {
   displayInstructions();
