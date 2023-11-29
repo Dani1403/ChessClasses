@@ -2,8 +2,6 @@
 
 #include "Moves/EnPassant.h"
 
-// INITIALIZATION
-
 ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard()))
 {
 	initBoard();
@@ -17,9 +15,9 @@ void ChessGame::initBoard()
 {
 	m_chessBoard->addInitialPieces(Color::WHITE);
 	m_chessBoard->addInitialPieces(Color::BLACK);
+
 }
 
-// CHECK AND CHECKMATE LOGIC ~~~~~ ENDGAME LOGIC
 bool ChessGame::isSquareAttacked(const Square square, const Color color)
 {
   for (const auto& row : m_chessBoard->getBoard())
@@ -53,7 +51,6 @@ void ChessGame::appendMove(std::vector<std::shared_ptr <ChessMove>>& moves, std:
 
 void ChessGame::appendRegular(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, Square square)
 {
-
 	std::shared_ptr<ChessMove> regularMove = std::make_shared<ChessMove>(piece->getSquare(), square, piece);
 	appendMove(moves, regularMove);
 }
@@ -134,7 +131,6 @@ bool ChessGame::colorHasValidMove(const Color color)
 	return false;
 }
 
-
 bool ChessGame::isInCheckmate(const Color color)
 {
 	if (!isInCheck(color))
@@ -176,8 +172,6 @@ bool ChessGame::isGameOver()
   return false;
 }
 
-// MOVE AND PLAYER TURN LOGIC
-
 void ChessGame::undo()
 {
 	if (m_moves.empty())
@@ -211,12 +205,10 @@ void ChessGame::playerTurn()
 		{
 			std::shared_ptr<ChessMove> move = m_currentPlayer.getMove(*this);
 			moved = makeMove(move);
-			if (!moved) continue;
 		}
 		catch (const InvalidMove& invalid)
 		{
 			std::cout << invalid.message() << std::endl << std::endl;
-			continue;
 		}
 	}
 	m_chessBoard->draw();
@@ -228,8 +220,6 @@ void ChessGame::moveToNextPlayer()
 	m_players.pop_front();
 	m_currentPlayer = m_players.front();
 }
-
-// MAIN LOOP 
 
 void ChessGame::play()
 {

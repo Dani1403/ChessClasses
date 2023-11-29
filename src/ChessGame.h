@@ -49,8 +49,6 @@ public:
 	 */
 	void play();
 
-  bool isSquareAttacked(const Square square, const Color color);
-
 	/*
 	 * check if a given color is in check
 	 * @param color The color to check
@@ -64,7 +62,6 @@ public:
 	 * @return A vector containing all the possible moves for the piece
 	 */
 	std::vector<std::shared_ptr<ChessMove>> getPossibleMovesForPiece(std::shared_ptr<ChessPiece> piece);
-
 
 	/*
 	 * for all possible moves, check if the king is still in check after the move
@@ -107,6 +104,7 @@ private:
 	std::list<Player> m_players;
 	Player m_currentPlayer;
 
+	bool isSquareAttacked(const Square square, const Color color);
 
 	void appendMove(std::vector<std::shared_ptr<ChessMove>>&, std::shared_ptr<ChessMove>);
 
