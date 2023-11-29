@@ -89,7 +89,6 @@ void askForWhitePlayerName(std::string& name)
   std::cout << "Please enter the name of the white player : ";
 }
 
-
 void displayExitGameInstructions()
 {
 	std::cout << "  - To exit the game please enter 'quit'" << std::endl;
@@ -138,7 +137,6 @@ void displayCaptureInstruction()
 	std::cout << "3 - Enter the destination case for your piece" << std::endl;
 	std::cout << "Example : e4Xd5" << std::endl;
 }
-
 
 void displayCastleInstruction()
 {

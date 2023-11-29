@@ -20,7 +20,6 @@ std::string Player::handleInput() const
 	do
 	{
 		input = getMoveFromUser(std::cin);
-		// Exit
 		if (input == EXIT_SYMBOL_LOWER || input == EXIT_SYMBOL_UPPER)
 			throw ExitGame();
 		if (input == MOVE_ASKED_LOWER || input == MOVE_ASKED_UPPER)
@@ -81,28 +80,21 @@ std::shared_ptr<ChessPiece> Player::getPromotedPiece(Type type, Color color, Squ
 std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 {
 	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
-
   const std::string input = handleInput();
-
-	// Castle
 	if (input == CASTLE_KINGSIDE || input == CASTLE_QUEENSIDE)
 	{
 		const Side side = input == CASTLE_KINGSIDE ? Side::KING : Side::QUEEN;
 		return getCastle(game, board, side);
 	}
-
 	Square source = algebraicToSquare(input.substr(0, 2));
 	Square destination = algebraicToSquare(input.substr(input.length() - 2));
 	std::shared_ptr<ChessPiece> pieceToMove = board->getPieceAt(source);
-	//Capture
 	if (input.at(2) == CAPTURE_SYMBOL_UPPER ||
 			input.at(2) == CAPTURE_SYMBOL_LOWER)
 	{
 		std::shared_ptr<ChessPiece> capturedPiece = board->getPieceAt(destination);
 		return std::make_shared<Capture>(source, destination, pieceToMove, capturedPiece);
 	}
-
-	//Promotion
 	if (input[2] == PROMOTION_SYMBOL)
 	{
 		std::shared_ptr<Pawn> pawnToPromote = std::dynamic_pointer_cast<Pawn>(pieceToMove);
@@ -113,7 +105,5 @@ std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 		std::shared_ptr<ChessPiece> promotedPiece = getPromotedPiece(promotionType, color, { rowForPawnPromotion(color), pawnToPromote->colForPromotion() });
 		return std::make_shared<Promotion>(source, promotedPiece->getSquare(), pawnToPromote, promotedPiece);
 	}
-
-	// Regular
 	return std::make_shared<ChessMove>(source, destination, pieceToMove);
 }

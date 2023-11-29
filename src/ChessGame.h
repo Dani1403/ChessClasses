@@ -49,6 +49,8 @@ public:
 	 */
 	void play();
 
+  bool isSquareAttacked(const Square square, const Color color);
+
 	/*
 	 * check if a given color is in check
 	 * @param color The color to check

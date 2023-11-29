@@ -20,29 +20,29 @@ void ChessGame::initBoard()
 }
 
 // CHECK AND CHECKMATE LOGIC ~~~~~ ENDGAME LOGIC
-
+bool ChessGame::isSquareAttacked(const Square square, const Color color)
+{
+  for (const auto& row : m_chessBoard->getBoard())
+  {
+    for (const auto& piece : row)
+    {
+      if (piece == nullptr || piece->getColor() == color)
+        continue;
+      const auto possibleCapture = std::make_shared<Capture>(piece->getSquare(), square, piece, m_chessBoard->getPieceAt(square));
+      if (possibleCapture->checkPossibleMove(*this))
+        return true;
+    }
+  }
+  return false;
+}
 
 bool ChessGame::isInCheck(const Color color)
 {
-	Square kingPos = m_chessBoard->getKingPosition(color);
-	std::shared_ptr<ChessPiece> king = m_chessBoard->getPieceAt(kingPos);
-	moveToNextPlayer();
-	for (const auto& row : m_chessBoard->getBoard())
-	{
-		for (const auto& piece : row)
-		{
-			if (piece == nullptr || piece->getColor() == color)
-				continue;
-			const auto possibleCapture = std::make_shared<Capture>(piece->getSquare(), kingPos, piece, king);
-			if (possibleCapture->checkPossibleMove(*this))
-			{
-				moveToNextPlayer();
-				return true;
-			}
-		}
-	}
-	moveToNextPlayer();
-	return false;
+	const Square kingPos = m_chessBoard->getKingPosition(color);
+  moveToNextPlayer();
+  const bool check = isSquareAttacked(kingPos, color);
+  moveToNextPlayer();
+  return check;
 }
 
 void ChessGame::appendMove(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessMove> move)
@@ -228,7 +228,6 @@ void ChessGame::moveToNextPlayer()
 	m_players.pop_front();
 	m_currentPlayer = m_players.front();
 }
-
 
 // MAIN LOOP 
 
