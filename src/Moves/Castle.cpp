@@ -4,6 +4,8 @@
 bool Castle::checkValidity(ChessGame& game) const
 {
   const std::shared_ptr<ChessBoard> board = game.getChessBoard();
+  if (!m_pieceToMove)
+      throw InvalidMove(SOURCE_SQUARE_EMPTY);
   if (board->checkObstacles(m_source, m_destination) && (dynamic_cast<Knight*>(m_pieceToMove.get()) == nullptr))
     throw InvalidMove(OBSTACLE);
   if (m_rookToMove->hasMoved())

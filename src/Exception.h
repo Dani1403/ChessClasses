@@ -8,7 +8,6 @@ class ExitGame : public std::exception
 	{
 		return "Exiting Game";
 	}
-
 };
 
 class InvalidMove : public std::exception
