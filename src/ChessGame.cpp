@@ -19,7 +19,7 @@ void ChessGame::initPlayers()
   m_players.push_back(player1);
   m_players.push_back(player2);
   m_currentPlayer = m_players.front();
-  std::cout << "First player : " << m_currentPlayer.getName() << std::endl;
+  std::cout << "First player : " << m_currentPlayer.getName() << std::endl << std::endl;
 }
 
 
@@ -232,6 +232,11 @@ void ChessGame::moveToNextPlayer()
 	m_currentPlayer = m_players.front();
 }
 
+void ChessGame::displayNextPlayer() const 
+{
+	std::cout << "Next player : " << m_currentPlayer.getName() << std::endl << std::endl;
+}
+
 void ChessGame::play()
 {
 	try
@@ -241,6 +246,7 @@ void ChessGame::play()
 		{
 			playerTurn();
 			moveToNextPlayer();
+	    displayNextPlayer();
 		}
 	} catch (const std::exception& e)
 	{

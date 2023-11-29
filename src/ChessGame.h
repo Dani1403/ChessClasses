@@ -118,4 +118,5 @@ private:
 
 	void appendCastle(std::vector<std::shared_ptr<ChessMove>>& moves);
 
+  void displayNextPlayer() const;
 };
