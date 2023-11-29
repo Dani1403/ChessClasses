@@ -79,34 +79,88 @@ int dist(const Square& s1, const Square& s2)
 	return static_cast<int>(sqrt(rowDiff*rowDiff + colDiff*colDiff));
 }
 
+void askForBlackPlayerName(std::string& name)
+{
+  std::cout << "Please enter the name of the black player : ";
+}
+
+void askForWhitePlayerName(std::string& name)
+{
+  std::cout << "Please enter the name of the white player : ";
+}
+
+
 void displayExitGameInstructions()
 {
-	std::cout << "  - To exit the game please enter the letter q" << std::endl;
+	std::cout << "  - To exit the game please enter 'quit'" << std::endl;
 }
 
-void displayInstructionToMove()
+void getCastleInstruction()
 {
-	std::cout << "\n\nTo enter your move, follow the instruction below: " << std::endl;
-	std::cout << "1 - Enter the case of the piece you want to move " << std::endl;
-	std::cout << "2 - Enter X if you want to capture" << std::endl;
-	std::cout << "3 - Enter the destination case for your piece" << std::endl;
-	std::cout << "Example : e2e4 or e4Xd5" << std::endl;
-	displayInstructionToCastle();
-	displayInstructionToPromote();
-	std::cout << "Enter your move : ";
+  std::cout << " - To get the instructions for castling please enter 'castling'" << std::endl;
 }
 
-void displayInstructionToCastle()
+void getPromotionInstruction()
+{
+  std::cout << " - To get the instructions for pawn promotion please enter 'promotion'" << std::endl;
+}
+
+void getMoveInstruction()
+{
+  std::cout << " - To get the instructions for moving a piece please enter 'move'" << std::endl;
+}
+
+void getCaptureInstruction()
+{
+  std::cout << " - To get the instructions for capturing a piece please enter 'capture'" << std::endl;
+}
+
+
+void askForMove()
+{
+    std::cout << "Please enter your move : ";
+}
+
+
+void displayMoveInstruction()
+{
+	std::cout << "To enter your move, follow the instruction below: " << std::endl;
+	std::cout << "1 - Enter the case of the piece you want to move " << std::endl;
+	std::cout << "2 - Enter the destination case for your piece" << std::endl;
+	std::cout << "Example : e2e4" << std::endl;
+}
+
+void displayCaptureInstruction()
+{
+	std::cout << "To enter your capture, follow the instruction below: " << std::endl;
+	std::cout << "1 - Enter the case of the piece you want to move " << std::endl;
+	std::cout << "2 - Enter X" << std::endl;
+	std::cout << "3 - Enter the destination case for your piece" << std::endl;
+	std::cout << "Example : e4Xd5" << std::endl;
+}
+
+
+void displayCastleInstruction()
 {
 	std::cout << "  - Enter O-O to Castle King side and O-O-O for QueenSide" << std::endl;
 }
 
-void displayInstructionToPromote()
+void displayPromotionInstruction()
 {
 	std::cout << " To Promote a Pawn: " << std::endl;
 	std::cout << "1 - Enter the case where the pawn is (example : d7)" << std::endl;
 	std::cout << "2 - Enter symbol = " << std::endl;
 	std::cout << "3 - Enter the type of the promoted Piece (Q - Queen, k - Knight, B - Bishop, R - Rook)" << std::endl;
+}
+
+
+void displayInstructions()
+{
+	displayExitGameInstructions();
+	getMoveInstruction();
+  getCaptureInstruction();
+  getCastleInstruction();
+  getPromotionInstruction();
 }
 
 

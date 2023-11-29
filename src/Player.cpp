@@ -6,11 +6,46 @@
 
 std::string Player::getMoveFromUser(std::istream& is) const
 {
-	displayExitGameInstructions();
-	displayInstructionToMove();
+  displayInstructions();
+  askForMove();
 	std::string input;
 	is >> input;
 	return input;
+}
+
+std::string Player::handleInput() const 
+{
+	bool isAMove = false;
+	std::string input;
+	do
+	{
+		input = getMoveFromUser(std::cin);
+		// Exit
+		if (input == EXIT_SYMBOL_LOWER || input == EXIT_SYMBOL_UPPER)
+			throw ExitGame();
+		if (input == MOVE_ASKED_LOWER || input == MOVE_ASKED_UPPER)
+		{
+			displayMoveInstruction();
+			continue;
+		}
+		if (input == CAPTURE_ASKED_LOWER || input == CAPTURE_ASKED_UPPER)
+		{
+			displayCaptureInstruction();
+			continue;
+		}
+		if (input == CASTLE_ASKED_LOWER || input == CASTLE_ASKED_UPPER)
+		{
+			displayCastleInstruction();
+			continue;
+		}
+		if (input == PROMOTION_ASKED_LOWER || input == PROMOTION_ASKED_UPPER)
+		{
+			displayPromotionInstruction();
+			continue;
+		}
+		isAMove = true;
+	} while (!isAMove);
+  return input;
 }
 
 
@@ -43,16 +78,11 @@ std::shared_ptr<ChessPiece> Player::getPromotedPiece(Type type, Color color, Squ
 	}
 }
 
-
-
 std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 {
 	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
-	const std::string input = getMoveFromUser(std::cin);
 
-	// Exit
-	if (input == EXIT_SYMBOL_LOWER || input == EXIT_SYMBOL_UPPER)
-		throw ExitGame();
+  const std::string input = handleInput();
 
 	// Castle
 	if (input == CASTLE_KINGSIDE || input == CASTLE_QUEENSIDE)

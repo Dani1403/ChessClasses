@@ -26,6 +26,13 @@ public:
 	 */
 	std::string getMoveFromUser(std::istream& is) const;
 
+  /*
+   * handles the cases where the user wants to display some instruction
+   * or quit the game.
+   * @return a string representing the move the player wants to make.
+   */
+	std::string handleInput() const;
+
 	/*
 	 * Get a castle move from the player.
 	 * @param game - the game to get the move for.

@@ -16,9 +16,18 @@ const char PROMOTION_SYMBOL = '=';
 const char CHECK_SYMBOL = '+';
 const char CHECKMATE_SYMBOL = '#';
 
-const std::string EXIT_SYMBOL_LOWER = "q";
-const std::string EXIT_SYMBOL_UPPER = "Q";
+const std::string EXIT_SYMBOL_LOWER = "quit";
+const std::string EXIT_SYMBOL_UPPER = "Quit";
 const std::string EXIT_MESSAGE = "Thank you for playing :) See you next Time !";
+
+const std::string MOVE_ASKED_LOWER = "move";
+const std::string MOVE_ASKED_UPPER = "Move";
+const std::string CAPTURE_ASKED_LOWER = "capture";
+const std::string CAPTURE_ASKED_UPPER = "Capture";
+const std::string PROMOTION_ASKED_LOWER = "promote";
+const std::string PROMOTION_ASKED_UPPER = "Promote";
+const std::string CASTLE_ASKED_LOWER = "castle";
+const std::string CASTLE_ASKED_UPPER = "Castle";
 
 const std::string NOT_ON_STARTING_ROW = "The pawn you want to move twice is not on the starting row";
 const std::string NOT_YOUR_COLOR = "The piece you want to move is not of your color";
@@ -92,13 +101,31 @@ int offsetForCastle(const Side side);
 
 int rookColForCastle(const Side side);
 
+void askForWhitePlayerName(std::string& name);
+
+void askForBlackPlayerName(std::string& name);
+
 void displayExitGameInstructions();
 
-void displayInstructionToMove();
+void askForMove();
 
-void displayInstructionToPromote();
+void displayInstructions();
 
-void displayInstructionToCastle();
+void getCastleInstruction();
+
+void getMoveInstruction();
+
+void getCaptureInstruction();
+
+void getPromotionInstruction();
+
+void displayMoveInstruction();
+
+void displayCaptureInstruction();
+
+void displayPromotionInstruction();
+
+void displayCastleInstruction();
 
 void displayMoveEndsInCheck();
 

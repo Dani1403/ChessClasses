@@ -6,7 +6,7 @@ class ExitGame : public std::exception
 	public:
 	const char* what() const override
 	{
-		return "Exit Game";
+		return "Exiting Game";
 	}
 
 };
