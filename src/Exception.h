@@ -4,7 +4,7 @@
 class ExitGame : public std::exception
 {
 	public:
-	const char* what() const override
+	const char* what() const noexcept override
 	{
 		return "Exiting Game";
 	}
@@ -16,7 +16,7 @@ public:
 	InvalidMove(std::string cause) : m_cause(cause) {};
 	std::string getCause() const { return m_cause; }
 	std::string message() const { return "Invalid move : " + m_cause; }
-	const char* what() const override
+	const char* what() const noexcept override
 	{
 		return message().c_str();
 	}
@@ -27,7 +27,7 @@ private:
 class SquareNotValid : public std::exception
 {
 public:
-	const char* what() const override
+	const char* what() const noexcept override
 	{
 		return "Square coordinates not valid (should be 0 <= row, col <= 7)";
 	}
@@ -36,7 +36,7 @@ public:
 class StartingSquareNotValid : public std::exception
 {
 public:
-	const char* what() const override
+	const char* what() const noexcept override
 	{
 		return "Invalid Starting Square for Chess Piece";
 	}
@@ -44,7 +44,7 @@ public:
 
 class PieceNotOnBoard : public std::exception
 {
-	const char* what() const override
+	const char* what() const noexcept override
 	{
 		return "Action impossible on a piece not on board";
 	}
@@ -52,7 +52,7 @@ class PieceNotOnBoard : public std::exception
 
 class SquareNotEmpty : public std::exception
 {
-	const char* what() const override
+	const char* what() const noexcept override
 	{
 		return "Action impossible on a non empty square";
 	}
