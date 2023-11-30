@@ -1,4 +1,5 @@
 #include "utilities.h"
+#include <cmath>
 
 Color opposite(Color color)
 {
