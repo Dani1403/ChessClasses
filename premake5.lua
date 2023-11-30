@@ -4,7 +4,7 @@ workspace "ChessClasses"
 project "ChessClasses"
     kind "ConsoleApp"
     language "C++"
-    targetdir "bin/" .. os.target() .. "/%{cfg.buildcfg}"
+    targetdir "bin/%{cfg.buildcfg}"
 
     files { "src/**.cpp"}
 
