@@ -160,6 +160,16 @@ nCrunchTemp_*
 *.mm.*
 AutoTest.Net/
 
+# Visual Studio
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+
 # Web workbench (sass)
 .sass-cache/
 
