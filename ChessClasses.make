@@ -12,7 +12,7 @@ endif
 
 ifeq ($(config),debug)
   RESCOMP = windres
-  TARGETDIR = bin/windows/Debug
+  TARGETDIR = bin/Debug
   TARGET = $(TARGETDIR)/ChessClasses.exe
   OBJDIR = obj/Debug
   DEFINES +=
@@ -39,7 +39,7 @@ endif
 
 ifeq ($(config),release)
   RESCOMP = windres
-  TARGETDIR = bin/windows/Release
+  TARGETDIR = bin/Release
   TARGET = $(TARGETDIR)/ChessClasses.exe
   OBJDIR = obj/Release
   DEFINES +=
