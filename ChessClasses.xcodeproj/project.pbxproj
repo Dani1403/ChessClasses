@@ -1,0 +1,285 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05E933749B5FF2A609FC49B4 /* Bishop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E71CD0DC16AE9FCEF1BBDF1C /* Bishop.cpp */; };
+		0B4EDF357876EDA77A09DD75 /* ChessMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 615DB19DAEC0A7CF24DFA7DD /* ChessMove.cpp */; };
+		122D9DDC6D6EF14E40C93C1C /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 110FE74428228276183E7D84 /* Player.cpp */; };
+		12F0B1F4A86771261703C834 /* Knight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D46B275C03FCF64EDF0A359C /* Knight.cpp */; };
+		1675997A87983A6C3D5EE7BA /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8FDF502E138ADB4C8D43B42 /* utilities.cpp */; };
+		3F12D2FC8C75C92E0294C93C /* King.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0165F1E4EC5217D63437E024 /* King.cpp */; };
+		44842335B1AC31A7B33F2175 /* EnPassant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D04B59DCA67ABCF4086ABDD /* EnPassant.cpp */; };
+		4D36F29E91859810D3ACD0DE /* ChessBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E6820E67033CE18ACE8F726 /* ChessBoard.cpp */; };
+		7AEB86A0C84E7CD23E6D7CE0 /* Rook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61BBD1484CA7F73A948DBF88 /* Rook.cpp */; };
+		90F349930215EA85B7DC97D3 /* Castle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3B23C1BFBECF4CDE388825B /* Castle.cpp */; };
+		9C3CF9A20D5F9A94C32647E2 /* ChessGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B19BEAA5354775C3AF004EA /* ChessGame.cpp */; };
+		9C43BB29096BC99B0AFEB969 /* Promotion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 557F1C51A2E2128319011291 /* Promotion.cpp */; };
+		B6348C86E82DD738620D12C6 /* Queen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8ED8C0CEE5662B40BDDF3F0E /* Queen.cpp */; };
+		B68AC1CC0D182C3EE591400C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E21F5234E590246666FCC874 /* main.cpp */; };
+		B68DAD62FAA17E94EE7303A2 /* ChessPiece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C88EAFC6F29DCB235D72A /* ChessPiece.cpp */; };
+		C60B7C96136E72C8898D72D6 /* Pawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B53C0DE563FE6D09E25AF1E /* Pawn.cpp */; };
+		F769C3033BB868757DDFA143 /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAB7238BCC82D0BD0937F9CB /* Capture.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0165F1E4EC5217D63437E024 /* King.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = King.cpp; path = src/Pieces/King.cpp; sourceTree = "<group>"; };
+		110FE74428228276183E7D84 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = src/Player.cpp; sourceTree = "<group>"; };
+		2B19BEAA5354775C3AF004EA /* ChessGame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ChessGame.cpp; path = src/ChessGame.cpp; sourceTree = "<group>"; };
+		4E6820E67033CE18ACE8F726 /* ChessBoard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ChessBoard.cpp; path = src/ChessBoard.cpp; sourceTree = "<group>"; };
+		557F1C51A2E2128319011291 /* Promotion.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Promotion.cpp; path = src/Moves/Promotion.cpp; sourceTree = "<group>"; };
+		615DB19DAEC0A7CF24DFA7DD /* ChessMove.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ChessMove.cpp; path = src/Moves/ChessMove.cpp; sourceTree = "<group>"; };
+		61BBD1484CA7F73A948DBF88 /* Rook.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Rook.cpp; path = src/Pieces/Rook.cpp; sourceTree = "<group>"; };
+		6B53C0DE563FE6D09E25AF1E /* Pawn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Pawn.cpp; path = src/Pieces/Pawn.cpp; sourceTree = "<group>"; };
+		7D04B59DCA67ABCF4086ABDD /* EnPassant.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = EnPassant.cpp; path = src/Moves/EnPassant.cpp; sourceTree = "<group>"; };
+		8B4C88EAFC6F29DCB235D72A /* ChessPiece.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ChessPiece.cpp; path = src/Pieces/ChessPiece.cpp; sourceTree = "<group>"; };
+		8ED8C0CEE5662B40BDDF3F0E /* Queen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Queen.cpp; path = src/Pieces/Queen.cpp; sourceTree = "<group>"; };
+		AAB7238BCC82D0BD0937F9CB /* Capture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Capture.cpp; path = src/Moves/Capture.cpp; sourceTree = "<group>"; };
+		B6102A3DA0FC502FE8E2187D /* ChessClasses.exe */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = ChessClasses.exe; path = ChessClasses.exe; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8FDF502E138ADB4C8D43B42 /* utilities.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = utilities.cpp; path = src/utilities.cpp; sourceTree = "<group>"; };
+		D3B23C1BFBECF4CDE388825B /* Castle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Castle.cpp; path = src/Moves/Castle.cpp; sourceTree = "<group>"; };
+		D46B275C03FCF64EDF0A359C /* Knight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Knight.cpp; path = src/Pieces/Knight.cpp; sourceTree = "<group>"; };
+		E21F5234E590246666FCC874 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = "<group>"; };
+		E71CD0DC16AE9FCEF1BBDF1C /* Bishop.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bishop.cpp; path = src/Pieces/Bishop.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4FD4892D5087861FC469576D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6CE6D8D9664CDA4B59E83719 /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXGroup section */
+		50A3405CA0B6D50E2335069C /* Moves */ = {
+			isa = PBXGroup;
+			children = (
+				AAB7238BCC82D0BD0937F9CB /* Capture.cpp */,
+				D3B23C1BFBECF4CDE388825B /* Castle.cpp */,
+				615DB19DAEC0A7CF24DFA7DD /* ChessMove.cpp */,
+				7D04B59DCA67ABCF4086ABDD /* EnPassant.cpp */,
+				557F1C51A2E2128319011291 /* Promotion.cpp */,
+			);
+			name = Moves;
+			sourceTree = "<group>";
+		};
+		50F599FAF441232C0F11F03A /* Pieces */ = {
+			isa = PBXGroup;
+			children = (
+				E71CD0DC16AE9FCEF1BBDF1C /* Bishop.cpp */,
+				8B4C88EAFC6F29DCB235D72A /* ChessPiece.cpp */,
+				0165F1E4EC5217D63437E024 /* King.cpp */,
+				D46B275C03FCF64EDF0A359C /* Knight.cpp */,
+				6B53C0DE563FE6D09E25AF1E /* Pawn.cpp */,
+				8ED8C0CEE5662B40BDDF3F0E /* Queen.cpp */,
+				61BBD1484CA7F73A948DBF88 /* Rook.cpp */,
+			);
+			name = Pieces;
+			sourceTree = "<group>";
+		};
+		9A2FCC4446928C76051B0284 /* ChessClasses */ = {
+			isa = PBXGroup;
+			children = (
+				4E6820E67033CE18ACE8F726 /* ChessBoard.cpp */,
+				2B19BEAA5354775C3AF004EA /* ChessGame.cpp */,
+				50A3405CA0B6D50E2335069C /* Moves */,
+				50F599FAF441232C0F11F03A /* Pieces */,
+				110FE74428228276183E7D84 /* Player.cpp */,
+				E21F5234E590246666FCC874 /* main.cpp */,
+				B8FDF502E138ADB4C8D43B42 /* utilities.cpp */,
+				A6C936B49B3FADE6EA134CF4 /* Products */,
+			);
+			name = ChessClasses;
+			sourceTree = "<group>";
+		};
+		A6C936B49B3FADE6EA134CF4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B6102A3DA0FC502FE8E2187D /* ChessClasses.exe */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		362D2E835C535E35C35A54C3 /* ChessClasses */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E0FD18C3EC2CE7EB2A49FCC /* Build configuration list for PBXNativeTarget "ChessClasses" */;
+			buildPhases = (
+				BFBC09CDC06F06BF3450D80D /* Resources */,
+				296923242A1C20169DFDF164 /* Sources */,
+				4FD4892D5087861FC469576D /* Frameworks */,
+				6CE6D8D9664CDA4B59E83719 /* Embed Libraries */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChessClasses;
+			productInstallPath = "$(HOME)/bin";
+			productName = ChessClasses;
+			productReference = B6102A3DA0FC502FE8E2187D /* ChessClasses.exe */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "ChessClasses" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = 9A2FCC4446928C76051B0284 /* ChessClasses */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				362D2E835C535E35C35A54C3 /* ChessClasses.exe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BFBC09CDC06F06BF3450D80D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		296923242A1C20169DFDF164 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D36F29E91859810D3ACD0DE /* ChessBoard.cpp in Sources */,
+				9C3CF9A20D5F9A94C32647E2 /* ChessGame.cpp in Sources */,
+				F769C3033BB868757DDFA143 /* Capture.cpp in Sources */,
+				90F349930215EA85B7DC97D3 /* Castle.cpp in Sources */,
+				0B4EDF357876EDA77A09DD75 /* ChessMove.cpp in Sources */,
+				44842335B1AC31A7B33F2175 /* EnPassant.cpp in Sources */,
+				9C43BB29096BC99B0AFEB969 /* Promotion.cpp in Sources */,
+				05E933749B5FF2A609FC49B4 /* Bishop.cpp in Sources */,
+				B68DAD62FAA17E94EE7303A2 /* ChessPiece.cpp in Sources */,
+				3F12D2FC8C75C92E0294C93C /* King.cpp in Sources */,
+				12F0B1F4A86771261703C834 /* Knight.cpp in Sources */,
+				C60B7C96136E72C8898D72D6 /* Pawn.cpp in Sources */,
+				B6348C86E82DD738620D12C6 /* Queen.cpp in Sources */,
+				7AEB86A0C84E7CD23E6D7CE0 /* Rook.cpp in Sources */,
+				122D9DDC6D6EF14E40C93C1C /* Player.cpp in Sources */,
+				B68AC1CC0D182C3EE591400C /* main.cpp in Sources */,
+				1675997A87983A6C3D5EE7BA /* utilities.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		130E985243F29044570AC692 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = bin/windows/Debug;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_DYNAMIC_NO_PIC = NO;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = ChessClasses.exe;
+			};
+			name = Debug;
+		};
+		5680C44D5733C13FCB15928D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OBJROOT = obj/Release;
+				ONLY_ACTIVE_ARCH = NO;
+				SYMROOT = bin/windows/Release;
+			};
+			name = Release;
+		};
+		57D90FCC519ACC3E8B99CE0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = bin/windows/Release;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_DYNAMIC_NO_PIC = NO;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = ChessClasses.exe;
+			};
+			name = Release;
+		};
+		B4A14953262C61C5D52D8793 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OBJROOT = obj/Debug;
+				ONLY_ACTIVE_ARCH = YES;
+				SYMROOT = bin/windows/Debug;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "ChessClasses" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4A14953262C61C5D52D8793 /* Debug */,
+				5680C44D5733C13FCB15928D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3E0FD18C3EC2CE7EB2A49FCC /* Build configuration list for PBXNativeTarget "ChessClasses.exe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				130E985243F29044570AC692 /* Debug */,
+				57D90FCC519ACC3E8B99CE0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+};
+rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

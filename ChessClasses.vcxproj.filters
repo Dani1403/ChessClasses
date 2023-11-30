@@ -1,123 +1,54 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Moves">
+      <UniqueIdentifier>{6F40AF0D-DB54-D7BE-A4D6-7A1E10AAD3EF}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Pieces">
+      <UniqueIdentifier>{DED820CA-CA7A-4BA0-B335-5FF49F76D2F0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ChessBoard.cpp" />
+    <ClCompile Include="src\ChessGame.cpp" />
     <ClCompile Include="src\Moves\Capture.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Moves</Filter>
     </ClCompile>
     <ClCompile Include="src\Moves\Castle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Moves\EnPassant.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Moves\Promotion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utilities.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Pieces\Bishop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Pieces\King.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Pieces\Knight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Pieces\Rook.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Pieces\Queen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Pieces\Pawn.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Moves</Filter>
     </ClCompile>
     <ClCompile Include="src\Moves\ChessMove.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Moves</Filter>
     </ClCompile>
-    <ClCompile Include="src\ChessBoard.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Moves\EnPassant.cpp">
+      <Filter>Moves</Filter>
     </ClCompile>
-    <ClCompile Include="src\ChessGame.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Moves\Promotion.cpp">
+      <Filter>Moves</Filter>
     </ClCompile>
-    <ClCompile Include="src\Player.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Pieces\Bishop.cpp">
+      <Filter>Pieces</Filter>
     </ClCompile>
     <ClCompile Include="src\Pieces\ChessPiece.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Pieces</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Moves\Capture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Moves\Castle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Moves\ChessMove.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Moves\EnPassant.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Moves\Promotion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pieces\Bishop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pieces\ChessPiece.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pieces\King.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pieces\Knight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pieces\Pawn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pieces\Queen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pieces\Rook.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ChessBoard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ChessGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Exception.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utilities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClCompile Include="src\Pieces\King.cpp">
+      <Filter>Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pieces\Knight.cpp">
+      <Filter>Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pieces\Pawn.cpp">
+      <Filter>Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pieces\Queen.cpp">
+      <Filter>Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pieces\Rook.cpp">
+      <Filter>Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\utilities.cpp" />
   </ItemGroup>
 </Project>
