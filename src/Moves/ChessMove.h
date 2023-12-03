@@ -43,7 +43,7 @@ public:
 	 * @return true if the move is possible, false otherwise
 	 * Use this function when you don't want to handle the exceptions
 	 */
-	bool checkPossibleMove(ChessGame& game);
+	bool checkPossibleMove(ChessGame& game) const;
 
 
 	/*

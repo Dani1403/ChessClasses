@@ -54,7 +54,7 @@ public:
 	 * @param side - the side to castle on.
 	 * @return a castle move the player wants to make.
 	 */
-	std::shared_ptr<Castle> getCastle(const ChessGame& game, std::shared_ptr<ChessBoard> board, const Side side) const;
+	std::shared_ptr<Castle> getCastle(const ChessGame& game, const std::shared_ptr<ChessBoard>& board, const Side side) const;
 
 	/*
 	 * Get a promoted piece from the player.

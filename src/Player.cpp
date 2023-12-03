@@ -56,7 +56,7 @@ std::string Player::handleInput() const
 }
 
 
-std::shared_ptr<Castle> Player::getCastle(const ChessGame& game, std::shared_ptr<ChessBoard> board, const Side side) const
+std::shared_ptr<Castle> Player::getCastle(const ChessGame& game, const std::shared_ptr<ChessBoard>& board, const Side side) const
 {
 	const Square kingPos = board->getKingPosition(game.getCurrentPlayer().getColor());
 	const Square rookPos = { kingPos.row,  rookColForCastle(side) };

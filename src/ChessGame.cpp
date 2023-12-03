@@ -60,28 +60,28 @@ void ChessGame::appendMove(std::vector<std::shared_ptr <ChessMove>>& moves, std:
 
 void ChessGame::appendRegular(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, Square square)
 {
-	std::shared_ptr<ChessMove> regularMove = std::make_shared<ChessMove>(piece->getSquare(), square, piece);
+	const std::shared_ptr<ChessMove> regularMove = std::make_shared<ChessMove>(piece->getSquare(), square, piece);
 	appendMove(moves, regularMove);
 }
 
 void ChessGame::appendCapture(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, std::shared_ptr<ChessPiece> captured, Square square)
 {
-	std::shared_ptr<ChessMove> capture = std::make_shared<Capture>(piece->getSquare(), square, piece, captured);
+	const std::shared_ptr<ChessMove> capture = std::make_shared<Capture>(piece->getSquare(), square, piece, captured);
 	appendMove(moves, capture);
 }
 
 void ChessGame::appendPromotion(std::vector<std::shared_ptr<ChessMove>>& moves, std::shared_ptr<Pawn> pawn, Square square)
 {
 	const Color color = pawn->getColor();
-	std::shared_ptr<ChessMove> promotion = std::make_shared<Promotion>(pawn->getSquare(), square, pawn, getCurrentPlayer().getPromotedPiece(Type::QUEEN, color, { rowForPawnPromotion(color), pawn->colForPromotion() }));
+	const std::shared_ptr<ChessMove> promotion = std::make_shared<Promotion>(pawn->getSquare(), square, pawn, getCurrentPlayer().getPromotedPiece(Type::QUEEN, color, { rowForPawnPromotion(color), pawn->colForPromotion() }));
 	appendMove(moves, promotion);
 }
 
 void ChessGame::appendCastle(std::vector<std::shared_ptr<ChessMove>>& moves)
 {
-	std::shared_ptr<ChessMove> castleKing = getCurrentPlayer().getCastle(*this, m_chessBoard, Side::KING);
+	const std::shared_ptr<ChessMove> castleKing = getCurrentPlayer().getCastle(*this, m_chessBoard, Side::KING);
 	appendMove(moves, castleKing);
-	std::shared_ptr<ChessMove> castleQueen = getCurrentPlayer().getCastle(*this, m_chessBoard, Side::QUEEN);
+	const std::shared_ptr<ChessMove> castleQueen = getCurrentPlayer().getCastle(*this, m_chessBoard, Side::QUEEN);
 	appendMove(moves, castleQueen);
 }
 
