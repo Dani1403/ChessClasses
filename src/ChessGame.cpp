@@ -1,7 +1,5 @@
 #include "ChessGame.h"
 
-#define OPTIMIZE
-
 ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard()))
 {
   displayWelcomeMessage();
@@ -111,7 +109,7 @@ std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std:
 
 bool ChessGame::checkPossibleMoves(const std::vector<std::shared_ptr<ChessMove>>& possibleMoves, Color color)
 {
-  for (auto move : possibleMoves)
+  for (const auto& move : possibleMoves)
   {
     move->execute(*this);
     if (!isInCheck(color))
@@ -153,13 +151,11 @@ bool ChessGame::isInStaleMate(const Color color)
 {
   if (isInCheck(color))
     return false;
-	bool stalemate = !colorHasValidMove(color);
-	return stalemate;
+	return !colorHasValidMove(color);
 }
 
 bool ChessGame::isGameOver()
 {
-#ifndef OPTIMIZE
 	const Color currentColor = m_currentPlayer.getColor();
 	if (isInCheckmate(currentColor))
 	{
@@ -182,33 +178,6 @@ bool ChessGame::isGameOver()
 	}
 	moveToNextPlayer();
   return false;
-#else
-	const Color currentColor = m_currentPlayer.getColor();
-  const Color oppositeColor = opposite(currentColor);
-  const bool currentHasValidMove = colorHasValidMove(currentColor);
-  moveToNextPlayer();
-  const bool oppositeHasValidMove = colorHasValidMove(oppositeColor);
-  moveToNextPlayer();
-  if (isInCheck(currentColor) && !currentHasValidMove)
-  {
-    m_players.back().displayVictory();
-    return true;
-  } else if (!currentHasValidMove)
-  {
-    std::cout << "Stalemate! " + colorToString(currentColor) + " has no legal move " << std::endl;
-    return true;
-  }
-  if (isInCheck(oppositeColor) && !oppositeHasValidMove)
-  {
-    m_players.front().displayVictory();
-    return true;
-  } else if (!oppositeHasValidMove)
-  {
-    std::cout << "Stalemate! " + colorToString(oppositeColor) + " has no legal move" << std::endl;
-    return true;
-  }
-  return false;
-#endif
 }
 
 void ChessGame::undo()
