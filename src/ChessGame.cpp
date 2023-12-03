@@ -184,13 +184,13 @@ void ChessGame::undo()
 {
 	if (m_moves.empty())
     return;
-	std::shared_ptr<ChessMove> move = m_moves.back();
+	const std::shared_ptr<ChessMove> move = m_moves.back();
 	if (move != nullptr)
 		move->undo(*this);
 	m_moves.pop_back();
 }
 
-bool ChessGame::makeMove(std::shared_ptr<ChessMove> move)
+bool ChessGame::makeMove(const std::shared_ptr<ChessMove>& move)
 {
 	move->checkValidity(*this);
 	move->execute(*this);

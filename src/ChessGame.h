@@ -29,7 +29,7 @@ public:
 	 * @param move The move to be made
 	 * @return True if the move was made, false otherwise
 	 */
-	bool makeMove(std::shared_ptr<ChessMove> move);
+	bool makeMove(const std::shared_ptr<ChessMove>& move);
 
 	/*
 	 * Undoes the last move

@@ -3,7 +3,6 @@
 
 bool Capture::checkValidity(ChessGame& game) const
 {
-	bool success = false;
 	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	if (!m_pieceToMove)
 		throw InvalidMove(SOURCE_SQUARE_EMPTY);
@@ -17,12 +16,12 @@ bool Capture::checkValidity(ChessGame& game) const
 		throw InvalidMove(YOUR_COLOR);
 	if (!m_pieceToMove->isValidCapture(m_source, m_destination))
 		throw InvalidMove(INVALID_CAPTURE);
-	return success;
+	return true;
 }
 
 bool Capture::execute(ChessGame& game) const 
 {
-	std::shared_ptr<ChessBoard> board = game.getChessBoard();
+	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	board->removePiece(getCapturedPiece());
 	board->movePiece(getPieceToMove(), getDest());
 	return true; 
