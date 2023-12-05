@@ -135,7 +135,7 @@ void askForMove()
 void displayMoveInstruction()
 {
 	std::cout << "To enter your move, follow the instruction below: " << std::endl;
-	std::cout << "1 - Enter the case of the piece you want to move " << std::endl;
+	std::cout << "1 - Enter the square of the piece you want to move " << std::endl;
 	std::cout << "2 - Enter the destination case for your piece" << std::endl;
 	std::cout << "Example : e2e4" << std::endl;
 }
@@ -143,7 +143,7 @@ void displayMoveInstruction()
 void displayCaptureInstruction()
 {
 	std::cout << "To enter your capture, follow the instruction below: " << std::endl;
-	std::cout << "1 - Enter the case of the piece you want to move " << std::endl;
+	std::cout << "1 - Enter the square of the piece you want to move " << std::endl;
 	std::cout << "2 - Enter X" << std::endl;
 	std::cout << "3 - Enter the destination case for your piece" << std::endl;
 	std::cout << "Example : e4Xd5" << std::endl;
@@ -157,7 +157,7 @@ void displayCastleInstruction()
 void displayPromotionInstruction()
 {
 	std::cout << " To Promote a Pawn: " << std::endl;
-	std::cout << "1 - Enter the case where the pawn is (example : d7)" << std::endl;
+	std::cout << "1 - Enter the square where the pawn is currently (example : d7)" << std::endl;
 	std::cout << "2 - Enter symbol = " << std::endl;
 	std::cout << "3 - Enter the type of the promoted Piece (Q - Queen, k - Knight, B - Bishop, R - Rook)" << std::endl;
 }
