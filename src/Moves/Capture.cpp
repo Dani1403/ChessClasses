@@ -21,9 +21,8 @@ bool Capture::checkValidity(ChessGame& game) const
 
 bool Capture::execute(ChessGame& game) const 
 {
-	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
-	board->removePiece(getCapturedPiece());
-	board->movePiece(getPieceToMove(), getDest());
+  ChessMove::execute(game);
+	game.getChessBoard()->removePiece(getCapturedPiece());
 	return true; 
 }
 
