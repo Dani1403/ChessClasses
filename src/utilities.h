@@ -47,7 +47,7 @@ const std::string INVALID_PROMOTED_PIECE = "You cannot promote into a pawn or a 
 
 enum class Color { NONE = 0, WHITE, BLACK };
 
-Color opposite(Color color);
+Color opposite(const Color color);
 
 enum class Type
 {

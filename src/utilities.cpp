@@ -1,7 +1,7 @@
 #include "utilities.h"
 #include <cmath>
 
-Color opposite(Color color)
+Color opposite(const Color color)
 {
 	return ((color == Color::WHITE) ? Color::BLACK : Color::WHITE);
 }
@@ -13,15 +13,15 @@ bool isSquareValid(const Square& square)
 
 Square algebraicToSquare(const std::string& notation)
 {
-	int col = notation[0] - 'a';
-	int row = notation[1] - '1';
+	const int col = notation[0] - 'a';
+	const int row = notation[1] - '1';
 	return Square{ row, col };
 }
 
 std::string squareToAlgebraic(const Square& square)
 {
-	char col = 'a' + square.col;
-	char row = '1' + square.row;
+	const char col = 'a' + square.col;
+	const char row = '1' + square.row;
 	return std::string{ col, row };
 }
 
@@ -47,8 +47,8 @@ bool isDownwardDiag(const Square& s1, const Square& s2)
 
 bool isKnightMove(const Square& s1, const Square& s2)
 {
-	int rowDiff = abs(s1.row - s2.row);
-	int colDiff = abs(s1.col - s2.col);
+	const int rowDiff = abs(s1.row - s2.row);
+	const int colDiff = abs(s1.col - s2.col);
 
 	return (rowDiff == 1 && colDiff == 2) || (rowDiff == 2 && colDiff == 1);
 }
@@ -75,24 +75,14 @@ int endCol(const Square& s1, const Square& s2)
 
 int dist(const Square& s1, const Square& s2)
 {
-	int rowDiff = s1.row - s2.row;
-	int colDiff = s1.col - s2.col;
+	const int rowDiff = s1.row - s2.row;
+	const int colDiff = s1.col - s2.col;
 	return static_cast<int>(sqrt(rowDiff*rowDiff + colDiff*colDiff));
-}
-
-void askForBlackPlayerName(std::string& name)
-{
-  std::cout << "Please enter the name of the black player : ";
 }
 
 void displayWelcomeMessage()
 {
   std::cout << "Welcome to Chess++" << std::endl;
-}
-
-void askForWhitePlayerName(std::string& name)
-{
-  std::cout << "Please enter the name of the white player : ";
 }
 
 void displayExitGameInstructions()
@@ -125,12 +115,10 @@ void getCaptureInstruction()
   std::cout << " - To get the instructions for capturing a piece please enter 'capture'" << std::endl;
 }
 
-
 void askForMove()
 {
     std::cout << "Please enter your move : ";
 }
-
 
 void displayMoveInstruction()
 {
@@ -162,7 +150,6 @@ void displayPromotionInstruction()
 	std::cout << "3 - Enter the type of the promoted Piece (Q - Queen, k - Knight, B - Bishop, R - Rook)" << std::endl;
 }
 
-
 void displayInstructions()
 {
 	displayExitGameInstructions();
@@ -171,7 +158,6 @@ void displayInstructions()
   getCastleInstruction();
   getPromotionInstruction();
 }
-
 
 void displayMoveEndsInCheck()
 {
