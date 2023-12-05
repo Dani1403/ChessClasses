@@ -68,7 +68,7 @@ std::shared_ptr<Castle> Player::getCastle(const ChessGame& game, const std::shar
 
 }
 
-std::shared_ptr<ChessPiece> Player::getPromotedPiece(Type type, Color color, Square square) const
+std::shared_ptr<ChessPiece> Player::getPromotedPiece(const Type type, const Color color, const Square square) const
 {
 	switch (type)
 	{

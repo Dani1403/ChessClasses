@@ -17,7 +17,6 @@ bool ChessMove::checkValidity(ChessGame& game) const
 	return true;
 }
 
-
 bool ChessMove::checkPossibleMove(ChessGame& game) const
 {
 	try

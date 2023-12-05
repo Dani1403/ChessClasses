@@ -63,7 +63,7 @@ public:
 	 * @param square - the square of the piece to promote to.
 	 * @return a promoted piece the player wants to make.
 	 */
-	std::shared_ptr<ChessPiece> getPromotedPiece(Type type, Color color, Square square) const;
+	std::shared_ptr<ChessPiece> getPromotedPiece(const Type type, const Color color, const Square square) const;
 
 	/*
 	 * Get a move from the player.
