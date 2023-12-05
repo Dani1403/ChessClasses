@@ -193,12 +193,12 @@ void ChessGame::undo()
 bool ChessGame::makeMove(const std::shared_ptr<ChessMove>& move)
 {
 	move->checkValidity(*this);
-	move->execute(*this);
+	move->executeAndSwitch(*this);
 	m_moves.push_back(move);
 	if (isInCheck(m_currentPlayer.getColor()))
 	{
 		displayMoveEndsInCheck();
-		undo();
+		move->undoAndSwitch(*this);
 		return false;
 	}
 	return true;

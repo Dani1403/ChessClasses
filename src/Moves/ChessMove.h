@@ -52,13 +52,27 @@ public:
 	*	@return true if the move was applied, false otherwise
 	*/
 	virtual bool execute(ChessGame& game) const;
-	//virtual void updatePieces();
+
+  /*
+   * apply the move to the current game and switch boolean flags if
+   * the piece to move is a king or a rook or a pawn
+   * @param game : the game to apply the move to
+   * @return true if the move was applied, false otherwise
+   */
+  virtual bool executeAndSwitch(ChessGame& game) const;
 
 	/*
 	 * undo the move on the current game
 	 * @param game : the game to undo the move on
 	 */
 	virtual void undo(ChessGame& game) const;
+
+  /*
+   * undo the move on the current game and switch boolean flags if
+   * the piece to move is a king or a rook or a pawn
+   * @param game : the game to undo the move on
+   */
+  virtual void undoAndSwitch(ChessGame& game) const;
 
 	/*
 	 * equality operator for a move
