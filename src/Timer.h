@@ -19,6 +19,11 @@ public:
         m_running = true;
     }
 
+    void stop()
+    {
+        m_running = false;
+    }
+
     bool isTimeUp() const {
         if (m_running) {
             const auto currentTime = std::chrono::steady_clock::now();
@@ -43,10 +48,6 @@ public:
             return (remainingTime > std::chrono::seconds(0)) ? remainingTime : std::chrono::seconds(0);
         }
         return std::chrono::seconds(0); // Timer not started or already stopped
-    }
-
-    void stop() {
-        m_running = false;
     }
 
 private:

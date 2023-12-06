@@ -11,9 +11,12 @@ ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard())
 
 void ChessGame::initPlayers()
 {
-  Player player1, player2;
-  initPlayer(player1, Color::WHITE);
-  initPlayer(player2, Color::BLACK);
+  const auto player1 = std::make_unique<Player>();
+  const auto player2 = std::make_unique<Player>();
+  initPlayer(*player1, Color::WHITE);
+  initPlayer(*player2, Color::BLACK);
+  m_players.push_back(*player1);
+  m_players.push_back(*player2);
   m_currentPlayer = m_players.front();
   std::cout << "First player : " << m_currentPlayer.getName() << std::endl << std::endl;
 }
@@ -22,8 +25,6 @@ void ChessGame::initPlayer(Player& player, const Color color)
 {
   player.setColor(color);
   player.setName(player.getNameFromUser(std::cin, color));
-  m_players.push_back(player);
-  player.startTimer(DEFAULT_DURATION);
 }
 
 void ChessGame::initBoard() const
@@ -212,6 +213,7 @@ bool ChessGame::makeMove(const std::shared_ptr<ChessMove>& move)
 void ChessGame::playerTurn()
 {
 	m_currentPlayer.displayTimeLeft();
+	m_currentPlayer.startTimer(m_currentPlayer.timeLeft());
 	bool moved = false;
 	while (!moved)
 	{
@@ -226,6 +228,7 @@ void ChessGame::playerTurn()
 		}
 	}
 	m_chessBoard->draw();
+  m_currentPlayer.stopTimer();
 }
 
 void ChessGame::moveToNextPlayer()
@@ -242,6 +245,8 @@ void ChessGame::displayNextPlayer() const
 
 void ChessGame::play()
 {
+	m_players.front().startTimer(DEFAULT_DURATION);
+  m_players.back().startTimer(DEFAULT_DURATION);
 	try
 	{
 		m_chessBoard->draw();

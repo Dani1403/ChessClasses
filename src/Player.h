@@ -84,7 +84,11 @@ public:
 
   void startTimer(const std::chrono::seconds duration) { m_timer.start(duration); }
 
+  void stopTimer() { m_timer.stop(); }
+
   bool isTimeUp() const { return m_timer.isTimeUp(); }
+
+  std::chrono::seconds timeLeft() const { return m_timer.timeLeft(); }
 
   void displayTimeLeft() const
   {
