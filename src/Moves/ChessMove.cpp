@@ -33,42 +33,22 @@ bool ChessMove::execute(ChessGame& game) const
 {
 	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	board->movePiece(getPieceToMove(), getDest());
+	const std::shared_ptr<Pawn> pawn = std::dynamic_pointer_cast<Pawn>(m_pieceToMove);
+	if (pawn)
+		pawn->setHasMoved(true);
+	const std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(m_pieceToMove);
+	if (king)
+		king->setHasMoved(true);
+	const std::shared_ptr<Rook> rook = std::dynamic_pointer_cast<Rook>(m_pieceToMove);
+	if (rook)
+		rook->setHasMoved(true);
 	return true;
-}
-
-bool ChessMove::executeAndSwitch(ChessGame& game) const 
-{
-  execute(game);
-  const std::shared_ptr<Pawn> pawn = std::dynamic_pointer_cast<Pawn>(m_pieceToMove);
-  if (pawn)
-    pawn->setHasMoved(true);
-  const std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(m_pieceToMove);
-  if (king)
-    king->setHasMoved(true);
-  const std::shared_ptr<Rook> rook = std::dynamic_pointer_cast<Rook>(m_pieceToMove);
-  if (rook)
-    rook->setHasMoved(true);
-  return true;
 }
 
 void ChessMove::undo(ChessGame& game) const 
 {
 	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	board->movePiece(getPieceToMove(), getSource());
-}
-
-void ChessMove::undoAndSwitch(ChessGame& game) const 
-{
-  undo(game);
-  const std::shared_ptr<Pawn> pawn = std::dynamic_pointer_cast<Pawn>(m_pieceToMove);
-  if (pawn)
-	  pawn->setHasMoved(false);
-  const std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(m_pieceToMove);
-  if (king)
-	  king->setHasMoved(false);
-  const std::shared_ptr<Rook> rook = std::dynamic_pointer_cast<Rook>(m_pieceToMove);
-  if (rook)
-	  rook->setHasMoved(false);
 }
 
 bool ChessMove::operator==(const ChessMove& other) const
