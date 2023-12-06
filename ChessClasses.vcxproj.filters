@@ -51,4 +51,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\utilities.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Timer.h" />
+  </ItemGroup>
 </Project>

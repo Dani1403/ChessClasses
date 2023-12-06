@@ -1,5 +1,7 @@
 #include "ChessGame.h"
 
+#include "Timer.h"
+
 ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard()))
 {
   displayWelcomeMessage();
@@ -10,18 +12,21 @@ ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard())
 void ChessGame::initPlayers()
 {
   Player player1, player2;
-  player1.setColor(Color::WHITE);
-  player2.setColor(Color::BLACK);
-  player1.setName(player1.getNameFromUser(std::cin, Color::WHITE));
-  player2.setName(player2.getNameFromUser(std::cin, Color::BLACK));
-  m_players.push_back(player1);
-  m_players.push_back(player2);
+  initPlayer(player1, Color::WHITE);
+  initPlayer(player2, Color::BLACK);
   m_currentPlayer = m_players.front();
   std::cout << "First player : " << m_currentPlayer.getName() << std::endl << std::endl;
 }
 
+void ChessGame::initPlayer(Player& player, const Color color)
+{
+  player.setColor(color);
+  player.setName(player.getNameFromUser(std::cin, color));
+  m_players.push_back(player);
+  player.startTimer(DEFAULT_DURATION);
+}
 
-void ChessGame::initBoard()
+void ChessGame::initBoard() const
 {
 	m_chessBoard->addInitialPieces(Color::WHITE);
 	m_chessBoard->addInitialPieces(Color::BLACK);
@@ -206,6 +211,7 @@ bool ChessGame::makeMove(const std::shared_ptr<ChessMove>& move)
 
 void ChessGame::playerTurn()
 {
+	m_currentPlayer.displayTimeLeft();
 	bool moved = false;
 	while (!moved)
 	{
