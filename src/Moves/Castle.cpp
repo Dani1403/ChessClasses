@@ -25,29 +25,10 @@ bool Castle::execute(ChessGame& game) const
   return true;
 }
 
-bool Castle::executeAndSwitch(ChessGame& game) const
-{
-  execute(game);
-  const std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(m_pieceToMove);
-  king->setHasMoved(true);
-  m_rookToMove->setHasMoved(true);
-  return true;
-}
-
 void Castle::undo(ChessGame& game) const
 {
   m_kingMove.undo(game);
   m_rookMove.undo(game);
-}
-
-void Castle::undoAndSwitch(ChessGame& game) const
-{
-  m_kingMove.undo(game);
-  m_rookMove.undo(game);
-
-  const std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(m_pieceToMove);
-  king->setHasMoved(false);
-  m_rookToMove->setHasMoved(false);
 }
 
 std::string Castle::moveDescription() const

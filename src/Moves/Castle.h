@@ -17,9 +17,7 @@ public:
 
 	bool checkValidity(ChessGame& game) const override;
 	bool execute(ChessGame& game) const override;
-	bool executeAndSwitch(ChessGame& game) const override;
 	void undo(ChessGame& game) const override;
-	void undoAndSwitch(ChessGame& game) const override;
 
 private:
 	std::shared_ptr<Rook> m_rookToMove;

@@ -14,7 +14,7 @@ bool Promotion::checkValidity(ChessGame& game) const
 
 bool Promotion::execute(ChessGame& game) const
 {
-	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
+	std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	board->removePiece(getPieceToMove());
 	board->addPiece(getNewPiece());
 	return true;
