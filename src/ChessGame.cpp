@@ -224,7 +224,6 @@ void ChessGame::playerTurn()
 		}
 	}
 	m_chessBoard->draw();
-  m_currentPlayer.stopTimer();
 }
 
 void ChessGame::moveToNextPlayer()
@@ -241,8 +240,6 @@ void ChessGame::displayNextPlayer() const
 
 void ChessGame::play()
 {
-	m_players.front().startTimer(DEFAULT_DURATION);
-  m_players.back().startTimer(DEFAULT_DURATION);
 	try
 	{
 		m_chessBoard->draw();
