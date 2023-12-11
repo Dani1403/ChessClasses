@@ -1,7 +1,5 @@
 #include "ChessGame.h"
 
-#include "Timer.h"
-
 ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard()))
 {
   displayWelcomeMessage();
@@ -27,7 +25,7 @@ void ChessGame::initPlayer(Player& player, const Color color)
   player.setName(player.getNameFromUser(std::cin, color));
 }
 
-void ChessGame::initBoard() const
+void ChessGame::initBoard()
 {
 	m_chessBoard->addInitialPieces(Color::WHITE);
 	m_chessBoard->addInitialPieces(Color::BLACK);
@@ -212,8 +210,6 @@ bool ChessGame::makeMove(const std::shared_ptr<ChessMove>& move)
 
 void ChessGame::playerTurn()
 {
-	m_currentPlayer.displayTimeLeft();
-	m_currentPlayer.startTimer(m_currentPlayer.timeLeft());
 	bool moved = false;
 	while (!moved)
 	{

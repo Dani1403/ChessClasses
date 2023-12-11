@@ -14,12 +14,11 @@ public:
 	ChessGame& operator=(const ChessGame& other) = delete;
 
   void initPlayers();
-  void initPlayer(Player& player, const Color color);
 
 	/*
 	 * Initializes the board with the pieces in their starting positions
 	 */
-	void initBoard() const;
+	void initBoard();
 
 	/* Getters */
 	std::shared_ptr<ChessBoard> getChessBoard() const { return m_chessBoard; }

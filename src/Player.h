@@ -3,7 +3,6 @@
 #include "Moves/Castle.h"
 #include "Moves/Promotion.h"
 #include "Moves/Capture.h"
-#include "Timer.h"
 
 
 
@@ -21,8 +20,6 @@ public:
 	Color getColor() const { return m_color; }
 
   std::string getName() const { return m_name; }
-
-  Timer getTimer() const { return m_timer; }
 
   void setColor(const Color color) { m_color = color; }
 
@@ -81,22 +78,6 @@ public:
 	 * @return true if the players have the same color, false otherwise.
 	 */
 	bool operator!=(const Player& other) const { return this->m_color != other.getColor(); }
-
-  void startTimer(const std::chrono::seconds duration) { m_timer.start(duration); }
-
-  void stopTimer() { m_timer.stop(); }
-
-  bool isTimeUp() const { return m_timer.isTimeUp(); }
-
-  std::chrono::seconds timeLeft() const { return m_timer.timeLeft(); }
-
-  void displayTimeLeft() const
-  {
-	  auto remainingTime = m_timer.timeLeft();
-	  int minutes = static_cast<int>(std::chrono::duration_cast<std::chrono::minutes>(remainingTime).count());
-	  int seconds = static_cast<int>(remainingTime.count() % 60);
-	  std::cout << m_name << " has " << minutes << " minutes and " << seconds << " seconds left." << std::endl;
-  }
 
 	void displayVictory() const { std::cout << m_name << " won the game!" << std::endl; }
 
