@@ -88,5 +88,4 @@ public:
 private:
 	std::string m_name = "Dummy";
 	Color m_color = Color::NONE;
-  Timer m_timer;
 };

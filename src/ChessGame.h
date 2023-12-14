@@ -106,6 +106,8 @@ private:
 	std::list<Player> m_players;
 	Player m_currentPlayer;
 
+	void initPlayer(Player& player, const Color color);
+
 	bool isSquareAttacked(const Square square, const Color color);
 
 	void appendMove(std::vector<std::shared_ptr<ChessMove>>&, std::shared_ptr<ChessMove>);
