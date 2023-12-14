@@ -29,8 +29,9 @@ bool Capture::execute(ChessGame& game) const
 
 void Capture::undo(ChessGame& game) const
 {
-	ChessMove::undo(game);
-	game.getChessBoard()->addPiece(getCapturedPiece());
+	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
+  board->movePiece(getPieceToMove(), getSource());
+  board->addPiece(getCapturedPiece());
 }
 
 std::string Capture::moveDescription() const
