@@ -1,5 +1,5 @@
 #pragma once
-
+#include <cmath>
 #include <string>
 #include <memory>
 #include <vector>
@@ -48,6 +48,12 @@ const std::string INVALID_CASTLE_ROOK = "Invalid castle for the rook, it has alr
 const std::string INVALID_CASTLE_CHECK = "Invalid castle, you are in check";
 const std::string INVALID_PROMOTION_PIECE = "The piece you want to promote is not a pawn";
 const std::string INVALID_PROMOTED_PIECE = "You cannot promote into a pawn or a King";
+const std::string NO_LAST_MOVE = "You cannot EnPassant in the first move";
+const std::string NOT_PAWN = "The piece you want to move is not a pawn";
+const std::string NOT_EN_PASSANT_ROW = "The EnPassant pawn is not on a valid row";
+const std::string NOT_EN_PASSANT_COL = "The EnPassant pawn is not on a valid column";
+const std::string LAST_MOVE_NOT_PAWN = "The last move was not a pawn move";
+const std::string INVALID_LAST_MOVE = "The last move was not a double pawn move";
 
 enum class Color { NONE = 0, WHITE, BLACK };
 
@@ -138,3 +144,5 @@ void displayCastleInstruction();
 void displayMoveEndsInCheck();
 
 int rowForPawnPromotion(const Color color);
+
+bool isValidColumnForEnPassant(int col1, int col2) {return abs(col1 - col2) == 1 };

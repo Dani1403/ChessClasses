@@ -12,6 +12,7 @@ public:
 	bool hasMoved() const { return m_hasMoved; }
 	void setHasMoved(bool moved) {m_hasMoved = moved;}
 	int colForPromotion() const;
+	int rowForEnPassant() const { return m_color == Color::WHITE ? 4 : 3; }
 
 	bool isValidMove(const Square& source, const Square& destination) const override;
 	bool isValidCapture(const Square& source, const Square& destination) const override;

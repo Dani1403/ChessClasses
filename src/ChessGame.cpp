@@ -19,13 +19,13 @@ void ChessGame::initPlayers()
   std::cout << "First player : " << m_currentPlayer.getName() << std::endl << std::endl;
 }
 
-void ChessGame::initPlayer(Player& player, const Color color)
+void ChessGame::initPlayer(Player& player, const Color color) const 
 {
   player.setColor(color);
   player.setName(player.getNameFromUser(std::cin, color));
 }
 
-void ChessGame::initBoard()
+void ChessGame::initBoard() const 
 {
 	m_chessBoard->addInitialPieces(Color::WHITE);
 	m_chessBoard->addInitialPieces(Color::BLACK);
