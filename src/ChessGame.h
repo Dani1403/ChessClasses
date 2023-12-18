@@ -1,8 +1,8 @@
 #pragma once
-#include "Player.h"
 #include "ChessBoard.h"
-#include "Moves/ChessMove.h"
 #include "Moves/Capture.h"
+#include "Moves/ChessMove.h"
+#include "Player.h"
 
 class ChessGame
 {
@@ -121,4 +121,6 @@ private:
 	void appendCastle(std::vector<std::shared_ptr<ChessMove>>& moves);
 
   void displayNextPlayer() const;
+
+  void handleTimeUp(const Player& player) const;
 };

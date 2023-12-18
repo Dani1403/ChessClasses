@@ -158,8 +158,20 @@ bool ChessGame::isInStaleMate(const Color color)
 	return !colorHasValidMove(color);
 }
 
+void ChessGame::handleTimeUp(const Player& player) const
+{
+  if (player.isTimeUp())
+  {
+    std::cout << player.getName() << " ran out of time!" << std::endl;
+    player.displayDefeat();
+	  throw ExitGame();
+  }
+}
+
 bool ChessGame::isGameOver()
 {
+  handleTimeUp(m_currentPlayer);
+  handleTimeUp(m_players.back());
 	const Color currentColor = m_currentPlayer.getColor();
 	if (isInCheckmate(currentColor))
 	{
@@ -210,6 +222,7 @@ bool ChessGame::makeMove(const std::shared_ptr<ChessMove>& move)
 
 void ChessGame::playerTurn()
 {
+	m_currentPlayer.startTimer();
 	bool moved = false;
 	while (!moved)
 	{
@@ -224,6 +237,7 @@ void ChessGame::playerTurn()
 		}
 	}
 	m_chessBoard->draw();
+  m_currentPlayer.stopTimer();
 }
 
 void ChessGame::moveToNextPlayer()
@@ -245,6 +259,8 @@ void ChessGame::play()
 		m_chessBoard->draw();
 		while (!isGameOver())
 		{
+	   for (const auto& player : m_players)
+       player.displayTimeLeft();
 			playerTurn();
 			moveToNextPlayer();
 	    displayNextPlayer();

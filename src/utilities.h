@@ -7,6 +7,10 @@
 #include <array>
 #include <list>
 #include <iostream>
+#include <chrono>
+
+const std::chrono::duration<double> TIME_LIMIT = std::chrono::seconds(15 * 60);
+
 
 const std::string CASTLE_KINGSIDE = "O-O";
 const std::string CASTLE_QUEENSIDE = "O-O-O";

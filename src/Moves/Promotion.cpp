@@ -22,7 +22,7 @@ bool Promotion::execute(ChessGame& game) const
 
 void Promotion::undo(ChessGame& game) const
 {
-	std::shared_ptr<ChessBoard> board = game.getChessBoard();
+	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	board->removePiece(getNewPiece());
 	board->addPiece(getPieceToMove());
 }
