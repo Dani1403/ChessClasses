@@ -1,4 +1,5 @@
 #include "utilities.h"
+#include <cmath>
 
 Color opposite(const Color color)
 {
@@ -133,8 +134,7 @@ void displayCaptureInstruction()
 	std::cout << "1 - Enter the square of the piece you want to move " << std::endl;
 	std::cout << "2 - Enter X" << std::endl;
 	std::cout << "3 - Enter the destination case for your piece" << std::endl;
-	std::cout << "  - For EnPassant capture, enter the square of the pawn you want to capture" << std::endl;
- 	std::cout << "Example : e4Xd5" << std::endl;
+	std::cout << "Example : e4Xd5" << std::endl;
 }
 
 void displayCastleInstruction()

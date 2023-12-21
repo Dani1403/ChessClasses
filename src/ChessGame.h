@@ -9,29 +9,20 @@ class ChessGame
 public:
 	/* Constructor and destructors */
 	ChessGame();
-
 	~ChessGame() = default;
-
 	ChessGame(const ChessGame& other) = delete;
-
 	ChessGame& operator=(const ChessGame& other) = delete;
 
-  /*
-   * Initializes the players, their names and colors, and fixes the current player
-   */
   void initPlayers();
 
 	/*
 	 * Initializes the board with the pieces in their starting positions
 	 */
-	void initBoard() const;
+	void initBoard();
 
 	/* Getters */
 	std::shared_ptr<ChessBoard> getChessBoard() const { return m_chessBoard; }
-
 	const Player& getCurrentPlayer() const { return m_currentPlayer; }
-
-  std::shared_ptr<ChessMove> getLastMove() const { return m_moves.back(); }
 
 	/*
 	 * Checks if the move is valid and if it is, makes the move
@@ -115,7 +106,7 @@ private:
 	std::list<Player> m_players;
 	Player m_currentPlayer;
 
-	void initPlayer(Player& player, const Color color) const;
+	void initPlayer(Player& player, const Color color);
 
 	bool isSquareAttacked(const Square square, const Color color);
 
