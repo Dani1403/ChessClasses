@@ -21,7 +21,7 @@ project "ChessClasses"
             "sfml-audio-d",
             "sfml-network-d"
            }
-       
+        libdirs { "vendor/SFML-2.6.1/lib" }
 
     filter "configurations:Release"
         optimize "On"
@@ -33,6 +33,7 @@ project "ChessClasses"
             "sfml-audio",
             "sfml-network"
            }
+        libdirs { "vendor/SFML-2.6.1/lib" }
 
     filter "system:macosx"
         xcodebuildsettings {
