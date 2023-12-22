@@ -9,6 +9,8 @@ project "ChessClasses"
 
     files { "src/**.cpp", "src/**.h"}
 
+    includedirs { "vendor/SFML-2.6.1/include" }
+
     filter "configurations:Debug"
         symbols "On"
         links

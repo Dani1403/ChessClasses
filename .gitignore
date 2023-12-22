@@ -373,4 +373,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 #Exclude
-!vendor/bin
+/vendor/
