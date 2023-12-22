@@ -3,7 +3,12 @@
 #include "ChessBoard.h"
 #include "ChessGame.h"
 
-
+/*
+* Let the player input a name.
+* @param is - the input stream to read from.
+* @param color - the color of the player.
+* @return a string representing the name the player wants to use.
+*/
 std::string Player::getNameFromUser(std::istream& is, const Color color) const
 {
   askForName(color);
@@ -12,6 +17,11 @@ std::string Player::getNameFromUser(std::istream& is, const Color color) const
   return name;
 }
 
+/*
+* Let the player input a move.
+* @param is - the input stream to read from.
+* @return a string representing the move the player wants to make.
+*/
 std::string Player::getMoveFromUser(std::istream& is) const
 {
   displayInstructions();
@@ -21,6 +31,10 @@ std::string Player::getMoveFromUser(std::istream& is) const
 	return input;
 }
 
+/*
+* handles the cases where the user wants to display some instruction or quit the game.
+* @return a string representing the move the player wants to make.
+*/
 std::string Player::handleInput() const 
 {
 	bool isAMove = false;
@@ -55,7 +69,13 @@ std::string Player::handleInput() const
   return input;
 }
 
-
+/*
+* Get a castle move from the player.
+* @param game - the game to get the move for.
+* @param board - the board to get the move for.
+* @param side - the side to castle on.
+* @return a castle move the player wants to make.
+*/
 std::shared_ptr<Castle> Player::getCastle(const ChessGame& game, const std::shared_ptr<ChessBoard>& board, const Side side) const
 {
 	const Square kingPos = board->getKingPosition(game.getCurrentPlayer().getColor());
@@ -68,6 +88,13 @@ std::shared_ptr<Castle> Player::getCastle(const ChessGame& game, const std::shar
 
 }
 
+/*
+* Get a promoted piece from the player.
+* @param type - the type of the piece to promote to.
+* @param color - the color of the piece to promote to.
+* @param square - the square of the piece to promote to.
+* @return a promoted piece the player wants to make.
+*/
 std::shared_ptr<ChessPiece> Player::getPromotedPiece(const Type type, const Color color, const Square square) const
 {
 	switch (type)
@@ -85,6 +112,11 @@ std::shared_ptr<ChessPiece> Player::getPromotedPiece(const Type type, const Colo
 	}
 }
 
+/*
+* Get a move from the player.
+* @param game - the game to get the move for.
+* @return a move the player wants to make.
+*/
 std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 {
 	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
