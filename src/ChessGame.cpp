@@ -1,5 +1,8 @@
 #include "ChessGame.h"
 
+/*
+ * Constructor
+ */
 ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard()))
 {
   displayWelcomeMessage();
@@ -7,6 +10,9 @@ ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard())
   initPlayers();
 }
 
+/*
+* Initializes the players with their names and colors
+*/
 void ChessGame::initPlayers()
 {
   const auto player1 = std::make_unique<Player>();
@@ -19,18 +25,29 @@ void ChessGame::initPlayers()
   std::cout << "First player : " << m_currentPlayer.getName() << std::endl << std::endl;
 }
 
+/*
+* Initializes a player with a name and a color
+*/
 void ChessGame::initPlayer(Player& player, const Color color)
 {
   player.setColor(color);
   player.setName(player.getNameFromUser(std::cin, color));
 }
 
+/*
+* Initializes the board with the pieces in their starting positions
+*/
 void ChessGame::initBoard()
 {
 	m_chessBoard->addInitialPieces(Color::WHITE);
 	m_chessBoard->addInitialPieces(Color::BLACK);
 }
 
+/*
+* Checks if a piece is attacked on a given square
+* @param square The square to check
+* @param color The color of the piece to check
+*/
 bool ChessGame::isSquareAttacked(const Square square, const Color color)
 {
   for (const auto& row : m_chessBoard->getBoard())
@@ -47,6 +64,11 @@ bool ChessGame::isSquareAttacked(const Square square, const Color color)
   return false;
 }
 
+/*
+* check if a given color is in check
+* @param color The color to check
+* @return True if the color is in check, false otherwise
+*/
 bool ChessGame::isInCheck(const Color color)
 {
 	const Square kingPos = m_chessBoard->getKingPosition(color);
@@ -56,31 +78,64 @@ bool ChessGame::isInCheck(const Color color)
   return check;
 }
 
+/*
+* Checks if a given move can be made using its checkPossibleMove function
+* @param move The move to check
+* @param possibleMoves a vector of possible moves
+* if the move is valid, append it to the vector of possible moves
+*/
 void ChessGame::appendMove(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessMove> move)
 {
 	if (move->checkPossibleMove(*this))
 		moves.push_back(move);
 }
 
-void ChessGame::appendRegular(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, Square square)
+/*
+* Creates a regular move from an existing piece and a destination square
+* @param moves a vector of possible moves
+* @param piece The piece to move
+* @param destSquare The destination square
+* if the move is valid, append it to the vector of possible moves
+*/
+void ChessGame::appendRegular(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, Square destSquare)
 {
-	const std::shared_ptr<ChessMove> regularMove = std::make_shared<ChessMove>(piece->getSquare(), square, piece);
+	const std::shared_ptr<ChessMove> regularMove = std::make_shared<ChessMove>(piece->getSquare(), destSquare, piece);
 	appendMove(moves, regularMove);
 }
 
-void ChessGame::appendCapture(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, std::shared_ptr<ChessPiece> captured, Square square)
+/*
+* Creates a capture move from an existing piece, a captured piece and a destination square
+* @param moves a vector of possible moves
+* @param piece The piece to move
+* @param captured The piece to capture
+* @param destSquare The destination square
+* if the capture is valid, append it to the vector of possible moves
+*/
+void ChessGame::appendCapture(std::vector<std::shared_ptr <ChessMove>>& moves, std::shared_ptr<ChessPiece> piece, std::shared_ptr<ChessPiece> captured, Square destSquare)
 {
-	const std::shared_ptr<ChessMove> capture = std::make_shared<Capture>(piece->getSquare(), square, piece, captured);
+	const std::shared_ptr<ChessMove> capture = std::make_shared<Capture>(piece->getSquare(), destSquare, piece, captured);
 	appendMove(moves, capture);
 }
 
-void ChessGame::appendPromotion(std::vector<std::shared_ptr<ChessMove>>& moves, std::shared_ptr<Pawn> pawn, Square square)
+/*
+* Creates a promotion move from an existing pawn and a destination square
+* @param moves a vector of possible moves
+* @param pawn The pawn to move
+* @param destSquare The destination square
+* if the promotion is valid, append it to the vector of possible moves
+*/
+void ChessGame::appendPromotion(std::vector<std::shared_ptr<ChessMove>>& moves, std::shared_ptr<Pawn> pawn, Square destSquare)
 {
 	const Color color = pawn->getColor();
-	const std::shared_ptr<ChessMove> promotion = std::make_shared<Promotion>(pawn->getSquare(), square, pawn, getCurrentPlayer().getPromotedPiece(Type::QUEEN, color, { rowForPawnPromotion(color), pawn->colForPromotion() }));
+	const std::shared_ptr<ChessMove> promotion = std::make_shared<Promotion>(pawn->getSquare(), destSquare, pawn, getCurrentPlayer().getPromotedPiece(Type::QUEEN, color, { rowForPawnPromotion(color), pawn->colForPromotion() }));
 	appendMove(moves, promotion);
 }
 
+/*
+* Create two castle moves from an existing king
+* @param moves a vector of possible moves
+* if the castle is valid, append it to the vector of possible moves
+*/
 void ChessGame::appendCastle(std::vector<std::shared_ptr<ChessMove>>& moves)
 {
 	const std::shared_ptr<ChessMove> castleKing = getCurrentPlayer().getCastle(*this, m_chessBoard, Side::KING);
@@ -89,6 +144,11 @@ void ChessGame::appendCastle(std::vector<std::shared_ptr<ChessMove>>& moves)
 	appendMove(moves, castleQueen);
 }
 
+/*
+*  Get all the possible moves for a given piece
+* @param piece The piece to get the moves for
+* @return A vector containing all the possible moves for the piece
+*/
 std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std::shared_ptr<ChessPiece> pieceToCheck)
 {
 	std::vector<std::shared_ptr<ChessMove>> possibleMoves;
@@ -111,6 +171,12 @@ std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std:
 	return possibleMoves;
 }
 
+/*
+* for all possible moves, check if the king is still in check after the move
+* @param possibleMoves The possible moves to check
+* @param color The color to check
+* @return true if the king is not in check after at least one move, false otherwise
+*/
 bool ChessGame::checkPossibleMoves(const std::vector<std::shared_ptr<ChessMove>>& possibleMoves, Color color)
 {
   for (const auto& move : possibleMoves)
@@ -126,6 +192,11 @@ bool ChessGame::checkPossibleMoves(const std::vector<std::shared_ptr<ChessMove>>
   return false;
 }
 
+/*
+* check if a given color has a valid move
+* @param color The color to check
+* @return True if the color has a valid move, false otherwise
+*/
 bool ChessGame::colorHasValidMove(const Color color)
 {
 	for (int row = 0; row < m_chessBoard->BOARD_SIZE; row++)
@@ -144,6 +215,11 @@ bool ChessGame::colorHasValidMove(const Color color)
 	return false;
 }
 
+/*
+* check if a given color is in checkmate
+* @param color The color to check
+* @return True if the color is in checkmate, false otherwise
+*/
 bool ChessGame::isInCheckmate(const Color color)
 {
 	if (!isInCheck(color))
@@ -151,6 +227,11 @@ bool ChessGame::isInCheckmate(const Color color)
 	return !colorHasValidMove(color);
 }
 
+/*
+* check if a given color is in stalemate
+* @param color The color to check
+* @return True if the color is in stalemate, false otherwise
+*/
 bool ChessGame::isInStaleMate(const Color color)
 {
   if (isInCheck(color))
@@ -158,6 +239,11 @@ bool ChessGame::isInStaleMate(const Color color)
 	return !colorHasValidMove(color);
 }
 
+/*
+* Handle the case where a player's time is up
+* @param player The player to check if his time is up
+* if the time is up, display defeat message and exit the game
+*/
 void ChessGame::handleTimeUp(const Player& player) const
 {
   if (player.isTimeUp())
@@ -168,6 +254,10 @@ void ChessGame::handleTimeUp(const Player& player) const
   }
 }
 
+/*
+* check if the game is over
+* @return True if the game is over, false otherwise
+*/
 bool ChessGame::isGameOver()
 {
   handleTimeUp(m_currentPlayer);
@@ -196,6 +286,9 @@ bool ChessGame::isGameOver()
   return false;
 }
 
+/*
+* Undoes the last move
+*/
 void ChessGame::undo()
 {
 	if (m_moves.empty())
@@ -206,6 +299,11 @@ void ChessGame::undo()
 	m_moves.pop_back();
 }
 
+/*
+* Checks if the move is valid and if it is, makes the move
+* @param move The move to be made
+* @return True if the move was made, false otherwise
+*/
 bool ChessGame::makeMove(const std::shared_ptr<ChessMove>& move)
 {
 	move->checkValidity(*this);
@@ -220,6 +318,9 @@ bool ChessGame::makeMove(const std::shared_ptr<ChessMove>& move)
 	return true;
 }
 
+/*
+* Play a turn for the current player
+*/
 void ChessGame::playerTurn()
 {
 	m_currentPlayer.startTimer();
@@ -240,6 +341,9 @@ void ChessGame::playerTurn()
   m_currentPlayer.stopTimer();
 }
 
+/*
+* moves the game to the next player
+*/
 void ChessGame::moveToNextPlayer()
 {
 	m_players.push_back(m_players.front());
@@ -247,11 +351,17 @@ void ChessGame::moveToNextPlayer()
 	m_currentPlayer = m_players.front();
 }
 
+/*
+* display the next player to play on the console
+*/
 void ChessGame::displayNextPlayer() const 
 {
 	std::cout << "Next player : " << m_currentPlayer.getName() << std::endl << std::endl;
 }
 
+/*
+* Play the game
+*/
 void ChessGame::play()
 {
 	try
@@ -259,7 +369,7 @@ void ChessGame::play()
 		m_chessBoard->draw();
 		while (!isGameOver())
 		{
-	   for (const auto& player : m_players)
+		  for (const auto& player : m_players)
        player.displayTimeLeft();
 			playerTurn();
 			moveToNextPlayer();
@@ -267,6 +377,6 @@ void ChessGame::play()
 		}
 	} catch (const std::exception& e)
 	{
-	     std::cout << e.what() << std::endl;
+	  std::cout << e.what() << std::endl;
   }
 }
