@@ -9,6 +9,50 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ChessBoard.h" />
+    <ClInclude Include="src\ChessGame.h" />
+    <ClInclude Include="src\Exception.h" />
+    <ClInclude Include="src\Moves\Capture.h">
+      <Filter>Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moves\Castle.h">
+      <Filter>Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moves\ChessMove.h">
+      <Filter>Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moves\EnPassant.h">
+      <Filter>Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moves\Promotion.h">
+      <Filter>Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pieces\Bishop.h">
+      <Filter>Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pieces\ChessPiece.h">
+      <Filter>Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pieces\King.h">
+      <Filter>Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pieces\Knight.h">
+      <Filter>Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pieces\Pawn.h">
+      <Filter>Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pieces\Queen.h">
+      <Filter>Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pieces\Rook.h">
+      <Filter>Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\Timer.h" />
+    <ClInclude Include="src\utilities.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="src\ChessBoard.cpp" />
     <ClCompile Include="src\ChessGame.cpp" />
     <ClCompile Include="src\Moves\Capture.cpp">
@@ -52,19 +96,9 @@
     <ClCompile Include="src\utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Timer.h" />
+    <Text Include="vendor\bin\LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="sfml-graphics-2.dll" />
-    <None Include="sfml-graphics-d-2.dll" />
-    <None Include="sfml-network-2.dll" />
-    <None Include="sfml-network-d-2.dll" />
-    <None Include="sfml-system-2.dll" />
-    <None Include="sfml-system-d-2.dll" />
-    <None Include="sfml-window-2.dll" />
-    <None Include="sfml-window-d-2.dll" />
-    <None Include="sfml-audio-d-2.dll" />
-    <None Include="sfml-audio-2.dll" />
-    <None Include="openal32.dll" />
+    <None Include="vendor\bin\premake5.exe" />
   </ItemGroup>
 </Project>
