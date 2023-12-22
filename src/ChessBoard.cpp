@@ -7,6 +7,9 @@
 //#define DEBUG_CASTLE
 //#define DEBUG_GET_MOVE
 
+/*
+* Constructor
+*/
 ChessBoard::ChessBoard()
 {
 	for (int row = 0; row < BOARD_SIZE; row++)
@@ -18,27 +21,11 @@ ChessBoard::ChessBoard()
 	m_kingPositions[Color::BLACK] = { 7, 4 };
 }
 
-void ChessBoard::draw()
-{
-	int rowNum = 0;
-	for (auto row = m_board.rbegin(); row != m_board.rend(); ++row, ++rowNum)
-	{
-		std::cout << BOARD_SIZE - rowNum << "\t";
-		for (auto piece = row->begin(); piece != row->end(); ++piece)
-		{
-			if (*piece == nullptr)
-			{
-				std::cout << "        | ";
-				continue;
-			}
-			std::cout << colorToString((* piece)->getColor()) + " " + typeToString((*piece)->getType()) + " | ";
-		}
-		std::cout << "\n" << "       ------------------------------------------------------------------------------" << std::endl;
-	}
-	std::cout << " \t   a\t     b\t       c        d\t   e\t     f\t       g\t h\n" << std::endl;
-}
-
-void ChessBoard::addInitialPieces(Color color)
+/*
+* Add the initial pieces to the board
+*  @param color - the color of the pieces to add
+*/
+void ChessBoard::addInitialPieces(const Color color)
 {
 	int row = (color == Color::WHITE) ? 1 : 6;
 	for (int i = 0; i < BOARD_SIZE; i++)
@@ -60,35 +47,61 @@ void ChessBoard::addInitialPieces(Color color)
 #endif // !DEBUG_GET_MOVE
 }
 
+/*
+* Draw the board with the pieces on it
+*/
+void ChessBoard::draw()
+{
+	int rowNum = 0;
+	for (auto row = m_board.rbegin(); row != m_board.rend(); ++row, ++rowNum)
+	{
+		std::cout << BOARD_SIZE - rowNum << "\t";
+		for (auto piece = row->begin(); piece != row->end(); ++piece)
+		{
+			if (*piece == nullptr)
+			{
+				std::cout << "        | ";
+				continue;
+			}
+			std::cout << colorToString((* piece)->getColor()) + " " + typeToString((*piece)->getType()) + " | ";
+		}
+		std::cout << "\n" << "       ------------------------------------------------------------------------------" << std::endl;
+	}
+	std::cout << " \t   a\t     b\t       c        d\t   e\t     f\t       g\t h\n" << std::endl;
+}
+
+/*
+* Remove a certain piece from the board
+* @param piece - the piece to remove
+*/
 void ChessBoard::removePiece(std::shared_ptr<ChessPiece> piece)
 {
-	Square pos = piece->getSquare();
+	const Square pos = piece->getSquare();
 	if (m_board[pos.row][pos.col] == nullptr)
 		throw PieceNotOnBoard();
 	m_board[pos.row][pos.col] = nullptr;
 }
 
-void ChessBoard::addKingPosition(std::shared_ptr<King> king)
-{
-	m_kingPositions[king->getColor()] = king->getSquare();
-}
-
-Square ChessBoard::getKingPosition(Color color)
-{
-	return m_kingPositions[color];
-}
-
+/*
+* Add a piece to the board
+* @param piece - the piece to add
+*/
 void ChessBoard::addPiece(std::shared_ptr<ChessPiece> piece)
 {
 	if (!piece)
 		return;
-	Square pos = piece->getSquare();
+	const Square pos = piece->getSquare();
 	m_board[pos.row][pos.col] = piece;
-	std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(piece);
+  std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(piece);
 	if (king)
 		addKingPosition(king);
 }
 
+/*
+* Move a piece to a certain square
+* @param piece - the piece to move
+* @param destination - the square to move the piece to
+*/
 void ChessBoard::movePiece(std::shared_ptr<ChessPiece> piece, const Square& destination)
 {
 	removePiece(piece);
@@ -96,6 +109,30 @@ void ChessBoard::movePiece(std::shared_ptr<ChessPiece> piece, const Square& dest
 	addPiece(piece);
 }
 
+/*
+* Add the king's position to the map
+*/
+void ChessBoard::addKingPosition(std::shared_ptr<King> king)
+{
+	m_kingPositions[king->getColor()] = king->getSquare();
+}
+
+/*
+* Get the king position of a certain color
+* @param color - the color of the king
+* @return the king position
+*/
+Square ChessBoard::getKingPosition(const Color color)
+{
+	return m_kingPositions[color];
+}
+
+/*
+* Check if there are obstacles between two squares on the same row
+* @param src - the source square
+* @param dest - the destination square
+* @return true if there are obstacles between the squares, false otherwise
+*/
 bool ChessBoard::checkRowForObstacle(const Square& src, const Square& dest) const
 {
 	int row = src.row;
@@ -107,6 +144,12 @@ bool ChessBoard::checkRowForObstacle(const Square& src, const Square& dest) cons
 	return false;
 }
 
+/*
+* Check if there are obstacles between two squares on the same column
+* @param src - the source square
+* @param dest - the destination square
+* @return true if there are obstacles between the squares, false otherwise
+*/
 bool ChessBoard::checkColForObstacle(const Square& src, const Square& dest) const
 {
 	int col = src.col;
@@ -118,6 +161,12 @@ bool ChessBoard::checkColForObstacle(const Square& src, const Square& dest) cons
 	return false;
 }
 
+/*
+* Check if there are obstacles between two squares on the same diagonal
+* @param src - the source square
+* @param dest - the destination square
+* @return true if there are obstacles between the squares, false otherwise
+*/
 bool ChessBoard::checkDiagForObstacle(const Square& src, const Square& dest) const
 {
 	int delta_row = dest.row - src.row;
@@ -147,7 +196,12 @@ bool ChessBoard::checkDiagForObstacle(const Square& src, const Square& dest) con
 	return false;
 }
 
-
+/*
+* Check if there are obstacles between two squares
+* @param src - the source square
+* @param dest - the destination square
+* @return true if there are obstacles between the squares, false otherwise
+*/
 bool ChessBoard::checkObstacles(const Square& src, const Square& dest) const
 {
 	if (isOnSameRow(src, dest))
@@ -159,6 +213,11 @@ bool ChessBoard::checkObstacles(const Square& src, const Square& dest) const
 	return false;
 }
 
+/*
+* Get the piece at a certain square
+* @param square - the square to get the piece from
+* @return the piece at the square
+*/
 std::shared_ptr<ChessPiece> ChessBoard::getPieceAt(const Square& square)
 {
 	if (!isSquareValid(square))
