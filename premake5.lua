@@ -5,6 +5,7 @@ workspace "ChessClasses"
 project "ChessClasses"
     kind "ConsoleApp"
     language "C++"
+    cppdialect "C++17"
     targetdir "bin/%{cfg.buildcfg}"
 
     files { "src/**.cpp", "src/**.h"}
