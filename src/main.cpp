@@ -1,6 +1,8 @@
 #include "ChessGame.h"
 #include <SFML/Graphics.hpp>
 
+#define GUI
+
 
 /*
 * Entry Point of the program
@@ -13,6 +15,7 @@
 
 int main()
 {
+#ifdef GUI
 	sf::RenderWindow window(sf::VideoMode(1000, 1000), "Chess++");
 
 	while (window.isOpen())
@@ -37,8 +40,12 @@ int main()
 	}
 
 	return 0;
+
+#else
 	ChessGame game;
 	game.play();
 	std::cout << EXIT_MESSAGE << std::endl;
 	return 0;
+
+#endif
 }
