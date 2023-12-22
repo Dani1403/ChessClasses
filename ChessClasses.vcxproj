@@ -136,6 +136,21 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\utilities.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\img\ChessPiecesArray.png" />
+    <Image Include="src\img\Chess_bdt60.png" />
+    <Image Include="src\img\Chess_blt60.png" />
+    <Image Include="src\img\Chess_kdt60.png" />
+    <Image Include="src\img\Chess_klt60.png" />
+    <Image Include="src\img\Chess_ndt60.png" />
+    <Image Include="src\img\Chess_nlt60.png" />
+    <Image Include="src\img\Chess_pdt60.png" />
+    <Image Include="src\img\Chess_plt60.png" />
+    <Image Include="src\img\Chess_qdt60.png" />
+    <Image Include="src\img\Chess_qlt60.png" />
+    <Image Include="src\img\Chess_rdt60.png" />
+    <Image Include="src\img\Chess_rlt60.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

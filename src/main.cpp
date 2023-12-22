@@ -24,7 +24,15 @@ int main()
 				window.close();
 		}
 
-		window.clear();
+		sf::Texture texture;
+		if (!texture.loadFromFile("src/img/Chess_bdt60.png"))
+			return EXIT_FAILURE;
+		texture.setSmooth(true);
+		sf::Sprite sprite;
+		sprite.setTexture(texture);
+
+		window.clear(sf::Color::White);
+		window.draw(sprite);
 		window.display();
 	}
 

@@ -8,7 +8,7 @@ project "ChessClasses"
     cppdialect "C++17"
     targetdir "bin/%{cfg.buildcfg}"
 
-    files { "src/**.cpp", "src/**.h"}
+    files { "src/**.cpp", "src/**.h", "**.png"}
 
     includedirs { "vendor/SFML-2.6.1/include" }
 
