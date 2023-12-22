@@ -1,6 +1,6 @@
 workspace "ChessClasses"
     configurations { "Debug", "Release" }
-    architecture "x86_64"
+    architecture "x64"
 
 project "ChessClasses"
     kind "ConsoleApp"

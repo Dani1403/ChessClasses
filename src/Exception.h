@@ -1,9 +1,10 @@
 #pragma once
+#include "utilities.h"
 #include <exception>
 
 class ExitGame : public std::exception
 {
-	public:
+public:
 	const char* what() const noexcept override
 	{
 		return "Exiting Game";
