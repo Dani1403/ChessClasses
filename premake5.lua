@@ -18,10 +18,11 @@ project "ChessClasses"
             "sfml-graphics-d",
 		    "sfml-window-d",
 		    "sfml-system-d"
-            "sfml-audio-d",
-            "sfml-network-d"
            }
         libdirs { "vendor/SFML-2.6.1/lib" }
+        postbuildcommands {
+         "{COPY} \"vendor/SFML-2.6.1/bin/*.dll\" \"%{cfg.targetdir}\""
+        }
 
     filter "configurations:Release"
         optimize "On"
@@ -30,10 +31,11 @@ project "ChessClasses"
             "sfml-graphics",
 		    "sfml-window",
 		    "sfml-system"
-            "sfml-audio",
-            "sfml-network"
            }
         libdirs { "vendor/SFML-2.6.1/lib" }
+        postbuildcommands {
+         "{COPY} \"vendor/SFML-2.6.1/bin/*.dll\" \"%{cfg.targetdir}\""
+        }
 
     filter "system:macosx"
         xcodebuildsettings {

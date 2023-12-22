@@ -95,10 +95,4 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\utilities.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="vendor\bin\LICENSE.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="vendor\bin\premake5.exe" />
-  </ItemGroup>
 </Project>
