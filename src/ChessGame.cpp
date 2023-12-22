@@ -5,9 +5,6 @@
  */
 ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard()))
 {
-  displayWelcomeMessage();
-	initBoard();
-  initPlayers();
 }
 
 /*
@@ -15,14 +12,14 @@ ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard())
 */
 void ChessGame::initPlayers()
 {
-  const auto player1 = std::make_unique<Player>();
-  const auto player2 = std::make_unique<Player>();
-  initPlayer(*player1, Color::WHITE);
-  initPlayer(*player2, Color::BLACK);
-  m_players.push_back(*player1);
-  m_players.push_back(*player2);
-  m_currentPlayer = m_players.front();
-  std::cout << "First player : " << m_currentPlayer.getName() << std::endl << std::endl;
+	const auto player1 = std::make_unique<Player>();
+	const auto player2 = std::make_unique<Player>();
+	initPlayer(*player1, Color::WHITE);
+	initPlayer(*player2, Color::BLACK);
+	m_players.push_back(*player1);
+	m_players.push_back(*player2);
+	m_currentPlayer = m_players.front();
+	std::cout << "First player : " << m_currentPlayer.getName() << std::endl << std::endl;
 }
 
 /*
@@ -30,8 +27,8 @@ void ChessGame::initPlayers()
 */
 void ChessGame::initPlayer(Player& player, const Color color)
 {
-  player.setColor(color);
-  player.setName(player.getNameFromUser(std::cin, color));
+	player.setColor(color);
+	player.setName(player.getNameFromUser(std::cin, color));
 }
 
 /*
@@ -50,18 +47,18 @@ void ChessGame::initBoard()
 */
 bool ChessGame::isSquareAttacked(const Square square, const Color color)
 {
-  for (const auto& row : m_chessBoard->getBoard())
-  {
-    for (const auto& piece : row)
-    {
-      if (piece == nullptr || piece->getColor() == color)
-        continue;
-      const auto possibleCapture = std::make_shared<Capture>(piece->getSquare(), square, piece, m_chessBoard->getPieceAt(square));
-      if (possibleCapture->checkPossibleMove(*this))
-        return true;
-    }
-  }
-  return false;
+	for (const auto& row : m_chessBoard->getBoard())
+	{
+		for (const auto& piece : row)
+		{
+			if (piece == nullptr || piece->getColor() == color)
+				continue;
+			const auto possibleCapture = std::make_shared<Capture>(piece->getSquare(), square, piece, m_chessBoard->getPieceAt(square));
+			if (possibleCapture->checkPossibleMove(*this))
+				return true;
+		}
+	}
+	return false;
 }
 
 /*
@@ -72,10 +69,10 @@ bool ChessGame::isSquareAttacked(const Square square, const Color color)
 bool ChessGame::isInCheck(const Color color)
 {
 	const Square kingPos = m_chessBoard->getKingPosition(color);
-  moveToNextPlayer();
-  const bool check = isSquareAttacked(kingPos, color);
-  moveToNextPlayer();
-  return check;
+	moveToNextPlayer();
+	const bool check = isSquareAttacked(kingPos, color);
+	moveToNextPlayer();
+	return check;
 }
 
 /*
@@ -158,14 +155,14 @@ std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std:
 		{
 			std::shared_ptr<ChessPiece> pieceToCapture = m_chessBoard->getPieceAt({ row, col });
 			if (pieceToCapture)
-				appendCapture(possibleMoves, pieceToCheck, pieceToCapture, {row, col});
-			appendRegular(possibleMoves, pieceToCheck, {row, col});
+				appendCapture(possibleMoves, pieceToCheck, pieceToCapture, { row, col });
+			appendRegular(possibleMoves, pieceToCheck, { row, col });
 			std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(pieceToCheck);
 			if (king)
 				appendCastle(possibleMoves);
 			std::shared_ptr<Pawn> pawn = std::dynamic_pointer_cast<Pawn>(pieceToCheck);
 			if (pawn)
-				appendPromotion(possibleMoves, pawn, {row, col});
+				appendPromotion(possibleMoves, pawn, { row, col });
 		}
 	}
 	return possibleMoves;
@@ -179,17 +176,17 @@ std::vector<std::shared_ptr<ChessMove>> ChessGame::getPossibleMovesForPiece(std:
 */
 bool ChessGame::checkPossibleMoves(const std::vector<std::shared_ptr<ChessMove>>& possibleMoves, Color color)
 {
-  for (const auto& move : possibleMoves)
-  {
-    move->execute(*this);
-    if (!isInCheck(color))
-    {
-      move->undo(*this);
-      return true;
-    }
-    move->undo(*this);
-  }
-  return false;
+	for (const auto& move : possibleMoves)
+	{
+		move->execute(*this);
+		if (!isInCheck(color))
+		{
+			move->undo(*this);
+			return true;
+		}
+		move->undo(*this);
+	}
+	return false;
 }
 
 /*
@@ -203,13 +200,13 @@ bool ChessGame::colorHasValidMove(const Color color)
 	{
 		for (int col = 0; col < m_chessBoard->BOARD_SIZE; col++)
 		{
-			std::shared_ptr<ChessPiece> piece = m_chessBoard->getPieceAt({row, col});
+			std::shared_ptr<ChessPiece> piece = m_chessBoard->getPieceAt({ row, col });
 			if (piece == nullptr || piece->getColor() != color)
 				continue;
 			std::vector<std::shared_ptr<ChessMove>> possibleMoves = getPossibleMovesForPiece(piece);
-      const bool hasValidMove = checkPossibleMoves(possibleMoves, color);
+			const bool hasValidMove = checkPossibleMoves(possibleMoves, color);
 			if (hasValidMove)
-        return true;
+				return true;
 		}
 	}
 	return false;
@@ -234,8 +231,8 @@ bool ChessGame::isInCheckmate(const Color color)
 */
 bool ChessGame::isInStaleMate(const Color color)
 {
-  if (isInCheck(color))
-    return false;
+	if (isInCheck(color))
+		return false;
 	return !colorHasValidMove(color);
 }
 
@@ -246,12 +243,12 @@ bool ChessGame::isInStaleMate(const Color color)
 */
 void ChessGame::handleTimeUp(const Player& player) const
 {
-  if (player.isTimeUp())
-  {
-    std::cout << player.getName() << " ran out of time!" << std::endl;
-    player.displayDefeat();
-	  throw ExitGame();
-  }
+	if (player.isTimeUp())
+	{
+		std::cout << player.getName() << " ran out of time!" << std::endl;
+		player.displayDefeat();
+		throw ExitGame();
+	}
 }
 
 /*
@@ -260,30 +257,32 @@ void ChessGame::handleTimeUp(const Player& player) const
 */
 bool ChessGame::isGameOver()
 {
-  handleTimeUp(m_currentPlayer);
-  handleTimeUp(m_players.back());
+	handleTimeUp(m_currentPlayer);
+	handleTimeUp(m_players.back());
 	const Color currentColor = m_currentPlayer.getColor();
 	if (isInCheckmate(currentColor))
 	{
 		m_players.back().displayVictory();
 		return true;
-	} else if (isInStaleMate(currentColor))
+	}
+	else if (isInStaleMate(currentColor))
 	{
 		std::cout << "Stalemate! " + colorToString(currentColor) + " has no legal move " << std::endl;
 		return true;
 	}
 	moveToNextPlayer();
-  if (isInCheckmate(opposite(currentColor)))
+	if (isInCheckmate(opposite(currentColor)))
 	{
 		m_players.back().displayVictory();
 		return true;
-	} else if (isInStaleMate(opposite(currentColor)))
+	}
+	else if (isInStaleMate(opposite(currentColor)))
 	{
 		std::cout << "Stalemate! " + colorToString(opposite(currentColor)) + " has no legal move" << std::endl;
 		return true;
 	}
 	moveToNextPlayer();
-  return false;
+	return false;
 }
 
 /*
@@ -292,7 +291,7 @@ bool ChessGame::isGameOver()
 void ChessGame::undo()
 {
 	if (m_moves.empty())
-    return;
+		return;
 	const std::shared_ptr<ChessMove> move = m_moves.back();
 	if (move != nullptr)
 		move->undo(*this);
@@ -338,7 +337,7 @@ void ChessGame::playerTurn()
 		}
 	}
 	m_chessBoard->draw();
-  m_currentPlayer.stopTimer();
+	m_currentPlayer.stopTimer();
 }
 
 /*
@@ -354,7 +353,7 @@ void ChessGame::moveToNextPlayer()
 /*
 * display the next player to play on the console
 */
-void ChessGame::displayNextPlayer() const 
+void ChessGame::displayNextPlayer() const
 {
 	std::cout << "Next player : " << m_currentPlayer.getName() << std::endl << std::endl;
 }
@@ -366,17 +365,21 @@ void ChessGame::play()
 {
 	try
 	{
+		displayWelcomeMessage();
+		initBoard();
+		initPlayers();
 		m_chessBoard->draw();
 		while (!isGameOver())
 		{
-		  for (const auto& player : m_players)
-       player.displayTimeLeft();
+			for (const auto& player : m_players)
+				player.displayTimeLeft();
 			playerTurn();
 			moveToNextPlayer();
-	    displayNextPlayer();
+			displayNextPlayer();
 		}
-	} catch (const std::exception& e)
+	}
+	catch (const std::exception& e)
 	{
-	  std::cout << e.what() << std::endl;
-  }
+		std::cout << e.what() << std::endl;
+	}
 }
