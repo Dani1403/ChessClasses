@@ -142,8 +142,8 @@
     <Image Include="src\img\B_white.png" />
     <Image Include="src\img\K_black.png" />
     <Image Include="src\img\K_white.png" />
-    <Image Include="src\img\k_b.png" />
-    <Image Include="src\img\k_w.png" />
+    <Image Include="src\img\k_blackx.png" />
+    <Image Include="src\img\k_whitex.png" />
     <Image Include="src\img\P_black.png" />
     <Image Include="src\img\P_white.png" />
     <Image Include="src\img\Q_black.png" />

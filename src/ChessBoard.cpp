@@ -1,7 +1,7 @@
 #include "ChessBoard.h"
 #include "Moves/Capture.h"
-#include "Moves/ChessMove.h"
 #include "Moves/Castle.h"
+#include "Moves/ChessMove.h"
 #include "Moves/Promotion.h"
 
 //#define DEBUG_CASTLE
@@ -63,12 +63,44 @@ void ChessBoard::draw()
 				std::cout << "        | ";
 				continue;
 			}
-			std::cout << colorToString((* piece)->getColor()) + " " + typeToString((*piece)->getType()) + " | ";
+			std::cout << colorToString((*piece)->getColor()) + " " + typeToString((*piece)->getType()) + " | ";
 		}
 		std::cout << "\n" << "       ------------------------------------------------------------------------------" << std::endl;
 	}
 	std::cout << " \t   a\t     b\t       c        d\t   e\t     f\t       g\t h\n" << std::endl;
 }
+
+/*
+* Render the board with the pieces on it
+* @param window - the window to render to
+*/
+void ChessBoard::render(sf::RenderWindow& window)
+{
+	for (int row = 0; row < BOARD_SIZE; row++)
+	{
+		// TODO  : Add row numbers to the window (sfml text)
+		for (int col = 0; col < BOARD_SIZE; col++)
+		{
+			sf::RectangleShape square(sf::Vector2f(SQUARE_SIZE, SQUARE_SIZE));
+			sf::Color color = (row + col) % 2 == 0 ? sf::Color::Cyan : sf::Color::Yellow;
+			square.setFillColor(color);
+			sf::Vector2f position(row * SQUARE_SIZE, col * SQUARE_SIZE);
+			square.setPosition(position);
+
+			square.setOutlineThickness(1);
+			square.setOutlineColor(sf::Color::Black);
+
+			window.draw(square);
+
+			std::shared_ptr<ChessPiece> piece = m_board[row][col];
+			if (piece == nullptr)
+				continue;
+			(piece)->render(window);
+		}
+	}
+	// TODO : Add column letters to the window (sfml text)
+}
+
 
 /*
 * Remove a certain piece from the board
@@ -92,7 +124,7 @@ void ChessBoard::addPiece(std::shared_ptr<ChessPiece> piece)
 		return;
 	const Square pos = piece->getSquare();
 	m_board[pos.row][pos.col] = piece;
-  std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(piece);
+	std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(piece);
 	if (king)
 		addKingPosition(king);
 }

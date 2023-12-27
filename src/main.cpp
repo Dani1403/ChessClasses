@@ -1,5 +1,4 @@
 #include "ChessGame.h"
-#include <SFML/Graphics.hpp>
 
 #define GUI
 
@@ -15,9 +14,10 @@
 
 int main()
 {
+	ChessGame game;
 #ifdef GUI
 	sf::RenderWindow window(sf::VideoMode(1000, 1000), "Chess++");
-
+	game.initBoard();
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -26,23 +26,13 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-
-		sf::Texture texture;
-		if (!texture.loadFromFile("src/img/Chess_bdt60.png"))
-			return EXIT_FAILURE;
-		texture.setSmooth(true);
-		sf::Sprite sprite;
-		sprite.setTexture(texture);
-
 		window.clear(sf::Color::White);
-		window.draw(sprite);
+		game.getChessBoard()->render(window);
 		window.display();
 	}
-
 	return 0;
 
 #else
-	ChessGame game;
 	game.play();
 	std::cout << EXIT_MESSAGE << std::endl;
 	return 0;

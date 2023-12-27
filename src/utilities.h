@@ -1,16 +1,18 @@
 #pragma once
 
-#include <string>
-#include <memory>
-#include <vector>
-#include <map>
 #include <array>
-#include <list>
-#include <iostream>
 #include <chrono>
+#include <iostream>
+#include <list>
+#include <map>
+#include <memory>
+#include <SFML/Graphics.hpp>
+#include <string>
+#include <vector>
+
 
 const std::chrono::duration<double> TIME_LIMIT = std::chrono::seconds(15 * 60);
-
+const float SQUARE_SIZE = 100.0f;
 
 const std::string CASTLE_KINGSIDE = "O-O";
 const std::string CASTLE_QUEENSIDE = "O-O-O";

@@ -11,6 +11,17 @@ std::string ChessPiece::pieceDescription() const
 		" Square : " + squareToAlgebraic(getSquare()) + "\n";
 }
 
+void ChessPiece::render(sf::RenderWindow& window) const
+{
+	sf::Texture texture;
+	if (!texture.loadFromFile("src/img/" + imageFileName() + ".png"))
+		throw std::runtime_error("Could not load image src/img/" + imageFileName() + ".png");
+	sf::Sprite sprite;
+	sprite.setTexture(texture);
+	sprite.setPosition(getSquare().col * SQUARE_SIZE, getSquare().row * SQUARE_SIZE);
+	window.draw(sprite);
+}
+
 /*
 * output stream operator for a piece
 * @param os the output stream

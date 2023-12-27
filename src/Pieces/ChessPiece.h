@@ -20,6 +20,8 @@ public:
 	virtual ~ChessPiece() = default;
 	ChessPiece& operator=(const ChessPiece& other) = default;
 
+	void render(sf::RenderWindow& window) const;
+
 	/*
 	* Get a string representation of the piece with color, type and position
 	* @return a string representation of the piece
@@ -64,7 +66,7 @@ protected:
 	Square m_position;
 	Type m_type;
 
-	std::string imageFileName() const { return };
+	std::string imageFileName() const { return typeToString(m_type) + "_" + colorToString(m_color) + (m_type == Type::KNIGHT ? "x" : ""); }
 };
 
 /*
