@@ -18,7 +18,7 @@ void ChessPiece::render(sf::RenderWindow& window) const
 		throw std::runtime_error("Could not load image src/img/" + imageFileName() + ".png");
 	sf::Sprite sprite;
 	sprite.setTexture(texture);
-	sprite.setPosition(getSquare().col * SQUARE_SIZE, getSquare().row * SQUARE_SIZE);
+	sprite.setPosition(getSquare().col * SQUARE_SIZE + OFFSET_X, getSquare().row * SQUARE_SIZE + OFFSET_Y);
 	window.draw(sprite);
 }
 

@@ -66,6 +66,8 @@ protected:
 	Square m_position;
 	Type m_type;
 
+	const float OFFSET_X = 15, OFFSET_Y = 15;
+
 	std::string imageFileName() const { return typeToString(m_type) + "_" + colorToString(m_color) + (m_type == Type::KNIGHT ? "x" : ""); }
 };
 

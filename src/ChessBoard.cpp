@@ -88,7 +88,7 @@ void ChessBoard::renderGrid(sf::RenderWindow& window) const
 			sf::Vector2f position(rowNum * SQUARE_SIZE, colNum * SQUARE_SIZE);
 			square.setPosition(position);
 
-			square.setOutlineThickness(1);
+			square.setOutlineThickness(SQUARE_OUTLINE_THICKNESS);
 			square.setOutlineColor(sf::Color::Black);
 
 			window.draw(square);
@@ -120,13 +120,61 @@ void ChessBoard::renderPieces(sf::RenderWindow& window) const
 }
 
 /*
+* Render the indications of the rows
+* @param window - the window to render to
+*/
+void ChessBoard::renderRowIndications(sf::RenderWindow& window) const
+{
+	sf::Font font;
+	if (!font.loadFromFile("src/fonts/LEMONMILK-Regular.otf"))
+	{
+		std::cout << "Error loading font" << std::endl;
+		return;
+	}
+	for (int row = 0; row < BOARD_SIZE; row++)
+	{
+		sf::Text rowText;
+		rowText.setString(std::to_string(row + 1));
+		rowText.setFillColor(sf::Color::Black);
+		rowText.setCharacterSize(20);
+		rowText.setPosition(10, row * SQUARE_SIZE);
+		rowText.setFont(font);
+		window.draw(rowText);
+	}
+}
+
+/*
+* Render the indications of the columns
+* @param window - the window to render to
+*/
+void ChessBoard::renderColIndications(sf::RenderWindow& window) const
+{
+	sf::Font font;
+	if (!font.loadFromFile("src/fonts/LEMONMILK-Regular.otf"))
+	{
+		std::cout << "Error loading font" << std::endl;
+		return;
+	}
+	sf::Text colText;
+	colText.setString("\ta\t\t\tb\t\t\t\tc\t\t\td\t\t\te\t\t\tf\t\t\tg\t\t\th");
+	colText.setFillColor(sf::Color::Black);
+	colText.setCharacterSize(20);
+	colText.setPosition(10, BOARD_SIZE * SQUARE_SIZE);
+	colText.setFont(font);
+	window.draw(colText);
+}
+
+/*
 * Render the board with the pieces on it
+*	Add the column and row indications
 * @param window - the window to render to
 */
 void ChessBoard::render(sf::RenderWindow& window) const
 {
 	renderGrid(window);
 	renderPieces(window);
+	renderRowIndications(window);
+	renderColIndications(window);
 }
 
 /*

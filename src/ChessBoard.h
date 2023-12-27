@@ -45,6 +45,18 @@ public:
 	void renderPieces(sf::RenderWindow& window) const;
 
 	/*
+	* Render the indications of the columns
+	* @param window - the window to render to
+	*/
+	void renderColIndications(sf::RenderWindow& window) const;
+
+	/*
+	* Render the indications of the rows
+	* @param window - the window to render to
+	*/
+	void renderRowIndications(sf::RenderWindow& window) const;
+
+	/*
 	* Render the board with the pieces on it
 	* @param window - the window to render to
 	*/

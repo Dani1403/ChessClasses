@@ -373,6 +373,9 @@ void ChessGame::play(sf::RenderWindow& window)
 		}
 		displayWelcomeMessage();
 		initBoard();
+		window.clear(sf::Color::White);
+		m_chessBoard->render(window);
+		window.display();
 		initPlayers();
 		while (!isGameOver())
 		{

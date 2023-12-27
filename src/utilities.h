@@ -12,7 +12,8 @@
 
 
 const std::chrono::duration<double> TIME_LIMIT = std::chrono::seconds(15 * 60);
-const float SQUARE_SIZE = 100.0f;
+const float SQUARE_SIZE = 90.0f;
+const int SQUARE_OUTLINE_THICKNESS = 2;
 
 const std::string CASTLE_KINGSIDE = "O-O";
 const std::string CASTLE_QUEENSIDE = "O-O-O";
