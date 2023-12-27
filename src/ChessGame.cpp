@@ -360,38 +360,32 @@ void ChessGame::displayNextPlayer() const
 
 /*
 * Play the game
+*	@param window - the window to render to
 */
 void ChessGame::play(sf::RenderWindow& window)
 {
 	while (window.isOpen())
 	{
-		try
+		sf::Event event;
+		while (window.pollEvent(event))
 		{
-			sf::Event event;
-			while (window.pollEvent(event))
-			{
-				if (event.type == sf::Event::Closed)
-					window.close();
-			}
-			displayWelcomeMessage();
-			initBoard();
-			initPlayers();
-			while (!isGameOver())
-			{
-				window.clear(sf::Color::White);
-				m_chessBoard->render(window);
-				window.display();
-				window.setActive(true);
-				for (const auto& player : m_players)
-					player.displayTimeLeft();
-				playerTurn();
-				moveToNextPlayer();
-				displayNextPlayer();
-			}
+			if (event.type == sf::Event::Closed)
+				window.close();
 		}
-		catch (const std::exception& e)
+		displayWelcomeMessage();
+		initBoard();
+		initPlayers();
+		while (!isGameOver())
 		{
-			std::cout << e.what() << std::endl;
+			window.clear(sf::Color::White);
+			m_chessBoard->render(window);
+			window.display();
+			window.setActive(true);
+			for (const auto& player : m_players)
+				player.displayTimeLeft();
+			playerTurn();
+			moveToNextPlayer();
+			displayNextPlayer();
 		}
 	}
 }

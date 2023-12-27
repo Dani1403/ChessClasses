@@ -102,6 +102,7 @@ public:
 
 	/*
 	* Play the game
+	*	@param window The window to play the game on
 	*/
 	void play(sf::RenderWindow& window);
 
