@@ -50,7 +50,7 @@ void ChessBoard::addInitialPieces(const Color color)
 /*
 * Draw the board with the pieces on it
 */
-void ChessBoard::draw()
+void ChessBoard::draw() const
 {
 	int rowNum = 0;
 	for (auto row = m_board.rbegin(); row != m_board.rend(); ++row, ++rowNum)
@@ -74,15 +74,14 @@ void ChessBoard::draw()
 * Render the board with the pieces on it
 * @param window - the window to render to
 */
-void ChessBoard::render(sf::RenderWindow& window)
+void ChessBoard::render(sf::RenderWindow& window) const
 {
 	for (int row = 0; row < BOARD_SIZE; row++)
 	{
-		// TODO  : Add row numbers to the window (sfml text)
 		for (int col = 0; col < BOARD_SIZE; col++)
 		{
 			sf::RectangleShape square(sf::Vector2f(SQUARE_SIZE, SQUARE_SIZE));
-			sf::Color color = (row + col) % 2 == 0 ? sf::Color::Cyan : sf::Color::Yellow;
+			sf::Color color = (row + col) % 2 == 0 ? sf::Color::Green : sf::Color::Red;
 			square.setFillColor(color);
 			sf::Vector2f position(row * SQUARE_SIZE, col * SQUARE_SIZE);
 			square.setPosition(position);
@@ -95,10 +94,9 @@ void ChessBoard::render(sf::RenderWindow& window)
 			std::shared_ptr<ChessPiece> piece = m_board[row][col];
 			if (piece == nullptr)
 				continue;
-			(piece)->render(window);
+			piece->render(window);
 		}
 	}
-	// TODO : Add column letters to the window (sfml text)
 }
 
 

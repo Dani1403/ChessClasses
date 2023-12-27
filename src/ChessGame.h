@@ -103,7 +103,7 @@ public:
 	/*
 	* Play the game
 	*/
-	void play();
+	void play(sf::RenderWindow& window);
 
 private:
 	std::shared_ptr<ChessBoard> m_chessBoard;

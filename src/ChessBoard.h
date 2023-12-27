@@ -29,13 +29,13 @@ public:
 	/*
 	* Draw the board with the pieces on it
 	*/
-	void draw();
+	void draw() const;
 
 	/*
 	* Render the board with the pieces on it
 	* @param window - the window to render to
 	*/
-	void render(sf::RenderWindow& window);
+	void render(sf::RenderWindow& window) const;
 
 	/*
 	* Remove a certain piece from the board
