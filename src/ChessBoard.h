@@ -27,9 +27,22 @@ public:
 	void addInitialPieces(const Color color);
 
 	/*
-	* Draw the board with the pieces on it
+	* Draw the board with the pieces on it to the console
 	*/
 	void draw() const;
+
+	/*
+	* Render the grid of the board
+	* set the color of the squares to black or white
+	* @param window - the window to render to
+	*/
+	void renderGrid(sf::RenderWindow& window) const;
+
+	/*
+	* Render the pieces on the board
+	* @param window - the window to render to
+	*/
+	void renderPieces(sf::RenderWindow& window) const;
 
 	/*
 	* Render the board with the pieces on it

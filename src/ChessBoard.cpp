@@ -48,7 +48,7 @@ void ChessBoard::addInitialPieces(const Color color)
 }
 
 /*
-* Draw the board with the pieces on it
+* Draw the board with the pieces on it to the console
 */
 void ChessBoard::draw() const
 {
@@ -71,34 +71,63 @@ void ChessBoard::draw() const
 }
 
 /*
-* Render the board with the pieces on it
+* Render the grid of the board
+* set the color of the squares to black or white
 * @param window - the window to render to
 */
-void ChessBoard::render(sf::RenderWindow& window) const
+void ChessBoard::renderGrid(sf::RenderWindow& window) const
 {
-	for (int row = 0; row < BOARD_SIZE; row++)
+	int rowNum = 0, colNum = 0;
+	for (auto row = m_board.rbegin(); row != m_board.rend(); ++row, rowNum++)
 	{
-		for (int col = 0; col < BOARD_SIZE; col++)
+		for (auto piece = row->begin(); piece != row->end(); ++piece)
 		{
 			sf::RectangleShape square(sf::Vector2f(SQUARE_SIZE, SQUARE_SIZE));
-			sf::Color color = (row + col) % 2 == 0 ? sf::Color::Green : sf::Color::Red;
+			sf::Color color = (rowNum + colNum) % 2 == 0 ? sf::Color::Green : sf::Color::Red;
 			square.setFillColor(color);
-			sf::Vector2f position(row * SQUARE_SIZE, col * SQUARE_SIZE);
+			sf::Vector2f position(rowNum * SQUARE_SIZE, colNum * SQUARE_SIZE);
 			square.setPosition(position);
 
 			square.setOutlineThickness(1);
 			square.setOutlineColor(sf::Color::Black);
 
 			window.draw(square);
-
-			std::shared_ptr<ChessPiece> piece = m_board[row][col];
-			if (piece == nullptr)
-				continue;
-			piece->render(window);
+			colNum == 7 ? colNum = 0 : colNum++;
 		}
 	}
 }
 
+/*
+* Render the pieces on the board
+* @param window - the window to render to
+*/
+void ChessBoard::renderPieces(sf::RenderWindow& window) const
+{
+	int rowNum = 0, colNum = 0;
+	for (auto row = m_board.rbegin(); row != m_board.rend(); ++row, rowNum++)
+	{
+		for (auto piece = row->begin(); piece != row->end(); ++piece)
+		{
+			if (*piece == nullptr)
+			{
+				colNum == 7 ? colNum = 0 : colNum++;
+				continue;
+			}
+			(*piece)->render(window);
+			colNum == 7 ? colNum = 0 : colNum++;
+		}
+	}
+}
+
+/*
+* Render the board with the pieces on it
+* @param window - the window to render to
+*/
+void ChessBoard::render(sf::RenderWindow& window) const
+{
+	renderGrid(window);
+	renderPieces(window);
+}
 
 /*
 * Remove a certain piece from the board

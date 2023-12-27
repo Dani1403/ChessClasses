@@ -336,7 +336,6 @@ void ChessGame::playerTurn()
 			std::cout << invalid.message() << std::endl << std::endl;
 		}
 	}
-	m_chessBoard->draw();
 	m_currentPlayer.stopTimer();
 }
 

@@ -11,8 +11,15 @@
 
 int main()
 {
-	ChessGame game;
-	sf::RenderWindow window(sf::VideoMode(1000, 1000), "Chess++");
-	game.play(window);
+	try
+	{
+		ChessGame game;
+		sf::RenderWindow window(sf::VideoMode(1000, 1000), "Chess++");
+		game.play(window);
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 	return 0;
 }
