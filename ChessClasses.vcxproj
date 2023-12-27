@@ -138,18 +138,18 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\img\ChessPiecesArray.png" />
-    <Image Include="src\img\Chess_bdt60.png" />
-    <Image Include="src\img\Chess_blt60.png" />
-    <Image Include="src\img\Chess_kdt60.png" />
-    <Image Include="src\img\Chess_klt60.png" />
-    <Image Include="src\img\Chess_ndt60.png" />
-    <Image Include="src\img\Chess_nlt60.png" />
-    <Image Include="src\img\Chess_pdt60.png" />
-    <Image Include="src\img\Chess_plt60.png" />
-    <Image Include="src\img\Chess_qdt60.png" />
-    <Image Include="src\img\Chess_qlt60.png" />
-    <Image Include="src\img\Chess_rdt60.png" />
-    <Image Include="src\img\Chess_rlt60.png" />
+    <Image Include="src\img\Bishop_Black.png" />
+    <Image Include="src\img\Bishow_White.png" />
+    <Image Include="src\img\King_Black.png" />
+    <Image Include="src\img\King_White.png" />
+    <Image Include="src\img\Knight_Black.png" />
+    <Image Include="src\img\Knight_White.png" />
+    <Image Include="src\img\Pawn_Black.png" />
+    <Image Include="src\img\Pawn_White.png" />
+    <Image Include="src\img\Queen_Black.png" />
+    <Image Include="src\img\Queen_White.png" />
+    <Image Include="src\img\Rook_Black.png" />
+    <Image Include="src\img\Rook_White.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
