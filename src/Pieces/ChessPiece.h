@@ -63,6 +63,8 @@ protected:
 	Color m_color;
 	Square m_position;
 	Type m_type;
+
+	std::string imageFileName() const { return };
 };
 
 /*
