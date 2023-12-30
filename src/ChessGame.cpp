@@ -357,34 +357,48 @@ void ChessGame::displayNextPlayer() const
 	std::cout << "Next player : " << m_currentPlayer.getName() << std::endl << std::endl;
 }
 
+void ChessGame::displayTimers() const
+{
+	for (const auto& player : m_players)
+		player.displayTimeLeft();
+}
+
+void ChessGame::renderTimers(sf::RenderWindow& window) const
+{
+	for (const auto& player : m_players)
+	{
+		window.setActive(true);
+		player.renderTimeLeft(window);
+		window.display();
+		window.setActive(false);
+	}
+}
+
+void ChessGame::renderWindow(sf::RenderWindow& window) const
+{
+	m_chessBoard->render(window);
+	renderTimers(window);
+}
+
 /*
 * Play the game
 *	@param window - the window to render to
 */
 void ChessGame::play(sf::RenderWindow& window)
 {
+	displayWelcomeMessage();
+	initBoard();
+	initPlayers();
 	while (window.isOpen())
 	{
 		sf::Event event;
-		while (window.pollEvent(event))
+		while (window.pollEvent(event) && !isGameOver())
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-		}
-		displayWelcomeMessage();
-		initBoard();
-		window.clear(sf::Color::White);
-		m_chessBoard->render(window);
-		window.display();
-		initPlayers();
-		while (!isGameOver())
-		{
 			window.clear(sf::Color::White);
-			m_chessBoard->render(window);
+			renderWindow(window);
 			window.display();
-			window.setActive(true);
-			for (const auto& player : m_players)
-				player.displayTimeLeft();
 			playerTurn();
 			moveToNextPlayer();
 			displayNextPlayer();

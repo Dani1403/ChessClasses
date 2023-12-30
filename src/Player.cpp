@@ -1,7 +1,7 @@
-#include "Player.h"
-#include "Moves/ChessMove.h"
 #include "ChessBoard.h"
 #include "ChessGame.h"
+#include "Moves/ChessMove.h"
+#include "Player.h"
 
 /*
 * Let the player input a name.
@@ -11,11 +11,31 @@
 */
 std::string Player::getNameFromUser(std::istream& is, const Color color) const
 {
-  askForName(color);
-  std::string name;
-  is >> name;
-  return name;
+	askForName(color);
+	std::string name;
+	is >> name;
+	return name;
 }
+
+/*
+* Render the time left for the player
+* @param window - the window to render to
+*/
+void Player::renderTimeLeft(sf::RenderWindow& window) const
+{
+	sf::Font font;
+	if (!font.loadFromFile("src/fonts/LEMONMILK-Regular.otf"))
+		throw std::runtime_error("Could not load font");
+	sf::Text text;
+	text.setFont(font);
+	text.setString(m_name + " has " + std::to_string((int)(getTimeLeft().count() / 60)) + " minutes and " +
+		std::to_string((int)getTimeLeft().count() % 60) + " seconds left\n ");
+	text.setCharacterSize(20);
+	text.setFillColor(sf::Color::Black);
+	text.setPosition(10, m_color == Color::WHITE ? 800 : 820);
+	window.draw(text);
+}
+
 
 /*
 * Let the player input a move.
@@ -24,8 +44,8 @@ std::string Player::getNameFromUser(std::istream& is, const Color color) const
 */
 std::string Player::getMoveFromUser(std::istream& is) const
 {
-  displayInstructions();
-  askForMove();
+	displayInstructions();
+	askForMove();
 	std::string input;
 	is >> input;
 	return input;
@@ -35,7 +55,7 @@ std::string Player::getMoveFromUser(std::istream& is) const
 * handles the cases where the user wants to display some instruction or quit the game.
 * @return a string representing the move the player wants to make.
 */
-std::string Player::handleInput() const 
+std::string Player::handleInput() const
 {
 	bool isAMove = false;
 	std::string input;
@@ -66,7 +86,7 @@ std::string Player::handleInput() const
 		}
 		isAMove = true;
 	} while (!isAMove);
-  return input;
+	return input;
 }
 
 /*
@@ -99,16 +119,16 @@ std::shared_ptr<ChessPiece> Player::getPromotedPiece(const Type type, const Colo
 {
 	switch (type)
 	{
-		case Type::QUEEN:
-			return std::make_shared<Queen>(Queen(color, square));
-		case Type::ROOK:
-			return std::make_shared<Rook>(Rook(color, square));
-		case Type::BISHOP:
-			return std::make_shared<Bishop>(Bishop(color, square));
-		case Type::KNIGHT:
-			return std::make_shared<Knight>(Knight(color, square));
-	  default:
-			throw InvalidMove(INVALID_PROMOTED_PIECE);
+	case Type::QUEEN:
+		return std::make_shared<Queen>(Queen(color, square));
+	case Type::ROOK:
+		return std::make_shared<Rook>(Rook(color, square));
+	case Type::BISHOP:
+		return std::make_shared<Bishop>(Bishop(color, square));
+	case Type::KNIGHT:
+		return std::make_shared<Knight>(Knight(color, square));
+	default:
+		throw InvalidMove(INVALID_PROMOTED_PIECE);
 	}
 }
 
@@ -120,7 +140,7 @@ std::shared_ptr<ChessPiece> Player::getPromotedPiece(const Type type, const Colo
 std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 {
 	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
-  const std::string input = handleInput();
+	const std::string input = handleInput();
 	if (input == CASTLE_KINGSIDE || input == CASTLE_QUEENSIDE)
 	{
 		const Side side = input == CASTLE_KINGSIDE ? Side::KING : Side::QUEEN;
@@ -130,7 +150,7 @@ std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 	Square destination = algebraicToSquare(input.substr(input.length() - 2));
 	std::shared_ptr<ChessPiece> pieceToMove = board->getPieceAt(source);
 	if (input.at(2) == CAPTURE_SYMBOL_UPPER ||
-			input.at(2) == CAPTURE_SYMBOL_LOWER)
+		input.at(2) == CAPTURE_SYMBOL_LOWER)
 	{
 		std::shared_ptr<ChessPiece> capturedPiece = board->getPieceAt(destination);
 		return std::make_shared<Capture>(source, destination, pieceToMove, capturedPiece);

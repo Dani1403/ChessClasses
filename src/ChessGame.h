@@ -101,10 +101,23 @@ public:
 	void playerTurn();
 
 	/*
+	* Display the timers of the players to the console
+	*/
+	void displayTimers() const;
+
+	/*
+	* Render the timers of the players to the window
+	* @param window - the window to render to
+	*/
+	void renderTimers(sf::RenderWindow& window) const;
+
+	/*
 	* Play the game
 	*	@param window The window to play the game on
 	*/
 	void play(sf::RenderWindow& window);
+
+	void renderWindow(sf::RenderWindow& window) const;
 
 private:
 	std::shared_ptr<ChessBoard> m_chessBoard;
