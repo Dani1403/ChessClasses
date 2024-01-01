@@ -337,22 +337,36 @@ void ChessGame::playerTurn(sf::RenderWindow& window)
 		{
 			std::shared_ptr<ChessMove> move;
 			std::atomic<bool> moveReady(false);
+			std::atomic<bool > exitGame(false);
 			std::thread getMoveThread([&]
 				{
-					move = m_currentPlayer.getMove(*this);
-					moveReady = true;
+					try
+					{
+						move = m_currentPlayer.getMove(*this);
+						moveReady = true;
+					}
+					catch (const ExitGame&)
+					{
+						exitGame = true;
+					}
 				});
-			while (!moveReady)
+			while (!moveReady && !exitGame)
 				renderWindow(window);
 			if (getMoveThread.joinable())
 			{
 				getMoveThread.join();
+				if (exitGame)
+					throw ExitGame();
 				moved = makeMove(move);
 			}
 		}
 		catch (const InvalidMove& invalid)
 		{
 			std::cout << invalid.message() << std::endl << std::endl;
+		}
+		catch (const ExitGame&)
+		{
+			throw ExitGame();
 		}
 	}
 	m_currentPlayer.stopTimer();

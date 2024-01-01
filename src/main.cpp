@@ -11,15 +11,18 @@
 
 int main()
 {
+	ChessGame game;
+	sf::RenderWindow window(sf::VideoMode(1000, 1000), "Chess++");
+	auto image = sf::Image();
+	if (image.loadFromFile("src/img/K_black.png"))
+		window.setIcon(32, 32, image.getPixelsPtr());
 	try
 	{
-		ChessGame game;
-		sf::RenderWindow window(sf::VideoMode(1000, 1000), "Chess++");
 		game.play(window);
 	}
-	catch (const std::exception& e)
+	catch (const ExitGame&)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << EXIT_MESSAGE << std::endl;
 	}
 	return 0;
 }
