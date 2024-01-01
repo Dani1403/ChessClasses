@@ -97,6 +97,13 @@ public:
 
 	/*
 	* Play a turn for the current player
+	*	-> start the timer of the current player
+	*	-> get the move from the player in a separate thread
+	*	-> wait for the move to be ready
+	*	-> render the window while waiting
+	*	-> make the move
+	*	-> stop the timer of the current player
+	*	@param window - the window to render to
 	*/
 	void playerTurn(sf::RenderWindow& window);
 
