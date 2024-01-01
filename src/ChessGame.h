@@ -98,7 +98,7 @@ public:
 	/*
 	* Play a turn for the current player
 	*/
-	void playerTurn();
+	void playerTurn(sf::RenderWindow& window);
 
 	/*
 	* Display the timers of the players to the console
@@ -117,6 +117,14 @@ public:
 	*/
 	void play(sf::RenderWindow& window);
 
+	/*
+	* Render the game to the window
+	*	-> clear the window
+	*	-> render the board
+	*	-> render the timers
+	*	-> display the window
+	* @param window - the window to render to
+	*/
 	void renderWindow(sf::RenderWindow& window) const;
 
 private:

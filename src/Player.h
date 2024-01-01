@@ -112,6 +112,12 @@ public:
 	std::chrono::duration<double> getTimeLeft() const { return TIME_LIMIT - m_timer->getDuration(); }
 
 	/*
+	* Get the time left for the player when it's his turn.
+	* @return the time left for the player when it's his turn.
+	*/
+	std::chrono::duration<double> getDurationInTurn() const { return TIME_LIMIT - m_timer->getDurationWhenOn(); }
+
+	/*
 	* Display the time left for the player.
 	*/
 	void displayTimeLeft() const {

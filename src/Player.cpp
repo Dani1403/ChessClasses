@@ -28,14 +28,13 @@ void Player::renderTimeLeft(sf::RenderWindow& window) const
 		throw std::runtime_error("Could not load font");
 	sf::Text text;
 	text.setFont(font);
-	text.setString(m_name + " has " + std::to_string((int)(getTimeLeft().count() / 60)) + " minutes and " +
-		std::to_string((int)getTimeLeft().count() % 60) + " seconds left\n ");
+	text.setString(m_name + " has " + std::to_string((int)(getDurationInTurn().count() / 60)) + " minutes and " +
+		std::to_string((int)getDurationInTurn().count() % 60) + " seconds left\n ");
 	text.setCharacterSize(20);
 	text.setFillColor(sf::Color::Black);
 	text.setPosition(10, m_color == Color::WHITE ? 800 : 820);
 	window.draw(text);
 }
-
 
 /*
 * Let the player input a move.

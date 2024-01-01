@@ -320,7 +320,7 @@ bool ChessGame::makeMove(const std::shared_ptr<ChessMove>& move)
 /*
 * Play a turn for the current player
 */
-void ChessGame::playerTurn()
+void ChessGame::playerTurn(sf::RenderWindow& window)
 {
 	m_currentPlayer.startTimer();
 	bool moved = false;
@@ -328,8 +328,20 @@ void ChessGame::playerTurn()
 	{
 		try
 		{
-			std::shared_ptr<ChessMove> move = m_currentPlayer.getMove(*this);
-			moved = makeMove(move);
+			std::shared_ptr<ChessMove> move;
+			std::atomic<bool> moveReady(false);
+			std::thread getMoveThread([&]
+				{
+					move = m_currentPlayer.getMove(*this);
+					moveReady = true;
+				});
+			while (!moveReady)
+				renderWindow(window);
+			if (getMoveThread.joinable())
+			{
+				getMoveThread.join();
+				moved = makeMove(move);
+			}
 		}
 		catch (const InvalidMove& invalid)
 		{
@@ -357,27 +369,39 @@ void ChessGame::displayNextPlayer() const
 	std::cout << "Next player : " << m_currentPlayer.getName() << std::endl << std::endl;
 }
 
+/*
+* Display the timers of the player to the console
+*/
 void ChessGame::displayTimers() const
 {
 	for (const auto& player : m_players)
 		player.displayTimeLeft();
 }
 
+/*
+* Render the timers to the window
+* @param window - the window to render to
+*/
 void ChessGame::renderTimers(sf::RenderWindow& window) const
 {
 	for (const auto& player : m_players)
-	{
-		window.setActive(true);
 		player.renderTimeLeft(window);
-		window.display();
-		window.setActive(false);
-	}
 }
 
+/*
+* Render the game to the window
+*	-> clear the window
+*	-> render the board
+*	-> render the timers
+*	-> display the window
+* @param window - the window to render to
+*/
 void ChessGame::renderWindow(sf::RenderWindow& window) const
 {
+	window.clear(sf::Color::White);
 	m_chessBoard->render(window);
 	renderTimers(window);
+	window.display();
 }
 
 /*
@@ -395,11 +419,12 @@ void ChessGame::play(sf::RenderWindow& window)
 		while (window.pollEvent(event) && !isGameOver())
 		{
 			if (event.type == sf::Event::Closed)
+			{
 				window.close();
-			window.clear(sf::Color::White);
+				throw ExitGame();
+			}
 			renderWindow(window);
-			window.display();
-			playerTurn();
+			playerTurn(window);
 			moveToNextPlayer();
 			displayNextPlayer();
 		}
