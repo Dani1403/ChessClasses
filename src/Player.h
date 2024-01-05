@@ -28,9 +28,13 @@ public:
 
 	std::string getName() const { return m_name; }
 
+	bool isTurn() const { return m_isTurn; }
+
 	void setColor(const Color color) { m_color = color; }
 
 	void setName(const std::string& name) { m_name = name; }
+
+	void setTurn(const bool isTurn) { m_isTurn = isTurn; }
 
 	/*
 	* Let the player input a name.
@@ -135,10 +139,11 @@ public:
 	* Check if the player ran out of time.
 	* @return true if the player ran out of time, false otherwise.
 	*/
-	bool isTimeUp() const { return m_timer->getDuration() >= TIME_LIMIT; }
+	bool isTimeUp() const { return m_timer->getDurationWhenOn() >= TIME_LIMIT; }
 
 private:
 	std::string m_name = "Dummy";
 	Color m_color = Color::NONE;
 	std::shared_ptr<Timer> m_timer;
+	bool m_isTurn = false;
 };

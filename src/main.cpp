@@ -12,10 +12,10 @@
 int main()
 {
 	ChessGame game;
-	sf::RenderWindow window(sf::VideoMode(1000, 1000), "Chess++");
+	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Chess++");
 	auto image = sf::Image();
 	if (image.loadFromFile("src/img/K_black.png"))
-		window.setIcon(32, 32, image.getPixelsPtr());
+		window.setIcon(ICON_SIZE, ICON_SIZE, image.getPixelsPtr());
 	try
 	{
 		game.play(window);

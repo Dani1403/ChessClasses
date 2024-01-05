@@ -1,21 +1,27 @@
 #pragma once
 
 #include <array>
+#include <atomic>
 #include <chrono>
+#include <condition_variable>
 #include <functional>
+#include <future>
 #include <iostream>
 #include <list>
 #include <map>
 #include <memory>
+#include <mutex>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <string>
 #include <thread>
 #include <vector>
 
-
+const int WINDOW_WIDTH = 1000;
+const int WINDOW_HEIGHT = 1000;
 const std::chrono::duration<double> TIME_LIMIT = std::chrono::seconds(15 * 60);
 const float SQUARE_SIZE = 90.0f;
+const int ICON_SIZE = 60;
 const int SQUARE_OUTLINE_THICKNESS = 2;
 #define RED (sf::Color(231, 121, 110))
 #define YELLOW (sf::Color(231, 175, 0))

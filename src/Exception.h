@@ -11,6 +11,19 @@ public:
 	}
 };
 
+class TimeUp : public std::exception
+{
+public:
+	TimeUp(std::string playerName) : m_playerName(playerName) {};
+	std::string message() const { return "Time is up for " + m_playerName; }
+	const char* what() const noexcept override
+	{
+		return message().c_str();
+	}
+private:
+	std::string m_playerName;
+};
+
 class InvalidMove : public std::exception
 {
 public:
