@@ -3,6 +3,7 @@
 #include <array>
 #include <atomic>
 #include <chrono>
+#include <cmath>
 #include <condition_variable>
 #include <functional>
 #include <future>
@@ -16,6 +17,7 @@
 #include <string>
 #include <thread>
 #include <vector>
+
 
 const int WINDOW_WIDTH = 1000;
 const int WINDOW_HEIGHT = 1000;
@@ -62,6 +64,15 @@ const std::string INVALID_CASTLE_ROOK = "Invalid castle for the rook, it has alr
 const std::string INVALID_CASTLE_CHECK = "Invalid castle, you are in check";
 const std::string INVALID_PROMOTION_PIECE = "The piece you want to promote is not a pawn";
 const std::string INVALID_PROMOTED_PIECE = "You cannot promote into a pawn or a King";
+
+enum class InvalidCause
+{
+	SUCCESS = 0, NOT_ON_STARTING_ROW, NOT_YOUR_COLOR, YOUR_COLOR, DESTINATION_SQUARE_NOT_EMPTY, SOURCE_SQUARE_EMPTY,
+	DESTINATION_SQUARE_EMPTY, INVALID_MOVEMENT, INVALID_CAPTURE, OBSTACLE, INVALID_CASTLE_PIECES, INVALID_CASTLE_KING,
+	INVALID_CASTLE_ROOK, INVALID_CASTLE_CHECK, INVALID_PROMOTION_PIECE, INVALID_PROMOTED_PIECE
+};
+
+std::string causeToString(const InvalidCause cause);
 
 enum class Color { NONE = 0, WHITE, BLACK };
 

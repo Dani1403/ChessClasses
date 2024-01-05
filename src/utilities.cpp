@@ -1,5 +1,47 @@
 #include "utilities.h"
-#include <cmath>
+
+std::string causeToString(const InvalidCause cause)
+{
+	switch (cause)
+	{
+	case InvalidCause::SUCCESS:
+		return "SUCCESS";
+	case InvalidCause::NOT_ON_STARTING_ROW:
+		return NOT_ON_STARTING_ROW;
+	case InvalidCause::NOT_YOUR_COLOR:
+		return NOT_YOUR_COLOR;
+	case InvalidCause::YOUR_COLOR:
+		return YOUR_COLOR;
+	case InvalidCause::DESTINATION_SQUARE_NOT_EMPTY:
+		return DESTINATION_SQUARE_NOT_EMPTY;
+	case InvalidCause::SOURCE_SQUARE_EMPTY:
+		return SOURCE_SQUARE_EMPTY;
+	case InvalidCause::DESTINATION_SQUARE_EMPTY:
+		return DESTINATION_SQUARE_EMPTY;
+	case InvalidCause::INVALID_MOVEMENT:
+		return INVALID_MOVEMENT;
+	case InvalidCause::INVALID_CAPTURE:
+		return INVALID_CAPTURE;
+	case InvalidCause::OBSTACLE:
+		return OBSTACLE;
+	case InvalidCause::INVALID_CASTLE_PIECES:
+		return INVALID_CASTLE_PIECES;
+	case InvalidCause::INVALID_CASTLE_KING:
+		return INVALID_CASTLE_KING;
+	case InvalidCause::INVALID_CASTLE_ROOK:
+		return INVALID_CASTLE_ROOK;
+	case InvalidCause::INVALID_CASTLE_CHECK:
+		return INVALID_CASTLE_CHECK;
+	case InvalidCause::INVALID_PROMOTION_PIECE:
+		return INVALID_PROMOTION_PIECE;
+	case InvalidCause::INVALID_PROMOTED_PIECE:
+		return INVALID_PROMOTED_PIECE;
+	}
+}
+
+
+
+
 
 Color opposite(const Color color)
 {
@@ -77,12 +119,12 @@ int dist(const Square& s1, const Square& s2)
 {
 	const int rowDiff = s1.row - s2.row;
 	const int colDiff = s1.col - s2.col;
-	return static_cast<int>(sqrt(rowDiff*rowDiff + colDiff*colDiff));
+	return static_cast<int>(sqrt(rowDiff * rowDiff + colDiff * colDiff));
 }
 
 void displayWelcomeMessage()
 {
-  std::cout << "Welcome to Chess++" << std::endl;
+	std::cout << "Welcome to Chess++" << std::endl;
 }
 
 void displayExitGameInstructions()
@@ -92,32 +134,32 @@ void displayExitGameInstructions()
 
 void askForName(const Color color)
 {
-  std::cout << "Please enter your name for " + colorToString(color) + " ";
+	std::cout << "Please enter your name for " + colorToString(color) + " ";
 }
 
 void getCastleInstruction()
 {
-  std::cout << " - To get the instructions for castling please enter 'castling'" << std::endl;
+	std::cout << " - To get the instructions for castling please enter 'castling'" << std::endl;
 }
 
 void getPromotionInstruction()
 {
-  std::cout << " - To get the instructions for pawn promotion please enter 'promotion'" << std::endl;
+	std::cout << " - To get the instructions for pawn promotion please enter 'promotion'" << std::endl;
 }
 
 void getMoveInstruction()
 {
-  std::cout << " - To get the instructions for moving a piece please enter 'move'" << std::endl;
+	std::cout << " - To get the instructions for moving a piece please enter 'move'" << std::endl;
 }
 
 void getCaptureInstruction()
 {
-  std::cout << " - To get the instructions for capturing a piece please enter 'capture'" << std::endl;
+	std::cout << " - To get the instructions for capturing a piece please enter 'capture'" << std::endl;
 }
 
 void askForMove()
 {
-    std::cout << "Please enter your move : ";
+	std::cout << "Please enter your move : ";
 }
 
 void displayMoveInstruction()
@@ -154,9 +196,9 @@ void displayInstructions()
 {
 	displayExitGameInstructions();
 	getMoveInstruction();
-  getCaptureInstruction();
-  getCastleInstruction();
-  getPromotionInstruction();
+	getCaptureInstruction();
+	getCastleInstruction();
+	getPromotionInstruction();
 }
 
 void displayMoveEndsInCheck()
@@ -171,7 +213,7 @@ std::string colorToString(const Color& color)
 
 std::string typeToString(const Type& type)
 {
-	switch (type) 
+	switch (type)
 	{
 	case Type::KING:
 		return "K";
@@ -192,7 +234,7 @@ std::string typeToString(const Type& type)
 
 Type charToType(const char& c)
 {
-		switch (c)
+	switch (c)
 	{
 	case 'K':
 		return Type::KING;
