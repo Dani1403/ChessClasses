@@ -18,10 +18,10 @@ public:
 	* Checks if a promotion move is valid
 	* Uses the checkValidity() function from the ChessMove class
 	* @param game : the game to check the move on
-	* @return true if the move is valid, otherwise an exception is raised
+	* @return an InvalidCause enum value
 	* @override the ChessMove::checkValidity() function
 	*/
-	bool checkValidity(ChessGame& game) const override;
+	InvalidCause checkValidity(ChessGame& game) const override;
 
 	/*
 	* Apply the move to the current game

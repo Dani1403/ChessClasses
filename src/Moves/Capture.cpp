@@ -9,28 +9,26 @@
 * - there is a valid capture for this piece between source and destination
 * - there is a piece at the destination
 * - there is no obstacle between the source and the destination
-* - > raise the appropriate exception in case of invalid move
-*
 * @param game : the game to check the move on
-* @return true if the move is valid, otherwise an exception is raised
+* @return an InvalidCause enum value
 * @override the ChessMove::checkValidity() function
 */
-bool Capture::checkValidity(ChessGame& game) const
+InvalidCause Capture::checkValidity(ChessGame& game) const
 {
 	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	if (!m_pieceToMove)
-		throw InvalidMove(SOURCE_SQUARE_EMPTY);
+		return InvalidCause::SOURCE_SQUARE_EMPTY;
 	if (board->checkObstacles(m_source, m_destination) && (dynamic_cast<Knight*>(m_pieceToMove.get()) == nullptr))
-		throw InvalidMove(OBSTACLE);
+		return InvalidCause::OBSTACLE;
 	if (m_pieceToMove->getColor() != game.getCurrentPlayer().getColor())
-		throw InvalidMove(NOT_YOUR_COLOR);
+		return InvalidCause::NOT_YOUR_COLOR;
 	if (m_capturedPiece == nullptr)
-		throw InvalidMove(DESTINATION_SQUARE_EMPTY);
+		return InvalidCause::DESTINATION_SQUARE_EMPTY;
 	if (m_capturedPiece->getColor() == game.getCurrentPlayer().getColor())
-		throw InvalidMove(YOUR_COLOR);
+		return InvalidCause::YOUR_COLOR;
 	if (!m_pieceToMove->isValidCapture(m_source, m_destination))
-		throw InvalidMove(INVALID_CAPTURE);
-	return true;
+		return InvalidCause::INVALID_CAPTURE;
+	return InvalidCause::SUCCESS;
 }
 
 /*

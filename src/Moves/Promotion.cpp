@@ -5,10 +5,10 @@
 * Checks if a promotion move is valid
 * Uses the checkValidity() function from the ChessMove class
 * @param game : the game to check the move on
-* @return true if the move is valid, otherwise an exception is raised
+* @return an InvalidCause enum value
 * @override the ChessMove::checkValidity() function
 */
-bool Promotion::checkValidity(ChessGame& game) const
+InvalidCause Promotion::checkValidity(ChessGame& game) const
 {
 	return ChessMove::checkValidity(game);
 }

@@ -301,20 +301,21 @@ void ChessGame::undo()
 /*
 * Checks if the move is valid and if it is, makes the move
 * @param move The move to be made
-* @return True if the move was made, false otherwise
+* @return an InvalidCause enum value
 */
-bool ChessGame::makeMove(const std::shared_ptr<ChessMove>& move)
+InvalidCause ChessGame::makeMove(const std::shared_ptr<ChessMove>& move)
 {
-	move->checkValidity(*this);
+	const InvalidCause validity = move->checkValidity(*this);
+	if (validity != InvalidCause::SUCCESS)
+		return validity;
 	move->execute(*this);
 	m_moves.push_back(move);
 	if (isInCheck(m_currentPlayer.getColor()))
 	{
-		displayMoveEndsInCheck();
 		move->undo(*this);
-		return false;
+		return InvalidCause::MOVE_ENDS_IN_CHECK;
 	}
-	return true;
+	return InvalidCause::SUCCESS;
 }
 
 /*
@@ -330,8 +331,8 @@ bool ChessGame::makeMove(const std::shared_ptr<ChessMove>& move)
 void ChessGame::playerTurn(sf::RenderWindow& window)
 {
 	m_currentPlayer.startTimer();
-	bool moved = false;
-	while (!moved)
+	InvalidCause moved = InvalidCause::NONE;
+	while (moved != InvalidCause::SUCCESS)
 	{
 		try
 		{
@@ -359,10 +360,8 @@ void ChessGame::playerTurn(sf::RenderWindow& window)
 					throw ExitGame();
 				moved = makeMove(move);
 			}
-		}
-		catch (const InvalidMove& invalid)
-		{
-			std::cout << invalid.message() << std::endl << std::endl;
+			if (moved != InvalidCause::SUCCESS)
+				std::cout << invalidCauseToString(moved) << std::endl << std::endl;
 		}
 		catch (const ExitGame&)
 		{

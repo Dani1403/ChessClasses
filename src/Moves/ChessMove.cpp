@@ -9,25 +9,24 @@
 *	- there is a valid movement for this piece between source and destination
 * - there is no piece at the destination
 *	- there is no obstacle between the source and the destination
-* - > raise the appropriate exception in case of invalid move
 *
 *	@param game : the game to check the move on
-*	@return true if the move is valid, otherwise an exception is raised
+*	@return an InvalidCause enum value
 */
-bool ChessMove::checkValidity(ChessGame& game) const
+InvalidCause ChessMove::checkValidity(ChessGame& game) const
 {
 	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	if (board->getPieceAt(m_destination) != nullptr)
-		throw InvalidMove(DESTINATION_SQUARE_NOT_EMPTY);
+		return InvalidCause::DESTINATION_SQUARE_NOT_EMPTY;
 	if (!m_pieceToMove)
-		throw InvalidMove(SOURCE_SQUARE_EMPTY);
+		return InvalidCause::SOURCE_SQUARE_EMPTY;
 	if (!m_pieceToMove->isValidMove(m_source, m_destination))
-		throw InvalidMove(INVALID_MOVEMENT);
+		return InvalidCause::INVALID_MOVEMENT;
 	if (board->checkObstacles(m_source, m_destination) && (dynamic_cast<Knight*>(m_pieceToMove.get()) == nullptr))
-		throw InvalidMove(OBSTACLE);
+		return InvalidCause::OBSTACLE;
 	if (m_pieceToMove->getColor() != game.getCurrentPlayer().getColor())
-		throw InvalidMove(NOT_YOUR_COLOR);
-	return true;
+		return InvalidCause::NOT_YOUR_COLOR;
+	return InvalidCause::SUCCESS;
 }
 
 /* Uses checkValidity to check if a move is possible
@@ -37,11 +36,7 @@ bool ChessMove::checkValidity(ChessGame& game) const
 */
 bool ChessMove::checkPossibleMove(ChessGame& game) const
 {
-	try
-	{
-		this->checkValidity(game);
-	}
-	catch (const InvalidMove&)
+	if (this->checkValidity(game) != InvalidCause::SUCCESS)
 	{
 		return false;
 	}

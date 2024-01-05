@@ -1,9 +1,11 @@
 #include "utilities.h"
 
-std::string causeToString(const InvalidCause cause)
+std::string invalidCauseToString(const InvalidCause cause)
 {
 	switch (cause)
 	{
+	case InvalidCause::NONE:
+		return "NONE";
 	case InvalidCause::SUCCESS:
 		return "SUCCESS";
 	case InvalidCause::NOT_ON_STARTING_ROW:
@@ -36,12 +38,10 @@ std::string causeToString(const InvalidCause cause)
 		return INVALID_PROMOTION_PIECE;
 	case InvalidCause::INVALID_PROMOTED_PIECE:
 		return INVALID_PROMOTED_PIECE;
+	case InvalidCause::MOVE_ENDS_IN_CHECK:
+		return MOVE_ENDS_IN_CHECK;
 	}
 }
-
-
-
-
 
 Color opposite(const Color color)
 {
@@ -203,7 +203,7 @@ void displayInstructions()
 
 void displayMoveEndsInCheck()
 {
-	std::cout << "The move you want to play result in you being in check" << std::endl << std::endl;
+	std::cout << MOVE_ENDS_IN_CHECK << std::endl << std::endl;
 }
 
 std::string colorToString(const Color& color)

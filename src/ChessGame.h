@@ -81,9 +81,9 @@ public:
 	/*
 	* Checks if the move is valid and if it is, makes the move
 	* @param move The move to be made
-	* @return True if the move was made, false otherwise
+	* @return an InvalidCause enum value
 	*/
-	bool makeMove(const std::shared_ptr<ChessMove>& move);
+	InvalidCause makeMove(const std::shared_ptr<ChessMove>& move);
 
 	/*
 	* Undoes the last move

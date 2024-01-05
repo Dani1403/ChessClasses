@@ -20,13 +20,12 @@ public:
 	* - there is a valid capture for this piece between source and destination
 	* - there is a piece at the destination
 	* - there is no obstacle between the source and the destination
-	* - > raise the appropriate exception in case of invalid move
 	*
 	* @param game : the game to check the move on
-	* @return true if the move is valid, otherwise an exception is raised
+	* @return an InvalidCause enum value
 	* @override the ChessMove::checkValidity() function
 	*/
-	virtual bool checkValidity(ChessGame& game) const override;
+	virtual InvalidCause checkValidity(ChessGame& game) const override;
 
 	/*
 	* Apply the move to the current game

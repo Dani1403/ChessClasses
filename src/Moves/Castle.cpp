@@ -11,27 +11,26 @@
 * - the king is not in check
 * - the king does not pass through a square that is attacked by an enemy piece
 * - the king does not end up in check
-* - > raise the appropriate exception in case of invalid move
 *
 * @param game : the game to check the move on
-* @return true if the move is valid, otherwise an exception is raised
+* @return an InvalidCause enum value
 * @override the ChessMove::checkValidity() function
 */
-bool Castle::checkValidity(ChessGame& game) const
+InvalidCause Castle::checkValidity(ChessGame& game) const
 {
 	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
 	if (!m_pieceToMove)
-		throw InvalidMove(SOURCE_SQUARE_EMPTY);
+		return InvalidCause::SOURCE_SQUARE_EMPTY;
 	if (board->checkObstacles(m_source, m_destination) && (dynamic_cast<Knight*>(m_pieceToMove.get()) == nullptr))
-		throw InvalidMove(OBSTACLE);
+		return InvalidCause::OBSTACLE;
 	if (m_rookToMove->hasMoved())
-		throw InvalidMove(INVALID_CASTLE_ROOK);
+		return InvalidCause::INVALID_CASTLE_ROOK;
 	const std::shared_ptr<King> king = std::dynamic_pointer_cast<King>(m_pieceToMove);
 	if (king->hasMoved())
-		throw InvalidMove(INVALID_CASTLE_KING);
+		return InvalidCause::INVALID_CASTLE_KING;
 	if (game.isInCheck(game.getCurrentPlayer().getColor()))
-		throw InvalidMove(INVALID_CASTLE_CHECK);
-	return true;
+		return InvalidCause::INVALID_CASTLE_CHECK;
+	return InvalidCause::SUCCESS;
 }
 
 /*

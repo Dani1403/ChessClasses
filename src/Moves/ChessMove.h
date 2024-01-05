@@ -31,12 +31,11 @@ public:
 	*	- there is a valid movement for this piece between source and destination
 	* - there is no piece at the destination
 	*	- there is no obstacle between the source and the destination
-	* - > raise the appropriate exception in case of invalid move
 	*
 	* @param game : the game to check the move on
-	* @return true if the move is valid, otherwise an exception is raised
+	* @return an InvalidCause enum value
 	*/
-	virtual bool checkValidity(ChessGame& game) const;
+	virtual InvalidCause checkValidity(ChessGame& game) const;
 
 	/* Uses checkValidity to check if a move is possible
 	* @param game : the game to check the move on

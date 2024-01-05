@@ -31,7 +31,7 @@ public:
 	* @return true if the move is valid, otherwise an exception is raised
 	* @override the ChessMove::checkValidity() function
 	*/
-	bool checkValidity(ChessGame& game) const override;
+	InvalidCause checkValidity(ChessGame& game) const override;
 
 	/*
 	* Apply the move to the current game
