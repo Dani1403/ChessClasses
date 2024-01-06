@@ -51,6 +51,7 @@
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\utilities.h" />
+    <ClInclude Include="src\Cards\Card.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ChessBoard.cpp" />

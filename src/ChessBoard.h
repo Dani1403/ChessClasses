@@ -82,6 +82,13 @@ public:
 	void movePiece(std::shared_ptr<ChessPiece> piece, const Square& destination);
 
 	/*
+	* Swap two pieces on the board
+	* @param piece1 - the first piece to swap
+	* @param piece2 - the second piece to swap
+	*/
+	void swapPieces(std::shared_ptr<ChessPiece> piece1, std::shared_ptr<ChessPiece> piece2);
+
+	/*
 	* Check if there are obstacles between two squares
 	* @param src - the source square
 	* @param dest - the destination square

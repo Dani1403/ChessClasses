@@ -217,6 +217,22 @@ void ChessBoard::movePiece(std::shared_ptr<ChessPiece> piece, const Square& dest
 }
 
 /*
+* Swap two pieces on the board
+* @param piece1 - the first piece to swap
+* @param piece2 - the second piece to swap
+*/
+void ChessBoard::swapPieces(std::shared_ptr<ChessPiece> piece1, std::shared_ptr<ChessPiece> piece2)
+{
+	removePiece(piece1);
+	removePiece(piece2);
+	piece1->setPosition(piece2->getSquare());
+	piece2->setPosition(piece1->getSquare());
+	addPiece(piece1);
+	addPiece(piece2);
+}
+
+
+/*
 * Add the king's position to the map
 */
 void ChessBoard::addKingPosition(std::shared_ptr<King> king)
