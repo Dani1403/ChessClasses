@@ -5,6 +5,10 @@
 
 class ChessGame;
 
+
+/*
+* Card class is an abstract class that represents a card in the game
+*/
 class Card
 {
 public:

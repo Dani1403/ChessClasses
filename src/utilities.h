@@ -25,8 +25,8 @@ const std::chrono::duration<double> TIME_LIMIT = std::chrono::seconds(15 * 60);
 const float SQUARE_SIZE = 90.0f;
 const int ICON_SIZE = 60;
 const int SQUARE_OUTLINE_THICKNESS = 2;
-#define RED (sf::Color(231, 121, 110))
-#define YELLOW (sf::Color(231, 175, 0))
+#define BLACK_SQUARE_COLOR (sf::Color(87, 58, 46))
+#define WHITE_SQUARE_COLOR (sf::Color(138, 120, 93))
 
 const std::string CASTLE_KINGSIDE = "O-O";
 const std::string CASTLE_QUEENSIDE = "O-O-O";

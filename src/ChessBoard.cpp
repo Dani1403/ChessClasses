@@ -83,7 +83,7 @@ void ChessBoard::renderGrid(sf::RenderWindow& window) const
 		for (auto piece = row->begin(); piece != row->end(); ++piece)
 		{
 			sf::RectangleShape square(sf::Vector2f(SQUARE_SIZE, SQUARE_SIZE));
-			sf::Color color = (rowNum + colNum) % 2 == 0 ? YELLOW : RED;
+			sf::Color color = (rowNum + colNum) % 2 == 0 ? WHITE_SQUARE_COLOR : BLACK_SQUARE_COLOR;
 			square.setFillColor(color);
 			sf::Vector2f position(rowNum * SQUARE_SIZE, colNum * SQUARE_SIZE);
 			square.setPosition(position);
