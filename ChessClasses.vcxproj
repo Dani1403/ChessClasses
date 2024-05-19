@@ -57,27 +57,29 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>vendor\SFML-2.6.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\danis\Downloads\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\include</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>vendor\SFML-2.6.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-window-d.lib;sfml-graphics-d.lib;sfml-system-d.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\danis\Downloads\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\lib</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST "vendor\SFML-2.6.1\bin\*.dll"\ (xcopy /Q /E /Y /I "vendor\SFML-2.6.1\bin\*.dll" "bin\Debug" &gt; nul) ELSE (xcopy /Q /Y /I "vendor\SFML-2.6.1\bin\*.dll" "bin\Debug" &gt; nul)</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>vendor\SFML-2.6.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\danis\Downloads\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\include</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -85,13 +87,14 @@
       <StringPooling>true</StringPooling>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>vendor\SFML-2.6.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-window.lib;sfml-graphics.lib;sfml-system.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\danis\Downloads\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\lib</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>IF EXIST "vendor\SFML-2.6.1\bin\*.dll"\ (xcopy /Q /E /Y /I "vendor\SFML-2.6.1\bin\*.dll" "bin\Release" &gt; nul) ELSE (xcopy /Q /Y /I "vendor\SFML-2.6.1\bin\*.dll" "bin\Release" &gt; nul)</Command>
@@ -138,22 +141,70 @@
     <ClCompile Include="src\utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="src\img\ChessPiecesArray.png" />
-    <Image Include="src\img\B_black.png" />
-    <Image Include="src\img\B_white.png" />
-    <Image Include="src\img\K_black.png" />
-    <Image Include="src\img\K_white.png" />
-    <Image Include="src\img\k_blackx.png" />
-    <Image Include="src\img\k_whitex.png" />
-    <Image Include="src\img\P_black.png" />
-    <Image Include="src\img\P_white.png" />
-    <Image Include="src\img\Q_black.png" />
-    <Image Include="src\img\Q_white.png" />
-    <Image Include="src\img\R_black.png" />
-    <Image Include="src\img\R_white.png" />
+    <Font Include="src\fonts\LEMONMILK-Regular.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="src\fonts\LEMONMILK-Regular.otf" />
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="bin\Debug\ChessClasses.exe" />
+    <None Include="bin\Debug\ChessClasses.pdb" />
+    <None Include="bin\Debug\img\Chess_bdt45.svg" />
+    <None Include="bin\Debug\img\Chess_blt45.svg" />
+    <None Include="bin\Debug\img\Chess_kdt45.svg" />
+    <None Include="bin\Debug\img\Chess_klt45.svg" />
+    <None Include="bin\Debug\img\Chess_ndt45.svg" />
+    <None Include="bin\Debug\img\Chess_nlt45.svg" />
+    <None Include="bin\Debug\img\Chess_pdt45.svg" />
+    <None Include="bin\Debug\img\Chess_plt45.svg" />
+    <None Include="bin\Debug\img\Chess_qdt45.svg" />
+    <None Include="bin\Debug\img\Chess_qlt45.svg" />
+    <None Include="bin\Debug\img\Chess_rdt45.svg" />
+    <None Include="bin\Debug\img\Chess_rlt45.svg" />
+    <None Include="bin\Debug\openal32.dll" />
+    <None Include="bin\Debug\sfml-audio-2.dll" />
+    <None Include="bin\Debug\sfml-audio-d-2.dll" />
+    <None Include="bin\Debug\sfml-graphics-2.dll" />
+    <None Include="bin\Debug\sfml-graphics-d-2.dll" />
+    <None Include="bin\Debug\sfml-network-2.dll" />
+    <None Include="bin\Debug\sfml-network-d-2.dll" />
+    <None Include="bin\Debug\sfml-system-2.dll" />
+    <None Include="bin\Debug\sfml-system-d-2.dll" />
+    <None Include="bin\Debug\sfml-window-2.dll" />
+    <None Include="bin\Debug\sfml-window-d-2.dll" />
+    <None Include="ChessClasses.make" />
+    <None Include="Makefile" />
+    <None Include="premake5.lua" />
+    <None Include="README.md" />
+    <None Include="src\img\Chess_bdt45.svg" />
+    <None Include="src\img\Chess_blt45.svg" />
+    <None Include="src\img\Chess_kdt45.svg" />
+    <None Include="src\img\Chess_klt45.svg" />
+    <None Include="src\img\Chess_ndt45.svg" />
+    <None Include="src\img\Chess_nlt45.svg" />
+    <None Include="src\img\Chess_pdt45.svg" />
+    <None Include="src\img\Chess_plt45.svg" />
+    <None Include="src\img\Chess_qdt45.svg" />
+    <None Include="src\img\Chess_qlt45.svg" />
+    <None Include="src\img\Chess_rdt45.svg" />
+    <None Include="src\img\Chess_rlt45.svg" />
+    <None Include="vendor\bin\premake5.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="vendor\bin\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\img\Chess_bdt45.png" />
+    <Image Include="src\img\Chess_blt45.png" />
+    <Image Include="src\img\Chess_kdt45.png" />
+    <Image Include="src\img\Chess_klt45.png" />
+    <Image Include="src\img\Chess_ndt45.png" />
+    <Image Include="src\img\Chess_nlt45.png" />
+    <Image Include="src\img\Chess_pdt45.png" />
+    <Image Include="src\img\Chess_plt45.png" />
+    <Image Include="src\img\Chess_qdt45.png" />
+    <Image Include="src\img\Chess_qlt45.png" />
+    <Image Include="src\img\Chess_rdt45.png" />
+    <Image Include="src\img\Chess_rlt45.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

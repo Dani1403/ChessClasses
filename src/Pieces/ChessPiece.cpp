@@ -1,5 +1,6 @@
 #include "ChessPiece.h"
 
+
 /*
 * Get a string representation of the piece with color, type and position
 * @return a string representation of the piece

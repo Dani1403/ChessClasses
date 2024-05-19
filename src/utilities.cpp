@@ -189,7 +189,7 @@ void displayPromotionInstruction()
 	std::cout << " To Promote a Pawn: " << std::endl;
 	std::cout << "1 - Enter the square where the pawn is currently (example : d7)" << std::endl;
 	std::cout << "2 - Enter symbol = " << std::endl;
-	std::cout << "3 - Enter the type of the promoted Piece (Q - Queen, k - Knight, B - Bishop, R - Rook)" << std::endl;
+	std::cout << "3 - Enter the type of the promoted Piece (q - Queen, n - Knight, b - Bishop, r - Rook)" << std::endl;
 }
 
 void displayInstructions()
@@ -216,17 +216,17 @@ std::string typeToString(const Type& type)
 	switch (type)
 	{
 	case Type::KING:
-		return "K";
-	case Type::ROOK:
-		return "R";
-	case Type::QUEEN:
-		return "Q";
-	case Type::KNIGHT:
 		return "k";
+	case Type::ROOK:
+		return "r";
+	case Type::QUEEN:
+		return "q";
+	case Type::KNIGHT:
+		return "n";
 	case Type::PAWN:
-		return "P";
+		return "p";
 	case Type::BISHOP:
-		return "B";
+		return "b";
 	default:
 		return "None";
 	}
@@ -236,17 +236,17 @@ Type charToType(const char& c)
 {
 	switch (c)
 	{
-	case 'K':
-		return Type::KING;
-	case 'R':
-		return Type::ROOK;
-	case 'Q':
-		return Type::QUEEN;
 	case 'k':
+		return Type::KING;
+	case 'r':
+		return Type::ROOK;
+	case 'q':
+		return Type::QUEEN;
+	case 'n':
 		return Type::KNIGHT;
-	case 'P':
+	case 'p':
 		return Type::PAWN;
-	case 'B':
+	case 'b':
 		return Type::BISHOP;
 	default:
 		return Type::NONE;

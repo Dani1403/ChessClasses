@@ -97,21 +97,69 @@
     <ClCompile Include="src\utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="src\img\ChessPiecesArray.png" />
-    <Image Include="src\img\B_black.png" />
-    <Image Include="src\img\B_white.png" />
-    <Image Include="src\img\K_black.png" />
-    <Image Include="src\img\K_white.png" />
-    <Image Include="src\img\k_blackx.png" />
-    <Image Include="src\img\k_whitex.png" />
-    <Image Include="src\img\P_black.png" />
-    <Image Include="src\img\P_white.png" />
-    <Image Include="src\img\Q_black.png" />
-    <Image Include="src\img\Q_white.png" />
-    <Image Include="src\img\R_black.png" />
-    <Image Include="src\img\R_white.png" />
+    <Font Include="src\fonts\LEMONMILK-Regular.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="src\fonts\LEMONMILK-Regular.otf" />
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="ChessClasses.make" />
+    <None Include="Makefile" />
+    <None Include="premake5.lua" />
+    <None Include="README.md" />
+    <None Include="vendor\bin\premake5.exe" />
+    <None Include="bin\Debug\ChessClasses.exe" />
+    <None Include="bin\Debug\ChessClasses.pdb" />
+    <None Include="bin\Debug\openal32.dll" />
+    <None Include="bin\Debug\sfml-audio-2.dll" />
+    <None Include="bin\Debug\sfml-audio-d-2.dll" />
+    <None Include="bin\Debug\sfml-graphics-2.dll" />
+    <None Include="bin\Debug\sfml-graphics-d-2.dll" />
+    <None Include="bin\Debug\sfml-network-2.dll" />
+    <None Include="bin\Debug\sfml-network-d-2.dll" />
+    <None Include="bin\Debug\sfml-system-2.dll" />
+    <None Include="bin\Debug\sfml-system-d-2.dll" />
+    <None Include="bin\Debug\sfml-window-2.dll" />
+    <None Include="bin\Debug\sfml-window-d-2.dll" />
+    <None Include="bin\Debug\img\Chess_bdt45.svg" />
+    <None Include="bin\Debug\img\Chess_blt45.svg" />
+    <None Include="bin\Debug\img\Chess_kdt45.svg" />
+    <None Include="bin\Debug\img\Chess_klt45.svg" />
+    <None Include="bin\Debug\img\Chess_nlt45.svg" />
+    <None Include="bin\Debug\img\Chess_ndt45.svg" />
+    <None Include="bin\Debug\img\Chess_pdt45.svg" />
+    <None Include="bin\Debug\img\Chess_plt45.svg" />
+    <None Include="bin\Debug\img\Chess_qlt45.svg" />
+    <None Include="bin\Debug\img\Chess_qdt45.svg" />
+    <None Include="bin\Debug\img\Chess_rdt45.svg" />
+    <None Include="bin\Debug\img\Chess_rlt45.svg" />
+    <None Include="src\img\Chess_bdt45.svg" />
+    <None Include="src\img\Chess_blt45.svg" />
+    <None Include="src\img\Chess_klt45.svg" />
+    <None Include="src\img\Chess_kdt45.svg" />
+    <None Include="src\img\Chess_ndt45.svg" />
+    <None Include="src\img\Chess_pdt45.svg" />
+    <None Include="src\img\Chess_nlt45.svg" />
+    <None Include="src\img\Chess_plt45.svg" />
+    <None Include="src\img\Chess_qdt45.svg" />
+    <None Include="src\img\Chess_qlt45.svg" />
+    <None Include="src\img\Chess_rdt45.svg" />
+    <None Include="src\img\Chess_rlt45.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="vendor\bin\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\img\Chess_rlt45.png" />
+    <Image Include="src\img\Chess_rdt45.png" />
+    <Image Include="src\img\Chess_qlt45.png" />
+    <Image Include="src\img\Chess_qdt45.png" />
+    <Image Include="src\img\Chess_plt45.png" />
+    <Image Include="src\img\Chess_pdt45.png" />
+    <Image Include="src\img\Chess_nlt45.png" />
+    <Image Include="src\img\Chess_ndt45.png" />
+    <Image Include="src\img\Chess_klt45.png" />
+    <Image Include="src\img\Chess_kdt45.png" />
+    <Image Include="src\img\Chess_blt45.png" />
+    <Image Include="src\img\Chess_bdt45.png" />
   </ItemGroup>
 </Project>
