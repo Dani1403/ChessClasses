@@ -359,7 +359,6 @@ void ChessGame::playerTurn(sf::RenderWindow& window)
 				if (exitGame)
 					throw ExitGame();
 				moved = makeMove(move);
-				m_chessBoard->highlightSquare(window, move->getDest());
 			}
 			if (moved != InvalidCause::SUCCESS)
 				std::cout << invalidCauseToString(moved) << std::endl << std::endl;
