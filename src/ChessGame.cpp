@@ -22,7 +22,7 @@ void ChessGame::initPlayers()
 void ChessGame::initPlayer(Player& player, const Color color)
 {
 	player.setColor(color);
-	player.setName(player.getNameFromUser(m_window));
+	player.setName(player.getNameFromUser(m_inputWindow));
 }
 
 /*
@@ -314,7 +314,7 @@ void ChessGame::playerTurn()
 				{
 					try
 					{
-						move = m_currentPlayer.getMove(*this, m_window);
+						move = m_currentPlayer.getMove(*this, m_inputWindow);
 						moveReady = true;
 					}
 					catch (const ExitGame&)
@@ -323,7 +323,10 @@ void ChessGame::playerTurn()
 					}
 				});
 			while (!moveReady && !exitGame)
+			{
 				renderWindow();
+				m_inputWindow.display();
+			}
 			if (getMoveThread.joinable())
 			{
 				getMoveThread.join();
@@ -332,7 +335,7 @@ void ChessGame::playerTurn()
 				moved = makeMove(move);
 			}
 			if (moved != InvalidCause::SUCCESS)
-				drawMessage(m_window, invalidCauseToString(moved) + "\n");
+				drawMessage(m_inputWindow, invalidCauseToString(moved) + "\n");
 		}
 		catch (const ExitGame&)
 		{
@@ -392,12 +395,13 @@ void ChessGame::play()
 			if (event.type == sf::Event::Closed)
 			{
 				m_window.close();
+				m_inputWindow.close();
 				throw ExitGame();
 			}
 			renderWindow();
 			playerTurn();
 			moveToNextPlayer();
-			drawMessage(m_window, "Next player's turn\n");
+			drawMessage(m_inputWindow, "Next player's turn\n");
 		}
 		if (!gameOverMessage.empty())
 		{

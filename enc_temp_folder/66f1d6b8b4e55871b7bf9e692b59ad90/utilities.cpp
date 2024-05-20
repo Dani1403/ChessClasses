@@ -131,6 +131,8 @@ int dist(const Square& s1, const Square& s2)
 
 void drawMessage(sf::RenderWindow& window, const std::string& message)
 {
+	if (!window.isOpen())
+		return;
 	window.clear();
 	sf::Font font;
 	if (!font.loadFromFile("src/fonts/LEMONMILK-Regular.otf"))
