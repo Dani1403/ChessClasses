@@ -23,7 +23,7 @@ const int WINDOW_WIDTH = 2000;
 const int WINDOW_HEIGHT = 2000;
 const std::chrono::duration<double> TIME_LIMIT = std::chrono::seconds(15 * 60);
 const float SQUARE_SIZE = 90.0f;
-const int ICON_SIZE = 60;
+const int ICON_SIZE = 45;
 const int SQUARE_OUTLINE_THICKNESS = 2;
 #define BLACK_SQUARE_COLOR (sf::Color(87, 58, 46))
 #define WHITE_SQUARE_COLOR (sf::Color(138, 120, 93))

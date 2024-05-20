@@ -8,7 +8,7 @@
 * @return 0 if the program exits successfully
 */
 
-int main()
+int WinMain()
 {
 	try
 	{
