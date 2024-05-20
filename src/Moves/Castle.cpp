@@ -1,6 +1,24 @@
 #include "../ChessGame.h"
 #include "Castle.h"
 
+
+std::vector<Square> Castle::squaresBetweenKingAndRook() const
+{
+	std::vector<Square> squares;
+	switch (m_side)
+	{
+		case Side::KING:
+			for (int i = m_source.col + 1; i < m_source.col + 3; i++)
+				squares.push_back({ m_source.row, i });
+			break;
+		case Side::QUEEN:
+			for (int i = m_source.col - 1; i > m_source.col - 3; i--)
+				squares.push_back({ m_source.row, i });
+			break;
+	}
+	return squares;
+}
+
 /*
 * Checks if a castle move is valid
 * Checks for :
@@ -30,6 +48,11 @@ InvalidCause Castle::checkValidity(ChessGame& game) const
 		return InvalidCause::INVALID_CASTLE_KING;
 	if (game.isInCheck(game.getCurrentPlayer().getColor()))
 		return InvalidCause::INVALID_CASTLE_CHECK;
+	for (const Square& square : squaresBetweenKingAndRook())
+	{
+		if(game.isSquareAttacked(square, opposite(game.getCurrentPlayer().getColor())))
+			return InvalidCause::INVALID_CASTLE_CHECK;
+	}
 	return InvalidCause::SUCCESS;
 }
 

@@ -10,8 +10,7 @@ public:
 
 	/* Constructor */
 	Castle(const Square& source, const Square& destination, std::shared_ptr<King> kingToMove, std::shared_ptr<Rook> rookToMove, Side side) :
-		ChessMove(source, destination, kingToMove), m_rookToMove(rookToMove), m_side(side)
-	{}
+		ChessMove(source, destination, kingToMove), m_rookToMove(rookToMove), m_side(side) {}
 
 	/* Getters and Setters */
 	std::shared_ptr<Rook> getRookToMove() const { return m_rookToMove; }
@@ -61,5 +60,6 @@ private:
 	Square rookDest() const { return { kingDest().row, kingDest().col - (offsetForCastle(m_side) / 2) }; };
 	ChessMove m_kingMove = ChessMove(getPieceToMove()->getSquare(), kingDest(), getPieceToMove());
 	ChessMove m_rookMove = ChessMove(getRookToMove()->getSquare(), rookDest(), getRookToMove());
+	std::vector<Square> squaresBetweenKingAndRook() const;
 };
 

@@ -41,9 +41,9 @@ void ChessGame::initBoard()
 }
 
 /*
-* Checks if a piece is attacked on a given square
+* Checks if a piece is attacked on a given square, by the opposite color
 * @param square The square to check
-* @param color The color of the piece to check
+* @param color The color that is possibly attacking
 */
 bool ChessGame::isSquareAttacked(const Square square, const Color color)
 {
@@ -51,7 +51,7 @@ bool ChessGame::isSquareAttacked(const Square square, const Color color)
 	{
 		for (const auto& piece : row)
 		{
-			if (piece == nullptr || piece->getColor() == color)
+			if (piece == nullptr || piece->getColor() != color)
 				continue;
 			const auto possibleCapture = std::make_shared<Capture>(piece->getSquare(), square, piece, m_chessBoard->getPieceAt(square));
 			if (possibleCapture->checkPossibleMove(*this))
@@ -70,7 +70,7 @@ bool ChessGame::isInCheck(const Color color)
 {
 	const Square kingPos = m_chessBoard->getKingPosition(color);
 	moveToNextPlayer();
-	const bool check = isSquareAttacked(kingPos, color);
+	const bool check = isSquareAttacked(kingPos, opposite(color));
 	moveToNextPlayer();
 	return check;
 }
@@ -359,6 +359,7 @@ void ChessGame::playerTurn(sf::RenderWindow& window)
 				if (exitGame)
 					throw ExitGame();
 				moved = makeMove(move);
+				m_chessBoard->highlightSquare(window, move->getDest());
 			}
 			if (moved != InvalidCause::SUCCESS)
 				std::cout << invalidCauseToString(moved) << std::endl << std::endl;

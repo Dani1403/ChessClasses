@@ -30,6 +30,13 @@ public:
 	void initBoard();
 
 	/*
+	* Checks if a square is attacked by a given color
+	* @param square The square to check
+	* @param color The color of the piece that is possibly attacking
+	*/
+	bool isSquareAttacked(const Square square, const Color color);
+
+	/*
 	* check if a given color is in check
 	* @param color The color to check
 	* @return True if the color is in check, false otherwise
@@ -144,13 +151,6 @@ private:
 	* Initializes a player with a name and a color
 	*/
 	void initPlayer(Player& player, const Color color);
-
-	/*
-	* Checks if a piece is attacked on a given square
-	* @param square The square to check
-	* @param color The color of the piece to check
-	*/
-	bool isSquareAttacked(const Square square, const Color color);
 
 	/*
 	* Checks if a given move can be made using its checkPossibleMove function
