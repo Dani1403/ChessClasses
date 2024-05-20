@@ -101,7 +101,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Cards\Card.h" />
     <ClInclude Include="src\ChessBoard.h" />
     <ClInclude Include="src\ChessGame.h" />
     <ClInclude Include="src\Exception.h" />
