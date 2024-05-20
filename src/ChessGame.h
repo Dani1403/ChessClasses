@@ -9,10 +9,18 @@ class ChessGame
 public:
 	/* Constructor and destructors */
 
-	ChessGame(sf::RenderWindow& window) : window(window)
+	ChessGame() : m_window(sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Chess++")),
+		m_inputWindow(sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Chess++"))
 	{
+		auto image = sf::Image();
+		if (image.loadFromFile("src/img/Chess_kdt45.png"))
+		{
+			m_window.setIcon(ICON_SIZE, ICON_SIZE, image.getPixelsPtr());
+			m_window.setIcon(ICON_SIZE, ICON_SIZE, image.getPixelsPtr());
+		}
 		m_chessBoard = std::make_shared<ChessBoard>();
 	}
+
 	~ChessGame() = default;
 	ChessGame(const ChessGame& other) = delete;
 	ChessGame& operator=(const ChessGame& other) = delete;
@@ -136,7 +144,8 @@ public:
 	void renderWindow();
 
 private:
-	sf::RenderWindow& window;
+	sf::RenderWindow& m_window;
+	sf::RenderWindow& m_inputWindow;
 	std::shared_ptr<ChessBoard> m_chessBoard;
 	std::vector<std::shared_ptr<ChessMove>> m_moves;
 	std::list<Player> m_players;

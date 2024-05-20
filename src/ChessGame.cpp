@@ -22,7 +22,7 @@ void ChessGame::initPlayers()
 void ChessGame::initPlayer(Player& player, const Color color)
 {
 	player.setColor(color);
-	player.setName(player.getNameFromUser(window));
+	player.setName(player.getNameFromUser(m_window));
 }
 
 /*
@@ -314,7 +314,7 @@ void ChessGame::playerTurn()
 				{
 					try
 					{
-						move = m_currentPlayer.getMove(*this, window);
+						move = m_currentPlayer.getMove(*this, m_window);
 						moveReady = true;
 					}
 					catch (const ExitGame&)
@@ -332,7 +332,7 @@ void ChessGame::playerTurn()
 				moved = makeMove(move);
 			}
 			if (moved != InvalidCause::SUCCESS)
-				drawMessage(window, invalidCauseToString(moved) + "\n");
+				drawMessage(m_window, invalidCauseToString(moved) + "\n");
 		}
 		catch (const ExitGame&)
 		{
@@ -358,7 +358,7 @@ void ChessGame::moveToNextPlayer()
 void ChessGame::renderTimers() const
 {
 	for (const auto& player : m_players)
-		player.renderTimeLeft(window);
+		player.renderTimeLeft(m_window);
 }
 
 /*
@@ -370,10 +370,10 @@ void ChessGame::renderTimers() const
 */
 void ChessGame::renderWindow()
 {
-	window.clear(sf::Color::White);
-	m_chessBoard->render(window);
+	m_window.clear(sf::Color::White);
+	m_chessBoard->render(m_window);
 	renderTimers();
-	window.display();
+	m_window.display();
 }
 
 /*
@@ -383,26 +383,26 @@ void ChessGame::play()
 {
 	initBoard();
 	initPlayers();
-	while (window.isOpen())
+	while (m_window.isOpen())
 	{
 		sf::Event event;
 		std::string gameOverMessage = isGameOver();
-		while (window.pollEvent(event) && gameOverMessage.empty())
+		while (m_window.pollEvent(event) && gameOverMessage.empty())
 		{
 			if (event.type == sf::Event::Closed)
 			{
-				window.close();
+				m_window.close();
 				throw ExitGame();
 			}
 			renderWindow();
 			playerTurn();
 			moveToNextPlayer();
-			drawMessage(window, "Next player's turn\n");
+			drawMessage(m_window, "Next player's turn\n");
 		}
 		if (!gameOverMessage.empty())
 		{
-			drawMessage(window, gameOverMessage);
-			window.display();
+			drawMessage(m_window, gameOverMessage);
+			m_window.display();
 			sf::sleep(sf::seconds(5));
 			throw ExitGame();
 		}

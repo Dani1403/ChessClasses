@@ -150,13 +150,6 @@ void drawMessage(sf::RenderWindow& window, const std::string& message)
 	window.draw(text);
 }
 
-void displayMessage(sf::RenderWindow& window, const std::string& message)
-{
-	drawMessage(window, message);
-	window.display();
-	sf::sleep(sf::seconds(2));
-}
-
 std::string getInput(sf::RenderWindow& window)
 {
 	std::string input;

@@ -19,8 +19,8 @@
 #include <vector>
 
 
-const int WINDOW_WIDTH = 1000;
-const int WINDOW_HEIGHT = 1000;
+const int WINDOW_WIDTH = 2000;
+const int WINDOW_HEIGHT = 2000;
 const std::chrono::duration<double> TIME_LIMIT = std::chrono::seconds(15 * 60);
 const float SQUARE_SIZE = 90.0f;
 const int ICON_SIZE = 60;
