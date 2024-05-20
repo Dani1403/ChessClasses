@@ -96,9 +96,6 @@
     <ClCompile Include="src\utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="src\fonts\LEMONMILK-Regular.otf" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
     <None Include="ChessClasses.make" />
@@ -160,5 +157,8 @@
     <Image Include="src\img\Chess_kdt45.png" />
     <Image Include="src\img\Chess_blt45.png" />
     <Image Include="src\img\Chess_bdt45.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="src\fonts\LEMONMILK-Regular.otf" />
   </ItemGroup>
 </Project>

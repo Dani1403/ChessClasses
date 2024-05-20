@@ -384,6 +384,21 @@ void ChessGame::renderWindow()
 */
 void ChessGame::play()
 {
+	////Write the Start game message
+	//sf::Font font;
+	//if (!font.loadFromFile("src/fonts/LEMONMILK-Regular.otf"))
+	//{
+	//	throw std::runtime_error("Font not found");
+	//}
+	//sf::Text text;
+	//text.setFont(font);
+	//text.setString("Game started\n");
+	//text.setCharacterSize(24);
+	//text.setPosition(0, 0);
+	//text.setFillColor(sf::Color::Black);
+	//m_window.clear(sf::Color::White);
+	//m_window.draw(text);
+	//m_window.display();
 	initBoard();
 	initPlayers();
 	while (m_window.isOpen())

@@ -11,7 +11,18 @@
 std::string Player::getNameFromUser(sf::RenderWindow& window) const
 {
 	drawMessage(window, ASK_FOR_NAME + colorToString(m_color) + "\n");
-	return getInput(window);
+	window.display();
+	std::string name = getInput(window);
+	if (name.empty())
+	{
+		name = "Player " + colorToString(m_color);
+	}
+	//check for max limit of name
+	if (name.length() > 30)
+	{
+		name = name.substr(0, 30);
+	}
+	return name;
 }
 
 /*
@@ -22,6 +33,7 @@ std::string Player::getNameFromUser(sf::RenderWindow& window) const
 std::string Player::getMoveFromUser(sf::RenderWindow& window) const
 {
 	drawMessage(window, ASK_FOR_MOVE);
+	window.display();
 	return getInput(window);
 }
 
@@ -36,6 +48,7 @@ std::string Player::handleInput(sf::RenderWindow& window) const
 	std::string input;
 	do
 	{
+		window.display();
 		input = getMoveFromUser(window);
 		if (input == EXIT_SYMBOL_LOWER || input == EXIT_SYMBOL_UPPER)
 			throw ExitGame();

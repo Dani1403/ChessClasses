@@ -140,9 +140,6 @@
     <ClCompile Include="src\utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="src\fonts\LEMONMILK-Regular.otf" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
     <None Include="bin\Debug\ChessClasses.exe" />
@@ -204,6 +201,9 @@
     <Image Include="src\img\Chess_qlt45.png" />
     <Image Include="src\img\Chess_rdt45.png" />
     <Image Include="src\img\Chess_rlt45.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="src\fonts\LEMONMILK-Regular.otf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

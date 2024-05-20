@@ -131,7 +131,7 @@ int dist(const Square& s1, const Square& s2)
 
 void drawMessage(sf::RenderWindow& window, const std::string& message)
 { 
-	window.clear();
+	window.clear(sf::Color::White);
 	sf::Font font;
 	if (!font.loadFromFile("src/fonts/LEMONMILK-Regular.otf"))
 	{
@@ -141,8 +141,8 @@ void drawMessage(sf::RenderWindow& window, const std::string& message)
 	text.setFont(font);
 	text.setString(message);
 	text.setCharacterSize(24);
-	text.setFillColor(sf::Color::White);
-	text.setPosition(8 * SQUARE_SIZE, 8* SQUARE_SIZE);
+	text.setFillColor(sf::Color::Black);
+	text.setPosition(0, 0);
 	window.draw(text);
 }
 
@@ -150,26 +150,27 @@ std::string getInput(sf::RenderWindow& window)
 {
 	std::string input;
 	sf::Event event;
-	while (window.isOpen())
+	while (window.pollEvent(event))
 	{
-		while (window.pollEvent(event))
+		while (event.type != sf::Event::TextEntered && event.type != sf::Event::KeyPressed)
 		{
-			if (event.type == sf::Event::TextEntered)
+			window.pollEvent(event);
+		}
+		if (event.type == sf::Event::TextEntered)
+		{
+			if (event.text.unicode == '\b')
 			{
-				if (event.text.unicode == '\b')
-				{
-					if (!input.empty())
-						input.pop_back();
-				}
-				else if (event.text.unicode < 128)
-				{
-					input += static_cast<char>(event.text.unicode);
-				}
+				if (!input.empty())
+					input.pop_back();
 			}
-			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+			else if (event.text.unicode < 128)
 			{
-				return input;
+				input += static_cast<char>(event.text.unicode);
 			}
+		}
+		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+		{
+			return input;
 		}
 	}
 }
