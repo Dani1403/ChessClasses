@@ -49,22 +49,56 @@ const std::string PROMOTION_ASKED_UPPER = "Promote";
 const std::string CASTLE_ASKED_LOWER = "castle";
 const std::string CASTLE_ASKED_UPPER = "Castle";
 
-const std::string NOT_ON_STARTING_ROW = "The pawn you want to move twice is not on the starting row";
-const std::string NOT_YOUR_COLOR = "The piece you want to move is not of your color";
-const std::string YOUR_COLOR = "The piece you want to capture is of your color";
-const std::string DESTINATION_SQUARE_NOT_EMPTY = "There is already a piece at the destination";
-const std::string SOURCE_SQUARE_EMPTY = "There is no piece at the source";
-const std::string DESTINATION_SQUARE_EMPTY = "There is no piece at the destination";
-const std::string INVALID_MOVEMENT = "Invalid movement for this piece";
-const std::string INVALID_CAPTURE = "Invalid capture for this piece";
-const std::string OBSTACLE = "There is an obstacle";
-const std::string INVALID_CASTLE_PIECES = "Invalid castle";
-const std::string INVALID_CASTLE_KING = "Invalid castle for the king, it has already moved";
-const std::string INVALID_CASTLE_ROOK = "Invalid castle for the rook, it has already moved";
-const std::string INVALID_CASTLE_CHECK = "Invalid castle, you are in check";
-const std::string INVALID_PROMOTION_PIECE = "The piece you want to promote is not a pawn";
-const std::string INVALID_PROMOTED_PIECE = "You cannot promote into a pawn or a King";
-const std::string MOVE_ENDS_IN_CHECK = "This move ends in you being in check";
+const std::string NOT_ON_STARTING_ROW = "The pawn you want to move twice is not on the starting row\n";
+const std::string NOT_YOUR_COLOR = "The piece you want to move is not of your color\n";
+const std::string YOUR_COLOR = "The piece you want to capture is of your color\n";
+const std::string DESTINATION_SQUARE_NOT_EMPTY = "There is already a piece at the destination\n";
+const std::string SOURCE_SQUARE_EMPTY = "There is no piece at the source\n";
+const std::string DESTINATION_SQUARE_EMPTY = "There is no piece at the destination\n";
+const std::string INVALID_MOVEMENT = "Invalid movement for this piece\n";
+const std::string INVALID_CAPTURE = "Invalid capture for this piece\n";
+const std::string OBSTACLE = "There is an obstacle\n";
+const std::string INVALID_CASTLE_PIECES = "Invalid castle\n";
+const std::string INVALID_CASTLE_KING = "Invalid castle for the king, it has already moved\n";
+const std::string INVALID_CASTLE_ROOK = "Invalid castle for the rook, it has already moved\n";
+const std::string INVALID_CASTLE_CHECK = "Invalid castle, you are in check\n";
+const std::string INVALID_PROMOTION_PIECE = "The piece you want to promote is not a pawn\n";
+const std::string INVALID_PROMOTED_PIECE = "You cannot promote into a pawn or a King\n";
+const std::string MOVE_ENDS_IN_CHECK = "This move ends in you being in check\n";
+
+
+const std::string WELCOME_MESSAGE = "Welcome to Chess !\n";
+const std::string EXIT_GAME_MESSAGE = "To exit the game, type 'quit'\n";
+const std::string ASK_FOR_NAME = "Please enter your name for ";
+const std::string ASK_FOR_MOVE = "Please enter your move: \n";
+
+const std::string GET_CASTLE_INSTRUCTION = "To get a castle instruction, type 'castling'\n";
+const std::string CASTLE_INSTRUCTION = "To castle, follow the instruction below: \n" \
+								"1 - Enter O-O to Castle King side and O-O-O for QueenSide \n";
+const std::string GET_MOVE_INSTRUCTION = "To get the move instruction, type 'move'\n";
+const std::string MOVE_INSTRUCTION = "To enter your move, follow the instruction below: \n " \
+								"1 - Enter the square of the piece you want to move \n" \
+								"2 - Enter the destination case for your piece \n" \
+								"Example : e2e4 \n";
+const std::string GET_CAPTURE_INSTRUCTION = "To get the capture instruction, type 'capture'\n";
+const std::string CAPTURE_INSTRUCTION = "To enter your capture, follow the instruction below: \n" \
+									"1 - Enter the square of the piece you want to move \n" \
+									"2 - Enter X \n" \
+									"3 - Enter the destination case for your piece \n" \
+									"Example : e4Xd5 \n";
+const std::string GET_PROMOTION_INSTRUCTION = "To get the promotion instruction, type 'promote'\n";
+const std::string PROMOTION_INSTRUCTION = "To Promote a Pawn: \n" \
+									"1 - Enter the square where the pawn is currently (example : d7) \n" \
+									"2 - Enter symbol = \n" \
+									"3 - Enter the type of the promoted Piece (q - Queen, n - Knight, b - Bishop, r - Rook) \n";
+
+const std::string MOVE_ENDS_IN_CHECK_MESSAGE = "This move ends in you being in check\n";
+
+
+void drawMessage(sf::RenderWindow& window, const std::string& message);
+
+std::string getInput(sf::RenderWindow& window);
+
 
 enum class InvalidCause
 {
@@ -94,6 +128,8 @@ struct Square
 		return row == other.row && col == other.col;
 	}
 };
+
+Square getSquareFromCoords(const sf::Vector2f& coords);
 
 bool isSquareValid(const Square& square);
 
@@ -131,36 +167,5 @@ int offsetForCastle(const Side side);
 
 int rookColForCastle(const Side side);
 
-void askForWhitePlayerName(std::string& name);
-
-void askForBlackPlayerName(std::string& name);
-
-void displayWelcomeMessage();
-
-void displayExitGameInstructions();
-
-void askForName(const Color color);
-
-void askForMove();
-
-void displayInstructions();
-
-void getCastleInstruction();
-
-void getMoveInstruction();
-
-void getCaptureInstruction();
-
-void getPromotionInstruction();
-
-void displayMoveInstruction();
-
-void displayCaptureInstruction();
-
-void displayPromotionInstruction();
-
-void displayCastleInstruction();
-
-void displayMoveEndsInCheck();
-
 int rowForPawnPromotion(const Color color);
+

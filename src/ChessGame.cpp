@@ -1,13 +1,6 @@
 #include "ChessGame.h"
 
 /*
- * Constructor
- */
-ChessGame::ChessGame() : m_chessBoard(std::make_shared<ChessBoard>(ChessBoard()))
-{
-}
-
-/*
 * Initializes the players with their names and colors
 */
 void ChessGame::initPlayers()
@@ -19,16 +12,17 @@ void ChessGame::initPlayers()
 	m_players.push_back(*player1);
 	m_players.push_back(*player2);
 	m_currentPlayer = m_players.front();
-	std::cout << "First player : " << m_currentPlayer.getName() << std::endl << std::endl;
 }
 
 /*
 * Initializes a player with a name and a color
+* @param player The player to initialize
+* @param color The color of the player
 */
 void ChessGame::initPlayer(Player& player, const Color color)
 {
 	player.setColor(color);
-	player.setName(player.getNameFromUser(std::cin, color));
+	player.setName(player.getNameFromUser(window));
 }
 
 /*
@@ -237,52 +231,30 @@ bool ChessGame::isInStaleMate(const Color color)
 }
 
 /*
-* Handle the case where a player's time is up
-* @param player The player to check if his time is up
-* if the time is up, display defeat message and exit the game
-*/
-void ChessGame::handleTimeUp(const Player& player) const
-{
-	if (player.isTimeUp())
-	{
-		std::cout << player.getName() << " ran out of time!" << std::endl;
-		player.displayDefeat();
-		throw ExitGame();
-	}
-}
-
-/*
 * check if the game is over
-* @return True if the game is over, false otherwise
+* @return a string representing the issue of the game if it's over, empty string otherwise
 */
-bool ChessGame::isGameOver()
+std::string ChessGame::isGameOver()
 {
-	handleTimeUp(m_currentPlayer);
-	handleTimeUp(m_players.back());
+	std::string gameOverMessage;
+	if (m_players.front().isTimeUp())
+		gameOverMessage = m_players.back().getName() + " wins on time!";
+	else if (m_players.back().isTimeUp())
+		gameOverMessage = m_players.front().getName() + " wins on time!";
+	if (!gameOverMessage.empty())
+		return gameOverMessage;
 	const Color currentColor = m_currentPlayer.getColor();
 	if (isInCheckmate(currentColor))
-	{
-		m_players.back().displayVictory();
-		return true;
-	}
+		gameOverMessage = "Checkmate! " + colorToString(currentColor) + " has no legal move " + m_players.back().getName() + " wins!";
 	else if (isInStaleMate(currentColor))
-	{
-		std::cout << "Stalemate! " + colorToString(currentColor) + " has no legal move " << std::endl;
-		return true;
-	}
+		gameOverMessage = "Stalemate! " + colorToString(currentColor) + " has no legal move";
 	moveToNextPlayer();
 	if (isInCheckmate(opposite(currentColor)))
-	{
-		m_players.back().displayVictory();
-		return true;
-	}
+		gameOverMessage = "Checkmate! " + colorToString(opposite(currentColor)) + " has no legal move " + m_currentPlayer.getName() + " wins!";
 	else if (isInStaleMate(opposite(currentColor)))
-	{
-		std::cout << "Stalemate! " + colorToString(opposite(currentColor)) + " has no legal move" << std::endl;
-		return true;
-	}
+		gameOverMessage = "Stalemate! " + colorToString(opposite(currentColor)) + " has no legal move";
 	moveToNextPlayer();
-	return false;
+	return gameOverMessage;
 }
 
 /*
@@ -326,9 +298,8 @@ InvalidCause ChessGame::makeMove(const std::shared_ptr<ChessMove>& move)
 *	-> render the window while waiting
 *	-> make the move
 *	-> stop the timer of the current player
-*	@param window - the window to render to
 */
-void ChessGame::playerTurn(sf::RenderWindow& window)
+void ChessGame::playerTurn()
 {
 	m_currentPlayer.startTimer();
 	InvalidCause moved = InvalidCause::NONE;
@@ -343,7 +314,7 @@ void ChessGame::playerTurn(sf::RenderWindow& window)
 				{
 					try
 					{
-						move = m_currentPlayer.getMove(*this);
+						move = m_currentPlayer.getMove(*this, window);
 						moveReady = true;
 					}
 					catch (const ExitGame&)
@@ -352,7 +323,7 @@ void ChessGame::playerTurn(sf::RenderWindow& window)
 					}
 				});
 			while (!moveReady && !exitGame)
-				renderWindow(window);
+				renderWindow();
 			if (getMoveThread.joinable())
 			{
 				getMoveThread.join();
@@ -361,7 +332,7 @@ void ChessGame::playerTurn(sf::RenderWindow& window)
 				moved = makeMove(move);
 			}
 			if (moved != InvalidCause::SUCCESS)
-				std::cout << invalidCauseToString(moved) << std::endl << std::endl;
+				drawMessage(window, invalidCauseToString(moved) + "\n");
 		}
 		catch (const ExitGame&)
 		{
@@ -382,27 +353,9 @@ void ChessGame::moveToNextPlayer()
 }
 
 /*
-* display the next player to play on the console
-*/
-void ChessGame::displayNextPlayer() const
-{
-	std::cout << "Next player : " << m_currentPlayer.getName() << std::endl << std::endl;
-}
-
-/*
-* Display the timers of the player to the console
-*/
-void ChessGame::displayTimers() const
-{
-	for (const auto& player : m_players)
-		player.displayTimeLeft();
-}
-
-/*
 * Render the timers to the window
-* @param window - the window to render to
 */
-void ChessGame::renderTimers(sf::RenderWindow& window) const
+void ChessGame::renderTimers() const
 {
 	for (const auto& player : m_players)
 		player.renderTimeLeft(window);
@@ -414,39 +367,44 @@ void ChessGame::renderTimers(sf::RenderWindow& window) const
 *	-> render the board
 *	-> render the timers
 *	-> display the window
-* @param window - the window to render to
 */
-void ChessGame::renderWindow(sf::RenderWindow& window) const
+void ChessGame::renderWindow()
 {
 	window.clear(sf::Color::White);
 	m_chessBoard->render(window);
-	renderTimers(window);
+	renderTimers();
 	window.display();
 }
 
 /*
 * Play the game
-*	@param window - the window to render to
 */
-void ChessGame::play(sf::RenderWindow& window)
+void ChessGame::play()
 {
-	displayWelcomeMessage();
 	initBoard();
 	initPlayers();
 	while (window.isOpen())
 	{
 		sf::Event event;
-		while (window.pollEvent(event) && !isGameOver())
+		std::string gameOverMessage = isGameOver();
+		while (window.pollEvent(event) && gameOverMessage.empty())
 		{
 			if (event.type == sf::Event::Closed)
 			{
 				window.close();
 				throw ExitGame();
 			}
-			renderWindow(window);
-			playerTurn(window);
+			renderWindow();
+			playerTurn();
 			moveToNextPlayer();
-			displayNextPlayer();
+			drawMessage(window, "Next player's turn\n");
+		}
+		if (!gameOverMessage.empty())
+		{
+			drawMessage(window, gameOverMessage);
+			window.display();
+			sf::sleep(sf::seconds(5));
+			throw ExitGame();
 		}
 	}
 }

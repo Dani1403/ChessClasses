@@ -5,82 +5,58 @@
 
 /*
 * Let the player input a name.
-* @param is - the input stream to read from.
-* @param color - the color of the player.
+* @param window - the window to read from.
 * @return a string representing the name the player wants to use.
 */
-std::string Player::getNameFromUser(std::istream& is, const Color color) const
+std::string Player::getNameFromUser(sf::RenderWindow& window) const
 {
-	askForName(color);
-	std::string name;
-	is >> name;
-	return name;
-}
-
-/*
-* Render the time left for the player
-* @param window - the window to render to
-*/
-void Player::renderTimeLeft(sf::RenderWindow& window) const
-{
-	sf::Font font;
-	if (!font.loadFromFile("src/fonts/LEMONMILK-Regular.otf"))
-		throw std::runtime_error("Could not load font");
-	sf::Text text;
-	text.setFont(font);
-	text.setString(m_name + " has " + std::to_string((int)(getDurationInTurn().count() / 60)) + " minutes and " +
-		std::to_string((int)getDurationInTurn().count() % 60) + " seconds left\n ");
-	text.setCharacterSize(20);
-	text.setFillColor(sf::Color::Black);
-	text.setPosition(10, m_color == Color::WHITE ? 800 : 820);
-	window.draw(text);
+	drawMessage(window, ASK_FOR_NAME + colorToString(m_color) + "\n");
+	return getInput(window);
 }
 
 /*
 * Let the player input a move.
-* @param is - the input stream to read from.
+* @param window - the window to read from.
 * @return a string representing the move the player wants to make.
 */
-std::string Player::getMoveFromUser(std::istream& is) const
+std::string Player::getMoveFromUser(sf::RenderWindow& window) const
 {
-	displayInstructions();
-	askForMove();
-	std::string input;
-	is >> input;
-	return input;
+	drawMessage(window, ASK_FOR_MOVE);
+	return getInput(window);
 }
 
 /*
 * handles the cases where the user wants to display some instruction or quit the game.
+* @param window - the window to read from.
 * @return a string representing the move the player wants to make.
 */
-std::string Player::handleInput() const
+std::string Player::handleInput(sf::RenderWindow& window) const
 {
 	bool isAMove = false;
 	std::string input;
 	do
 	{
-		input = getMoveFromUser(std::cin);
+		input = getMoveFromUser(window);
 		if (input == EXIT_SYMBOL_LOWER || input == EXIT_SYMBOL_UPPER)
 			throw ExitGame();
 		if (input == MOVE_ASKED_LOWER || input == MOVE_ASKED_UPPER)
 		{
-			displayMoveInstruction();
+			drawMessage(window, MOVE_INSTRUCTION);
 			continue;
 		}
 		if (input == CAPTURE_ASKED_LOWER || input == CAPTURE_ASKED_UPPER)
 		{
-			displayCaptureInstruction();
+			drawMessage(window, CAPTURE_INSTRUCTION);
 			continue;
 		}
 		if (input == CASTLE_ASKED_LOWER || input == CASTLE_ASKED_UPPER)
 		{
-			displayCastleInstruction();
+			drawMessage(window, CASTLE_INSTRUCTION);
 			continue;
 		}
 		if (input == PROMOTION_ASKED_LOWER || input == PROMOTION_ASKED_UPPER)
 		{
-			displayPromotionInstruction();
+			drawMessage(window, PROMOTION_INSTRUCTION);
 			continue;
 		}
 		isAMove = true;
@@ -134,12 +110,13 @@ std::shared_ptr<ChessPiece> Player::getPromotedPiece(const Type type, const Colo
 /*
 * Get a move from the player.
 * @param game - the game to get the move for.
+* @param window - the window to read from.
 * @return a move the player wants to make.
 */
-std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
+std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game, sf::RenderWindow& window) const
 {
 	const std::shared_ptr<ChessBoard> board = game.getChessBoard();
-	const std::string input = handleInput();
+	const std::string input = handleInput(window);
 	if (input == CASTLE_KINGSIDE || input == CASTLE_QUEENSIDE)
 	{
 		const Side side = input == CASTLE_KINGSIDE ? Side::KING : Side::QUEEN;
@@ -165,4 +142,23 @@ std::shared_ptr<ChessMove> Player::getMove(const ChessGame& game) const
 		return std::make_shared<Promotion>(source, promotedPiece->getSquare(), pawnToPromote, promotedPiece);
 	}
 	return std::make_shared<ChessMove>(source, destination, pieceToMove);
+}
+
+/*
+* Render the time left for the player
+* @param window - the window to render to
+*/
+void Player::renderTimeLeft(sf::RenderWindow& window) const
+{
+	sf::Font font;
+	if (!font.loadFromFile("src/fonts/LEMONMILK-Regular.otf"))
+		throw std::runtime_error("Could not load font");
+	sf::Text text;
+	text.setFont(font);
+	text.setString(m_name + " has " + std::to_string((int)(getDurationInTurn().count() / 60)) + " minutes and " +
+		std::to_string((int)getDurationInTurn().count() % 60) + " seconds left\n ");
+	text.setCharacterSize(20);
+	text.setFillColor(sf::Color::Black);
+	text.setPosition(10, m_color == Color::WHITE ? 800 : 820);
+	window.draw(text);
 }

@@ -48,6 +48,13 @@ Color opposite(const Color color)
 	return ((color == Color::WHITE) ? Color::BLACK : Color::WHITE);
 }
 
+Square getSquareFromCoords(const sf::Vector2f& coords)
+{
+	const int row = static_cast<int>(coords.y / SQUARE_SIZE);
+	const int col = static_cast<int>(coords.x / SQUARE_SIZE);
+	return Square{ row, col };
+}
+
 bool isSquareValid(const Square& square)
 {
 	return square.row >= 0 && square.row <= 7 && square.col >= 0 && square.col <= 7;
@@ -122,89 +129,62 @@ int dist(const Square& s1, const Square& s2)
 	return static_cast<int>(sqrt(rowDiff * rowDiff + colDiff * colDiff));
 }
 
-void displayWelcomeMessage()
+void drawMessage(sf::RenderWindow& window, const std::string& message)
 {
-	std::cout << "Welcome to Chess++" << std::endl;
+	sf::Font font;
+	if (!font.loadFromFile("src/fonts/LEMONMILK-Regular.otf"))
+	{
+		throw std::runtime_error("Font not found");
+	}
+	sf::Text text;
+	text.setFont(font);
+	text.setString(message);
+	text.setCharacterSize(24);
+	text.setFillColor(sf::Color::White);
+	text.setPosition(8 * SQUARE_SIZE, 8* SQUARE_SIZE);
+	/* clear the part of the window where the message is drawn to avoid mess up*/
+	sf::RectangleShape rect(sf::Vector2f(8 * SQUARE_SIZE, SQUARE_SIZE));
+	rect.setFillColor(sf::Color::White);
+	rect.setPosition(8 * SQUARE_SIZE, 8 * SQUARE_SIZE);
+	window.draw(rect);
+	window.draw(text);
 }
 
-void displayExitGameInstructions()
+void displayMessage(sf::RenderWindow& window, const std::string& message)
 {
-	std::cout << "  - To exit the game please enter 'quit'" << std::endl;
+	drawMessage(window, message);
+	window.display();
+	sf::sleep(sf::seconds(2));
 }
 
-void askForName(const Color color)
+std::string getInput(sf::RenderWindow& window)
 {
-	std::cout << "Please enter your name for " + colorToString(color) + " ";
+	std::string input;
+	sf::Event event;
+	while (window.isOpen())
+	{
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::TextEntered)
+			{
+				if (event.text.unicode == '\b')
+				{
+					if (!input.empty())
+						input.pop_back();
+				}
+				else if (event.text.unicode < 128)
+				{
+					input += static_cast<char>(event.text.unicode);
+				}
+			}
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+			{
+				return input;
+			}
+		}
+	}
 }
 
-void getCastleInstruction()
-{
-	std::cout << " - To get the instructions for castling please enter 'castling'" << std::endl;
-}
-
-void getPromotionInstruction()
-{
-	std::cout << " - To get the instructions for pawn promotion please enter 'promotion'" << std::endl;
-}
-
-void getMoveInstruction()
-{
-	std::cout << " - To get the instructions for moving a piece please enter 'move'" << std::endl;
-}
-
-void getCaptureInstruction()
-{
-	std::cout << " - To get the instructions for capturing a piece please enter 'capture'" << std::endl;
-}
-
-void askForMove()
-{
-	std::cout << "Please enter your move : ";
-}
-
-void displayMoveInstruction()
-{
-	std::cout << "To enter your move, follow the instruction below: " << std::endl;
-	std::cout << "1 - Enter the square of the piece you want to move " << std::endl;
-	std::cout << "2 - Enter the destination case for your piece" << std::endl;
-	std::cout << "Example : e2e4" << std::endl;
-}
-
-void displayCaptureInstruction()
-{
-	std::cout << "To enter your capture, follow the instruction below: " << std::endl;
-	std::cout << "1 - Enter the square of the piece you want to move " << std::endl;
-	std::cout << "2 - Enter X" << std::endl;
-	std::cout << "3 - Enter the destination case for your piece" << std::endl;
-	std::cout << "Example : e4Xd5" << std::endl;
-}
-
-void displayCastleInstruction()
-{
-	std::cout << "  - Enter O-O to Castle King side and O-O-O for QueenSide" << std::endl;
-}
-
-void displayPromotionInstruction()
-{
-	std::cout << " To Promote a Pawn: " << std::endl;
-	std::cout << "1 - Enter the square where the pawn is currently (example : d7)" << std::endl;
-	std::cout << "2 - Enter symbol = " << std::endl;
-	std::cout << "3 - Enter the type of the promoted Piece (q - Queen, n - Knight, b - Bishop, r - Rook)" << std::endl;
-}
-
-void displayInstructions()
-{
-	displayExitGameInstructions();
-	getMoveInstruction();
-	getCaptureInstruction();
-	getCastleInstruction();
-	getPromotionInstruction();
-}
-
-void displayMoveEndsInCheck()
-{
-	std::cout << MOVE_ENDS_IN_CHECK << std::endl << std::endl;
-}
 
 std::string colorToString(const Color& color)
 {

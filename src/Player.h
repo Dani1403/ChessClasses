@@ -38,24 +38,24 @@ public:
 
 	/*
 	* Let the player input a name.
-	* @param is - the input stream to read from.
-	* @param color - the color of the player.
+	* @param window - the window to read from.
 	* @return a string representing the name the player wants to use.
 	*/
-	std::string getNameFromUser(std::istream& is, const Color color) const;
+	std::string getNameFromUser(sf::RenderWindow& window) const;
 
 	/*
 	* Let the player input a move.
-	* @param is - the input stream to read from.
+	* @param window - the window to read from.
 	* @return a string representing the move the player wants to make.
 	*/
-	std::string getMoveFromUser(std::istream& is) const;
+	std::string getMoveFromUser(sf::RenderWindow& window) const;
 
 	/*
 	* handles the cases where the user wants to display some instruction or quit the game.
+	* @param window - the window to read from.
 	* @return a string representing the move the player wants to make.
 	*/
-	std::string handleInput() const;
+	std::string handleInput(sf::RenderWindow& window) const;
 
 	/*
 	* Get a castle move from the player.
@@ -78,9 +78,10 @@ public:
 	/*
 	* Get a move from the player.
 	* @param game - the game to get the move for.
+	* @param window - the window to read from.
 	* @return a move the player wants to make.
 	*/
-	std::shared_ptr<ChessMove> getMove(const ChessGame& game) const;
+	std::shared_ptr<ChessMove> getMove(const ChessGame& game, sf::RenderWindow& window) const;
 
 	/*
 	* Compare two players by their color.
@@ -88,16 +89,6 @@ public:
 	* @return true if the players have the same color, false otherwise.
 	*/
 	bool operator!=(const Player& other) const { return this->m_color != other.getColor(); }
-
-	/*
-	* Display victory message when the player wins.
-	*/
-	void displayVictory() const { std::cout << m_name << " won the game!" << std::endl; }
-
-	/*
-	* Display defeat message when the player loses.
-	*/
-	void displayDefeat() const { std::cout << m_name << " lost the game!" << std::endl; }
 
 	/*
 	* Start the timer of the player.
@@ -120,14 +111,6 @@ public:
 	* @return the time left for the player when it's his turn.
 	*/
 	std::chrono::duration<double> getDurationInTurn() const { return TIME_LIMIT - m_timer->getDurationWhenOn(); }
-
-	/*
-	* Display the time left for the player.
-	*/
-	void displayTimeLeft() const {
-		std::cout << m_name << " has " << (int)(getTimeLeft().count() / 60) << " minutes and " <<
-			(int)getTimeLeft().count() % 60 << " seconds left " << std::endl;
-	}
 
 	/*
 	* Render the time left for the player

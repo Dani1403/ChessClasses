@@ -48,29 +48,6 @@ void ChessBoard::addInitialPieces(const Color color)
 }
 
 /*
-* Draw the board with the pieces on it to the console
-*/
-void ChessBoard::draw() const
-{
-	int rowNum = 0;
-	for (auto row = m_board.rbegin(); row != m_board.rend(); ++row, ++rowNum)
-	{
-		std::cout << BOARD_SIZE - rowNum << "\t";
-		for (auto piece = row->begin(); piece != row->end(); ++piece)
-		{
-			if (*piece == nullptr)
-			{
-				std::cout << "        | ";
-				continue;
-			}
-			std::cout << colorToString((*piece)->getColor()) + " " + typeToString((*piece)->getType()) + " | ";
-		}
-		std::cout << "\n" << "       ------------------------------------------------------------------------------" << std::endl;
-	}
-	std::cout << " \t   a\t     b\t       c        d\t   e\t     f\t       g\t h\n" << std::endl;
-}
-
-/*
 * Render the grid of the board
 * set the color of the squares to black or white
 * @param window - the window to render to
@@ -128,7 +105,7 @@ void ChessBoard::renderRowIndications(sf::RenderWindow& window) const
 	sf::Font font;
 	if (!font.loadFromFile("src/fonts/LEMONMILK-Regular.otf"))
 	{
-		std::cout << "Error loading font" << std::endl;
+		throw std::runtime_error("Could not load font");
 		return;
 	}
 	for (int row = 0; row < BOARD_SIZE; row++)
@@ -152,7 +129,7 @@ void ChessBoard::renderColIndications(sf::RenderWindow& window) const
 	sf::Font font;
 	if (!font.loadFromFile("src/fonts/LEMONMILK-Regular.otf"))
 	{
-		std::cout << "Error loading font" << std::endl;
+		throw std::runtime_error("Could not load font");
 		return;
 	}
 	sf::Text colText;

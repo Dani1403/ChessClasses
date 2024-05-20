@@ -9,7 +9,10 @@ class ChessGame
 public:
 	/* Constructor and destructors */
 
-	ChessGame();
+	ChessGame(sf::RenderWindow& window) : window(window)
+	{
+		m_chessBoard = std::make_shared<ChessBoard>();
+	}
 	~ChessGame() = default;
 	ChessGame(const ChessGame& other) = delete;
 	ChessGame& operator=(const ChessGame& other) = delete;
@@ -81,9 +84,9 @@ public:
 
 	/*
 	* check if the game is over
-	* @return True if the game is over, false otherwise
+	* @return a string representing the issue of the game if it's over, empty string otherwise
 	*/
-	bool isGameOver();
+	std::string isGameOver();
 
 	/*
 	* Checks if the move is valid and if it is, makes the move
@@ -110,26 +113,18 @@ public:
 	*	-> render the window while waiting
 	*	-> make the move
 	*	-> stop the timer of the current player
-	*	@param window - the window to render to
 	*/
-	void playerTurn(sf::RenderWindow& window);
-
-	/*
-	* Display the timers of the players to the console
-	*/
-	void displayTimers() const;
+	void playerTurn();
 
 	/*
 	* Render the timers of the players to the window
-	* @param window - the window to render to
 	*/
-	void renderTimers(sf::RenderWindow& window) const;
+	void renderTimers() const;
 
 	/*
 	* Play the game
-	*	@param window The window to play the game on
 	*/
-	void play(sf::RenderWindow& window);
+	void play();
 
 	/*
 	* Render the game to the window
@@ -137,11 +132,11 @@ public:
 	*	-> render the board
 	*	-> render the timers
 	*	-> display the window
-	* @param window - the window to render to
 	*/
-	void renderWindow(sf::RenderWindow& window) const;
+	void renderWindow();
 
 private:
+	sf::RenderWindow& window;
 	std::shared_ptr<ChessBoard> m_chessBoard;
 	std::vector<std::shared_ptr<ChessMove>> m_moves;
 	std::list<Player> m_players;
@@ -149,6 +144,8 @@ private:
 
 	/*
 	* Initializes a player with a name and a color
+	* @param player The player to initialize
+	* @param color The color of the player
 	*/
 	void initPlayer(Player& player, const Color color);
 
@@ -194,16 +191,4 @@ private:
 	* if the castle is valid, append it to the vector of possible moves
 	*/
 	void appendCastle(std::vector<std::shared_ptr<ChessMove>>& moves);
-
-	/*
-	* display the next player to play on the console
-	*/
-	void displayNextPlayer() const;
-
-	/*
-	* Handle the case where a player's time is up
-	* @param player The player to check if his time is up
-	* if the time is up, display defeat message and exit the game
-	*/
-	void handleTimeUp(const Player& player) const;
 };
